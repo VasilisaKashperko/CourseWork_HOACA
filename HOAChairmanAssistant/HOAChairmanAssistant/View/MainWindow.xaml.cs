@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HOAChairmanAssistant.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,51 @@ namespace HOAChairmanAssistant.View
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
+            //GridPrincipal.Children.Add(new HousesControl());
+        }
+        private void ButtonShutDown_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
+
+        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int index = ListViewMenu.SelectedIndex;
+            MoveCursorMenu(index);
+
+            switch (index)
+            {
+                case 0:
+                    GridPrincipal.Children.Clear();
+                    //GridPrincipal.Children.Add(new HousesControl());
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void MoveCursorMenu(int index)
+        {
+            TransitioningContentSlide.OnApplyTemplate();
+            GridCursor.Margin = new Thickness(0, (100 + (60 * index)), 0, 0);
+        }
+
+        private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonOpenMenu.Visibility = Visibility.Collapsed;
+            ButtonCloseMenu.Visibility = Visibility.Visible;
+        }
+
+        private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
+        {
+            ButtonOpenMenu.Visibility = Visibility.Visible;
+            ButtonCloseMenu.Visibility = Visibility.Collapsed;
         }
     }
 }
