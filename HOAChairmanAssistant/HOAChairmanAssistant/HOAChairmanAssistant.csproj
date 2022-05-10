@@ -117,10 +117,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helpers\RelayCommand\RelayCommand.cs" />
+    <Compile Include="Helpers\ValidationRules\MaximumCharacterRule.cs" />
+    <Compile Include="Helpers\ValidationRules\MinimumCharacterRule.cs" />
+    <Compile Include="Helpers\ValidationRules\NotEmptyValidationRule.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Contact.cs" />
     <Compile Include="Model\Flat.cs" />
     <Compile Include="Model\House.cs" />
+    <Compile Include="Model\MyHouse.cs" />
     <Compile Include="Model\Owner.cs" />
     <Compile Include="Model\OwnerStatus.cs" />
     <Compile Include="Model\PhoneBook.cs" />
