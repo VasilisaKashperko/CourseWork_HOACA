@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="HOAChairmanAssistant.UserControls.SettingsUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:HOAChairmanAssistant.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="AliceBlue">
+        <StackPanel VerticalAlignment="Top">
+            <TextBlock  Text="{DynamicResource labelSettings}" HorizontalAlignment="Center" FontSize="24" Margin="0 0 0 16"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="{DynamicResource labelLanguage}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Margin="0 0 16 16"/>
+                <ComboBox x:Name="ComboBox" HorizontalAlignment="Left" Margin="10 0 0 0" VerticalAlignment="Top" Width="120" BorderBrush="#607D8B" FontSize="14" Cursor="Hand">
+                    <ComboBoxItem Content="{DynamicResource ruLang}"/>
+                    <ComboBoxItem Content="{DynamicResource enLang}"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="{DynamicResource labelTheme}" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="18" Margin="0 16 20 16"/>
+                <RadioButton  Content="{DynamicResource lightTheme}" FontSize="18" Margin="0 0 20 0" Background="#607D8B" BorderBrush="#607D8B"/>
+                <RadioButton  Content="{DynamicResource darkTheme}" FontSize="18" Background="#607D8B" BorderBrush="#607D8B"/>
+            </StackPanel>
+            <Button Content="{DynamicResource saveButton}" Width="124" Height="40" BorderBrush="#FF607D8B" FontSize="18" Foreground="#DDFFFFFF" Click="Button_Click">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                        <GradientStop Color="#FF607D8B"/>
+                        <GradientStop Color="#FF607D8B" Offset="1"/>
+                        <GradientStop Color="#FF3EB1A6" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

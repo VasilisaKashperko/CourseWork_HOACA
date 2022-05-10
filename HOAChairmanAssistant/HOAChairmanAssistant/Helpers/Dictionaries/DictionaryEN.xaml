@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib">
+
+    <v:String x:Key="title">HOA Chairman Assistant</v:String>
+    <v:String x:Key="labelSettings">Settings</v:String>
+    <v:String x:Key="labelLanguage">Language:</v:String>
+    <v:String x:Key="ruLang">Russian</v:String>
+    <v:String x:Key="enLang">English</v:String>
+    <v:String x:Key="labelTheme">Theme:</v:String>
+    <v:String x:Key="lightTheme">Light</v:String>
+    <v:String x:Key="darkTheme">Dark</v:String>
+    <v:String x:Key="saveButton">Save</v:String>
+    
+</ResourceDictionary>

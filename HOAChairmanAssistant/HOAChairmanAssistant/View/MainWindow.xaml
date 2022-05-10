@@ -39,7 +39,7 @@
         <StackPanel VerticalAlignment="Top">
             <Grid Background="#607D8B" Height="60">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 0">
-                    <TextBlock Text="Помощник председателя ТСЖ" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26" Foreground="White" Margin="0 0 200 0" FontFamily="Candara"/>
+                    <TextBlock Text="{DynamicResource title}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26" Foreground="White" Margin="0 0 200 0" FontFamily="Candara"/>
                     <Button x:Name="ButtonMinimize" Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White" Click="ButtonMinimize_Click" Margin="0 0 10 0" >
                         <materialDesign:PackIcon Kind="WindowMinimize" Width="20" Height="20"/>
                     </Button>
@@ -50,7 +50,7 @@
             </Grid>
         </StackPanel>
 
-        <Grid Margin="90,90,30,30">
+        <Grid Margin="80,80,20,20">
             <Grid x:Name="GridPrincipal"/>
         </Grid>
 

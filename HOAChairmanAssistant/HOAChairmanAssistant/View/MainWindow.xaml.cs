@@ -1,4 +1,6 @@
-﻿using HOAChairmanAssistant.ViewModel;
+﻿using HOAChairmanAssistant.Pages;
+using HOAChairmanAssistant.UserControls;
+using HOAChairmanAssistant.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +23,14 @@ namespace HOAChairmanAssistant.View
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly ResourceDictionary dictionary1 = new ResourceDictionary() { Source = new Uri("Helpers/Dictionaries/DictionaryRU.xaml", UriKind.Relative) };
+        private readonly ResourceDictionary dictionary2 = new ResourceDictionary() { Source = new Uri("Helpers/Dictionaries/DictionaryEN.xaml", UriKind.Relative) };
         public MainWindow()
         {
             InitializeComponent();
             DataContext = new MainWindowViewModel();
-            //GridPrincipal.Children.Add(new HousesControl());
+            GridPrincipal.Children.Add(new HousesUC());
+            Resources.MergedDictionaries.Add(dictionary1);
         }
         private void ButtonShutDown_Click(object sender, RoutedEventArgs e)
         {
@@ -46,7 +51,17 @@ namespace HOAChairmanAssistant.View
             {
                 case 0:
                     GridPrincipal.Children.Clear();
-                    //GridPrincipal.Children.Add(new HousesControl());
+                    break;
+                case 1:
+                    GridPrincipal.Children.Clear();
+                    break;
+                case 2:
+                    GridPrincipal.Children.Clear();
+                    GridPrincipal.Children.Add(new InformationUC());
+                    break;
+                case 3:
+                    GridPrincipal.Children.Clear();
+                    GridPrincipal.Children.Add(new SettingsUC());
                     break;
                 default:
                     break;
