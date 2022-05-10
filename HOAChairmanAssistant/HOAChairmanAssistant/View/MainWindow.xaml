@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:HOAChairmanAssistant"
         xmlns:viewModel="clr-namespace:HOAChairmanAssistant.ViewModel"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -13,12 +14,12 @@
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="250"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="MenuClose">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
-                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
@@ -38,9 +39,9 @@
         <StackPanel VerticalAlignment="Top">
             <Grid Background="#607D8B" Height="60">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 0">
-                    <TextBlock Text="Помощник председателя ТСЖ" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26" Foreground="White" Margin="0 0 200 0"/>
-                    <Button Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White" Margin="0 0 30 0">
-                        <materialDesign:PackIcon Kind="Settings" Width="20" Height="20"/>
+                    <TextBlock Text="Помощник председателя ТСЖ" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26" Foreground="White" Margin="0 0 200 0" FontFamily="Candara"/>
+                    <Button x:Name="ButtonMinimize" Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White" Click="ButtonMinimize_Click" Margin="0 0 10 0" >
+                        <materialDesign:PackIcon Kind="WindowMinimize" Width="20" Height="20"/>
                     </Button>
                     <Button x:Name="ButtonShutDown" Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White" Click="ButtonShutDown_Click" Margin="0 0 10 0">
                         <materialDesign:PackIcon Kind="Close" Width="22" Height="22"/>
@@ -58,10 +59,10 @@
             <StackPanel>
                 <Grid Height="100">
                     <Button x:Name="ButtonCloseMenu" Width="60" Height="60" VerticalAlignment="Top" HorizontalAlignment="Right" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="Collapsed" Click="ButtonCloseMenu_Click">
-                        <materialDesign:PackIcon Foreground="White" Kind="ArrowLeft" Width="30" Height="30"/>
+                        <materialDesign:PackIcon Foreground="White" Kind="ArrowLeft" Width="34" Height="30"/>
                     </Button>
                     <Button x:Name="ButtonOpenMenu" Width="60" Height="60" VerticalAlignment="Top" HorizontalAlignment="Right" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonOpenMenu_Click">
-                        <materialDesign:PackIcon Foreground="White" Kind="Menu" Width="30" Height="30"/>
+                        <materialDesign:PackIcon Foreground="White" Kind="Menu" Width="34" Height="30"/>
                     </Button>
                 </Grid>
             </StackPanel>
@@ -73,38 +74,36 @@
             <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ListViewMenu" Margin="0 100" Foreground="White" SelectionChanged="ListViewMenu_SelectionChanged">
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Главная" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0"/>
+                        <materialDesign:PackIcon Kind="HouseCity" Width="34" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Мои дома" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0"/>
+                    </StackPanel>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding HomeCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ListViewItem>
+                <ListViewItem Height="60">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Contacts" Width="34" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Записная книжка" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Contacts" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Контакты" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0"/>
+                        <materialDesign:PackIcon Kind="NewspaperVariant" Width="34" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Справка" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0"/>
                     </StackPanel>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding HomeCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </ListViewItem>
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="HouseCity" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Дома" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0"/>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem Height="60">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Payment" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Расходы" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0"/>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem Height="60">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Worker" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Работники" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0"/>
-                    </StackPanel>
-                </ListViewItem>
-                <ListViewItem Height="60">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Idea" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Планы" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0"/>
+                        <materialDesign:PackIcon Kind="Settings" Width="34" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Настройки" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0"/>
                     </StackPanel>
                 </ListViewItem>
             </ListView>
