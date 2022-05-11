@@ -8,7 +8,7 @@ namespace HOAChairmanAssistant.Model
 {
     public enum UserRole
     {
-        Chairman,
+        Chairman = 0,
         Accountant
     }
 }
