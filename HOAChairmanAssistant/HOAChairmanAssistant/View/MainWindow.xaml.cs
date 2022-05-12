@@ -28,14 +28,12 @@ namespace HOAChairmanAssistant.View
     {
         private readonly ResourceDictionary dictionary1 = new ResourceDictionary() { Source = new Uri("Helpers/Dictionaries/DictionaryRU.xaml", UriKind.Relative) };
         private readonly ResourceDictionary dictionary2 = new ResourceDictionary() { Source = new Uri("Helpers/Dictionaries/DictionaryEN.xaml", UriKind.Relative) };
-        HOAChairmanAssistantContext db;
         public MainWindow()
         {
             InitializeComponent();
             DataContext = new MainWindowViewModel();
             GridPrincipal.Children.Add(new HousesUC());
             Resources.MergedDictionaries.Add(dictionary1);
-            db = new HOAChairmanAssistantContext();
         }
         private void ButtonShutDown_Click(object sender, RoutedEventArgs e)
         {
