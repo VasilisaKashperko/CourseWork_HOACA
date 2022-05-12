@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace HOAChairmanAssistant.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для InformationPage.xaml
+    /// Логика взаимодействия для RegistrationPage.xaml
     /// </summary>
-    public partial class InformationPage : Page
+    public partial class RegistrationPage : Page
     {
-        public InformationPage()
+        public RegistrationPage()
         {
             InitializeComponent();
         }
