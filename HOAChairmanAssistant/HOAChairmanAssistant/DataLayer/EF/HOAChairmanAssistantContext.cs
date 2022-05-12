@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using HOAChairmanAssistant.Model;
 
-namespace HOAChairmanAssistant.EF
+namespace HOAChairmanAssistant.DataLayer.EF
 {
     public class HOAChairmanAssistantContext : DbContext
     {
-        // Имя будущей базы данных можно указать через вызов конструктора базового класса
-        public HOAChairmanAssistantContext() : base("HOAChairmanAssistant")
+        public HOAChairmanAssistantContext()
+            : base("name=HOAChairmanAssistantContext")
         {
         }
 

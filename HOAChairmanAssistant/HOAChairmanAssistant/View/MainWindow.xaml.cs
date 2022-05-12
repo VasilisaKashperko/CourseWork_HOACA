@@ -2,11 +2,13 @@
 using HOAChairmanAssistant.UserControls;
 using HOAChairmanAssistant.ViewModel;
 using System;
+using System.Windows;
+//using EfDbApp.Models;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -15,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HOAChairmanAssistant.DataLayer.EF;
 
 namespace HOAChairmanAssistant.View
 {
@@ -25,12 +28,14 @@ namespace HOAChairmanAssistant.View
     {
         private readonly ResourceDictionary dictionary1 = new ResourceDictionary() { Source = new Uri("Helpers/Dictionaries/DictionaryRU.xaml", UriKind.Relative) };
         private readonly ResourceDictionary dictionary2 = new ResourceDictionary() { Source = new Uri("Helpers/Dictionaries/DictionaryEN.xaml", UriKind.Relative) };
+        HOAChairmanAssistantContext db;
         public MainWindow()
         {
             InitializeComponent();
             DataContext = new MainWindowViewModel();
             GridPrincipal.Children.Add(new HousesUC());
             Resources.MergedDictionaries.Add(dictionary1);
+            db = new HOAChairmanAssistantContext();
         }
         private void ButtonShutDown_Click(object sender, RoutedEventArgs e)
         {
