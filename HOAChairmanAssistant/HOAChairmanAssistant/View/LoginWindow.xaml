@@ -10,7 +10,7 @@
         Title="LoginWindow" AllowsTransparency="True" ResizeMode="NoResize"
         Height="500" Width="350" WindowStartupLocation="CenterScreen" WindowStyle="None"
         MouseDown="LoginWindow_MouseDown" Background="Transparent"
-        DataContext="{Binding LoginWindowViewModel, Source={StaticResource Locator}}">
+        DataContext="{Binding LoginWindowViewModel, Source={StaticResource Locator}}" Icon="/HOAChairmanAssistant;component/Assets/LogoForAssistant.ico">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedPageCommand, Mode=OneWay}" />
