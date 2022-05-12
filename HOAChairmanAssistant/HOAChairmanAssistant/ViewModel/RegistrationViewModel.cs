@@ -230,7 +230,7 @@ namespace HOAChairmanAssistant.ViewModel
                                 IsOpenDialog = true;
                             }
                             // добавление валидации
-                            else if (Login != null && Password != null && Name != null)
+                            else if (Login != null && Password != null && Name != null && Surname != null && Patronymic != null)
                             {
                                 string hashPass = User.getHash(Password);
                                 User user = new User(Surname, Name, Patronymic, Login, hashPass);
@@ -254,7 +254,7 @@ namespace HOAChairmanAssistant.ViewModel
                     );
                     },
                     (x1) =>
-                    Name?.Length > 0 && Login?.Length > 0 && Password?.Length > 0));
+                    Name?.Length > 0 && Login?.Length > 0 && Surname?.Length > 0 && Patronymic?.Length > 0 && Password?.Length > 0));
             }
         }
 

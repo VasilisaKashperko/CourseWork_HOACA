@@ -29,7 +29,7 @@
         </materialDesign:DialogHost.DialogContent>
         <Grid>
             <materialDesign:TransitioningContent Grid.Row="1" x:Name="TransitioningContentSlide"
-        OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight, Duration=0:0:0.3}">
+        OpeningEffect="{materialDesign:TransitionEffect FadeIn, Duration=0:0:0.5}">
                 <Grid>
                     <Rectangle Height="500" VerticalAlignment="Top" RadiusY="15" RadiusX="15" Margin="0,0,0.4,0">
                         <Rectangle.Fill>
@@ -53,7 +53,7 @@
                         <StackPanel VerticalAlignment="Center" Margin="24,44,24,0" Height="196">
                             <TextBox x:Name="surnameTextBox" materialDesign:HintAssist.Hint="Фамилия" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0" FontSize="14" Padding="2">
                                 <TextBox.Text>
-                                    <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding Path="Surname" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <local2:NotEmptyValidationRule  />
                                             <local2:MinimumCharacterRule MinimumCharacters="2" />
@@ -77,7 +77,7 @@
                             </TextBox>
                             <TextBox x:Name="patronymicTextBox" materialDesign:HintAssist.Hint="Отчество" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0" FontSize="14" Padding="2">
                                 <TextBox.Text>
-                                    <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding Path="Patronymic" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <local2:MinimumCharacterRule MinimumCharacters="2" />
                                             <local3:OnlyLettersRule />

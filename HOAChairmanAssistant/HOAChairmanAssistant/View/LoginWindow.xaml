@@ -19,7 +19,7 @@
     <Grid Background="Transparent">
         <materialDesign:TransitioningContent Grid.Row="1" x:Name="TransitioningContentSlide"
         OpeningEffect="{materialDesign:TransitionEffect FadeIn, Duration=0:0:0.5}">
-            <Border Background="#ffffff" CornerRadius="15">
+            <Border Background="#009688" CornerRadius="15">
                 <Grid Background="Transparent">
                     <Grid Grid.Row="1" >
                         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
