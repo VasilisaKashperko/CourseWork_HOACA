@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography;
 
 namespace HOAChairmanAssistant.Model
 {
@@ -40,6 +41,19 @@ namespace HOAChairmanAssistant.Model
             Login = login;
             Password = password;
             Role = UserRole.Chairman;
+        }
+        public static string getHash(string password)
+        {
+            if (String.IsNullOrEmpty(password))
+            {
+                return "Error";
+            }
+            else
+            {
+                var md5 = MD5.Create();
+                var hash = md5.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(hash);
+            }
         }
     }
 }

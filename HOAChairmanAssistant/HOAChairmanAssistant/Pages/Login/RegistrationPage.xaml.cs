@@ -1,4 +1,7 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Ioc;
+using HOAChairmanAssistant.Helpers.Navigation;
+using HOAChairmanAssistant.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,12 +19,13 @@ using System.Windows.Shapes;
 namespace HOAChairmanAssistant.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для LoginPage.xaml
+    /// Логика взаимодействия для RegistrationPage.xaml
     /// </summary>
-    public partial class LoginPage : Page
+    public partial class RegistrationPage : Page
     {
-        public LoginPage()
+        public RegistrationPage()
         {
+            DataContext = new RegistrationViewModel(SimpleIoc.Default.GetInstance<IFrameNavigationService>());
             InitializeComponent();
         }
     }

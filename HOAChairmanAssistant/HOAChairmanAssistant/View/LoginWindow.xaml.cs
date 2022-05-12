@@ -1,4 +1,9 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Ioc;
+using GalaSoft.MvvmLight.Messaging;
+using HOAChairmanAssistant.Helpers.Locator;
+using HOAChairmanAssistant.Helpers.MessageWindow;
+using HOAChairmanAssistant.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +27,22 @@ namespace HOAChairmanAssistant.View
         public LoginWindow()
         {
             InitializeComponent();
+            Closing += (s, e) => ViewModelLocator.Cleanup();
+            Messenger.Default.Register<OpenWindowMessage>(
+              this,
+              message =>
+              {
+                  if (message.Type == WindowType.kMain)
+                  {
+                      var modalWindowVM = SimpleIoc.Default.GetInstance<MainWindowViewModel>();
+                      modalWindowVM.User = message.Argument;
+                      //modalWindowVM.IsAdmin = modalWindowVM.User.Role == UserRole.Admin;
+                      //modalWindowVM.IsCook = modalWindowVM.User.Role == UserRole.Cook;
+                      var mainWindow = new MainWindow();
+                      mainWindow.Show();
+                      this.Close();
+                  }
+              });
         }
 
         private void LoginWindow_MouseDown(object sender, MouseButtonEventArgs e)
