@@ -37,9 +37,9 @@
     <Grid Background="AliceBlue" MouseDown="Grid_MouseDown">
 
         <StackPanel VerticalAlignment="Top">
-            <Grid Background="#607D8B" Height="60">
+            <Grid Height="60" Background="#FF607D8B">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 0">
-                    <TextBlock Text="{DynamicResource title}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26" Foreground="White" Margin="0 0 200 0" FontFamily="Candara"/>
+                    <TextBlock Text="{DynamicResource title}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26" Foreground="White" Margin="0 0 212 0" FontFamily="Candara"/>
                     <Button x:Name="ButtonMinimize" Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White" Click="ButtonMinimize_Click" Margin="0 0 10 0" >
                         <materialDesign:PackIcon Kind="WindowMinimize" Width="20" Height="20"/>
                     </Button>
@@ -54,7 +54,14 @@
             <Grid x:Name="GridPrincipal"/>
         </Grid>
 
-        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#607D8B">
+        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF607D8B"/>
+                    <GradientStop Color="#FF009688" Offset="1"/>
+                    <GradientStop Color="#FE5C7D8A" Offset="0.081"/>
+                </LinearGradientBrush>
+            </Grid.Background>
 
             <StackPanel>
                 <Grid Height="100">

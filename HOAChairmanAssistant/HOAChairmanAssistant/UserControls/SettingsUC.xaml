@@ -24,11 +24,10 @@
             </StackPanel>
             <Button Content="{DynamicResource saveButton}" Width="124" Height="40" BorderBrush="#FF607D8B" FontSize="18" Foreground="#DDFFFFFF" Click="Button_Click">
                 <Button.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                        <GradientStop Color="#FF607D8B"/>
+                    <RadialGradientBrush>
                         <GradientStop Color="#FF607D8B" Offset="1"/>
-                        <GradientStop Color="#FF3EB1A6" Offset="0.5"/>
-                    </LinearGradientBrush>
+                        <GradientStop Color="#FF009688"/>
+                    </RadialGradientBrush>
                 </Button.Background>
             </Button>
         </StackPanel>
