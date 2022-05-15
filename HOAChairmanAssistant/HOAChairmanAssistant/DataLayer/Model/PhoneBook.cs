@@ -12,8 +12,10 @@ namespace HOAChairmanAssistant.Model
     {
         [Key]
         public int PhoneBookId { get; set; }
-        
+
+        [Required]
+        public int UserId { get; set; }
         [ForeignKey("UserId")]
-        public User UserId { get; set; }
+        public User User { get; set; }
     }
 }

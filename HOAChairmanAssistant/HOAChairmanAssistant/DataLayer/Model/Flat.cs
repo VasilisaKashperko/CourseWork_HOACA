@@ -16,7 +16,9 @@ namespace HOAChairmanAssistant.Model
         [Required]
         public int FlatNumber { get; set; }
 
+        [Required]
+        public int PorchId { get; set; }
         [ForeignKey("PorchId")]
-        public Porch PorchId { get; set; }
+        public Porch Porch { get; set; }
     }
 }

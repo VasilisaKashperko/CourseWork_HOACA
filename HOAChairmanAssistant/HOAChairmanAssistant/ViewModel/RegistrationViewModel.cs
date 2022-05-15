@@ -225,12 +225,12 @@ namespace HOAChairmanAssistant.ViewModel
                         {
                             if (context.Users.FirstOrDefault(x1 => x1.Login == login) != null)
                             {
-                                IsVisibleProgressBar = false;
+                                IsVisibleProgressBar = false; 
                                 Message = "Пользователь с таким логином уже зарегистрирован.";
                                 IsOpenDialog = true;
                             }
                             // добавление валидации
-                            else if (Login != null && Password != null && Name != null && Surname != null && Patronymic != null)
+                            else if (Login != null && Password != null && Name != null && Surname != null)
                             {
                                 string hashPass = User.getHash(Password);
                                 User user = new User(Surname, Name, Patronymic, Login, hashPass);

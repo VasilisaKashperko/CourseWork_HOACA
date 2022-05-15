@@ -22,10 +22,14 @@ namespace HOAChairmanAssistant.Model
         [Required]
         public string Position { get; set; }
 
+        [Required]
+        public int PhoneNumberId { get; set; }
         [ForeignKey("PhoneNumberId")]
-        public PhoneNumber PhoneNumberId { get; set; }
+        public PhoneNumber PhoneNumber { get; set; }
 
+        [Required]
+        public int PhoneBookId { get; set; }
         [ForeignKey("PhoneBookId")]
-        public PhoneBook PhoneBookId { get; set; }
+        public PhoneBook PhoneBook { get; set; }
     }
 }

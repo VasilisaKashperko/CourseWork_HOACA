@@ -19,10 +19,16 @@ namespace HOAChairmanAssistant.Model
         [Required]
         public int NumberOfPorches { get; set; }
 
+        [Required]
+        public int AddressId { get; set; }
+
         [ForeignKey("AddressId")]
-        public Address AddressId { get; set; }
+        public Address Address { get; set; }
+
+        [Required]
+        public User UserId { get; set; }
 
         [ForeignKey("UserId")]
-        public User UserId { get; set; }
+        public User User { get; set; }
     }
 }

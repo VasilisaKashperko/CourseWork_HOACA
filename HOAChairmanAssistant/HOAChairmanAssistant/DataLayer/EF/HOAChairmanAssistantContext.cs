@@ -21,14 +21,15 @@ namespace HOAChairmanAssistant.DataLayer.EF
         }
 
         // Отражение таблиц базы данных на свойства с типом DbSet
-        public DbSet<Address> Addresses { get; set; }
-        public DbSet<Contact> Contacts { get; set; }
-        public DbSet<Flat> Flats { get; set; }
-        public DbSet<House> Houses { get; set; }
-        public DbSet<Owner> Owners { get; set; }
-        public DbSet<PhoneBook> PhoneBooks { get; set; }
-        public DbSet<PhoneNumber> PhoneNumbers { get; set; }
-        public DbSet<Porch> Porches { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<House> Houses { get; set; }
+        public DbSet<Porch> Porches { get; set; }
+        public DbSet<Flat> Flats { get; set; }
+        public DbSet<PhoneNumber> PhoneNumbers { get; set; }
+        public DbSet<Owner> Owners { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<PhoneBook> PhoneBooks { get; set; }
+
     }
 }
