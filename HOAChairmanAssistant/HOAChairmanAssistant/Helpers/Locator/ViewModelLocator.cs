@@ -12,7 +12,7 @@ namespace HOAChairmanAssistant.Helpers.Locator
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<LoginWindowViewModel>();
-            //SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<MainWindowViewModel>();
             //SimpleIoc.Default.Register<AdminViewModel>();
             //SimpleIoc.Default.Register<CookViewModel>();
             SetupNavigation();
@@ -38,13 +38,15 @@ namespace HOAChairmanAssistant.Helpers.Locator
             navigationService.Configure("Warehouse", new Uri("../Pages/Cook/WarehousePage.xaml", UriKind.Relative));
             SimpleIoc.Default.Register<IFrameNavigationService>(() => navigationService);
         }
-        //public MainViewModel Main
-        //{
-        //    get
-        //    {
-        //        return ServiceLocator.Current.GetInstance<MainViewModel>();
-        //    }
-        //}
+
+        public MainWindowViewModel Main
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<MainWindowViewModel>();
+            }
+        }
+
 
         public LoginWindowViewModel LoginWindowViewModel
         {

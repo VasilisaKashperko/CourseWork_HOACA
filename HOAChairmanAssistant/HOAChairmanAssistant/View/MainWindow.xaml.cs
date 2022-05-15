@@ -31,7 +31,6 @@ namespace HOAChairmanAssistant.View
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
             GridPrincipal.Children.Add(new HousesUC());
             Resources.MergedDictionaries.Add(dictionary1);
         }

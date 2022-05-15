@@ -232,9 +232,6 @@ namespace HOAChairmanAssistant.ViewModel
             _navigationService = navigationService;
         }
 
-        public MainWindowViewModel()
-        {
-        }
         #endregion
     }
 }
