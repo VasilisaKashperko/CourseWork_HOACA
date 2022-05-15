@@ -29,6 +29,8 @@ namespace HOAChairmanAssistant.ViewModel
         /// </summary>
         private bool isVisibleProgressBar;
         private bool isOpenDialog;
+        private bool isRegistrated = false;
+
 
         #endregion
 
@@ -157,6 +159,24 @@ namespace HOAChairmanAssistant.ViewModel
                 RaisePropertyChanged();
             }
         }
+
+        public bool IsRegistrated
+        {
+            get
+            {
+                return isRegistrated;
+            }
+            set
+            {
+                if (isRegistrated == value)
+                {
+                    return;
+                }
+                isRegistrated = value;
+                RaisePropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Message for the dialog  
         /// </summary>
@@ -189,23 +209,29 @@ namespace HOAChairmanAssistant.ViewModel
                     ?? (_loginCommand = new RelayCommand(
                     () =>
                     {
-
                         _navigationService.NavigateTo("Login");
-
                     }));
             }
         }
 
-        private RelayCommand closeDialodCommand;
-        public RelayCommand CloseDialodCommand
+        private RelayCommand closeDialogCommand;
+        public RelayCommand CloseDialogCommand
         {
             get
             {
-                return closeDialodCommand
-                    ?? (closeDialodCommand = new RelayCommand(
+                return closeDialogCommand
+                    ?? (closeDialogCommand = new RelayCommand(
                     () =>
                     {
-                        IsOpenDialog = false;
+                        if (isRegistrated == true)
+                        {
+                            IsOpenDialog = false;
+                            _navigationService.NavigateTo("Login");
+                        }
+                        else
+                        {
+                            IsOpenDialog = false;
+                        }
                     }));
             }
         }
@@ -225,7 +251,7 @@ namespace HOAChairmanAssistant.ViewModel
                         {
                             if (context.Users.FirstOrDefault(x1 => x1.Login == login) != null)
                             {
-                                IsVisibleProgressBar = false; 
+                                IsVisibleProgressBar = false;
                                 Message = "Пользователь с таким логином уже зарегистрирован.";
                                 IsOpenDialog = true;
                             }
@@ -238,6 +264,7 @@ namespace HOAChairmanAssistant.ViewModel
                                 IsVisibleProgressBar = false;
                                 Message = "Спасибо за регистрацию!";
                                 IsOpenDialog = true;
+                                IsRegistrated = true;
                             }
                             else
                             {
@@ -251,6 +278,7 @@ namespace HOAChairmanAssistant.ViewModel
                     (x1) =>
                     Name?.Length > 0 && Login?.Length > 0 && Surname?.Length > 0 && Patronymic?.Length > 0 && Password?.Length > 0));
             }
+            
         }
 
         #endregion

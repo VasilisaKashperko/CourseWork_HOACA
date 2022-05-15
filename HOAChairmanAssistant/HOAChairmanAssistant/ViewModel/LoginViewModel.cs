@@ -149,6 +149,7 @@ namespace HOAChairmanAssistant.ViewModel
                     () =>
                     {
                         IsOpenDialog = false;
+                        _navigationService.NavigateTo("Login");
                     }));
             }
         }
