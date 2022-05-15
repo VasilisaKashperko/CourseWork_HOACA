@@ -229,20 +229,22 @@ namespace HOAChairmanAssistant.ViewModel
                                 Message = "Пользователь с таким логином уже зарегистрирован.";
                                 IsOpenDialog = true;
                             }
-                            // добавление валидации
                             else if (Login != null && Password != null && Name != null && Surname != null)
                             {
                                 string hashPass = User.getHash(Password);
                                 User user = new User(Surname, Name, Patronymic, Login, hashPass);
                                 context.Users.Add(user);
                                 context.SaveChanges();
-                                DispatcherHelper.CheckBeginInvokeOnUI(
-                                    () =>
-                                    {
-                                        Messenger.Default.Send<OpenWindowMessage>(
-                                        new OpenWindowMessage() { Type = WindowType.kMain, Argument = user });
-                                    }
-                                    );
+                                IsVisibleProgressBar = false;
+                                Message = "Спасибо за регистрацию!";
+                                IsOpenDialog = true;
+                                //DispatcherHelper.CheckBeginInvokeOnUI(
+                                //    () =>
+                                //    {
+                                //        Messenger.Default.Send<OpenWindowMessage>(
+                                //        new OpenWindowMessage() { Type = WindowType.kMain, Argument = user });
+                                //    }
+                                //    );
                             }
                             else
                             {

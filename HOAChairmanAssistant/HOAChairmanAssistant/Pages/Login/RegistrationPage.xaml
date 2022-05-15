@@ -9,7 +9,7 @@
       xmlns:local2="clr-namespace:HOAChairmanAssistant"
       xmlns:local3="clr-namespace:HOAChairmanAssistant.Helpers.ValidationRules"
       xmlns:local4="clr-namespace:HOAChairmanAssistant.Helpers.AttachedProperties"
-      mc:Ignorable="d" 
+      mc:Ignorable="d"
       d:DesignHeight="500" d:DesignWidth="350"
       Title="RegistrationPage">
     <Page.Resources>
@@ -23,7 +23,7 @@
                 <StackPanel Margin="16">
                     <TextBlock Text="{Binding Message}"/>
                     <Button Margin="0 10 0 0" Style="{StaticResource MaterialDesignFlatAccentButton}"
-                                Content="Закрыть" Foreground="#ffffff" Width="90" Height="30" Command="{Binding CloseDialodCommand}"/>
+                                Content="Закрыть" Foreground="#607D8B" Width="90" Height="30" Command="{Binding CloseDialodCommand}"/>
                 </StackPanel>
             </Border>
         </materialDesign:DialogHost.DialogContent>
@@ -35,23 +35,23 @@
                         <Rectangle.Fill>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#607D8B"/>
-                                <GradientStop Color="#099877" Offset="1"/>
+                                <GradientStop Color="#FF009688" Offset="1"/>
                             </LinearGradientBrush>
                         </Rectangle.Fill>
                     </Rectangle >
                     <StackPanel Orientation="Vertical">
-                        <Image Source="/Assets/LogoForAssistant.png" Width="100" Height="100" VerticalAlignment="Top" Margin="0 20 0 10"/>
-                        <TextBlock Text="Помощник председателя ТСЖ" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="White"/>
+                        <TextBlock Text="Помощник председателя ТСЖ" HorizontalAlignment="Center" FontSize="18" FontWeight="Bold" Foreground="White" Margin="41,20
+                                   ,40.4,0" Height="28"/>
                     </StackPanel>
-                    <Rectangle Width="280" Height="246" Fill="White" VerticalAlignment="Bottom" Margin="40,0,40,79" RadiusY="15" RadiusX="15">
+                    <Rectangle Height="361" Fill="White" VerticalAlignment="Bottom" Margin="40,0,40.4,79" RadiusY="15" RadiusX="15">
                         <Rectangle.Effect>
                             <DropShadowEffect Color="#FFBBBBBB" Direction="0" BlurRadius="15" RenderingBias="Quality" ShadowDepth="1"/>
                         </Rectangle.Effect>
                     </Rectangle>
-                    <Grid Width="280" Height="240" VerticalAlignment="Bottom" Margin="0,100">
-                        <TextBlock Text="Регистрация" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="80,20,79,0" Foreground="Gray" FontSize="18" RenderTransformOrigin="0.497,2.148" Height="24"/>
-                        <StackPanel VerticalAlignment="Center" Margin="24,44,24,0" Height="196">
-                            <TextBox x:Name="surnameTextBox" materialDesign:HintAssist.Hint="Фамилия" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0" FontSize="14" Padding="2">
+                    <Grid Height="361" VerticalAlignment="Bottom" Margin="40,0,40.4,79">
+                        <TextBlock Text="Регистрация" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="80,16,80,0" Foreground="Gray" FontSize="18" RenderTransformOrigin="0.497,2.148" Height="24"/>
+                        <StackPanel VerticalAlignment="Center" Margin="24,40,24,21" Height="300">
+                            <TextBox x:Name="surnameTextBox" materialDesign:HintAssist.Hint="Фамилия" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 10 0 10" FontSize="14" Padding="2">
                                 <TextBox.Text>
                                     <Binding Path="Surname" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
@@ -63,7 +63,7 @@
                                     </Binding>
                                 </TextBox.Text>
                             </TextBox>
-                            <TextBox x:Name="nameTextBox" materialDesign:HintAssist.Hint="Имя" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0" FontSize="14" Padding="2">
+                            <TextBox x:Name="nameTextBox" materialDesign:HintAssist.Hint="Имя" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 8 0 8" FontSize="14" Padding="2">
                                 <TextBox.Text>
                                     <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
@@ -75,7 +75,7 @@
                                     </Binding>
                                 </TextBox.Text>
                             </TextBox>
-                            <TextBox x:Name="patronymicTextBox" materialDesign:HintAssist.Hint="Отчество" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0" FontSize="14" Padding="2">
+                            <TextBox x:Name="patronymicTextBox" materialDesign:HintAssist.Hint="Отчество" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 10 0 10" FontSize="14" Padding="2">
                                 <TextBox.Text>
                                     <Binding Path="Patronymic" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
@@ -86,7 +86,7 @@
                                     </Binding>
                                 </TextBox.Text>
                             </TextBox>
-                            <TextBox x:Name="loginTextBox" materialDesign:HintAssist.Hint="Логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0" FontSize="14" Padding="2">
+                            <TextBox x:Name="loginTextBox" materialDesign:HintAssist.Hint="Логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 10 0 10" FontSize="14" Padding="2">
                                 <TextBox.Text>
                                     <Binding Path="Login" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
@@ -100,7 +100,7 @@
                                 </TextBox.Text>
                             </TextBox>
 
-                            <PasswordBox Margin="0 0 0 10" Padding="2" x:Name="passwordBox" materialDesign:HintAssist.Hint="Пароль"  MaxLength="20" FontSize="14">
+                            <PasswordBox Margin="0 10 0 10" Padding="2" x:Name="passwordBox" materialDesign:HintAssist.Hint="Пароль"  MaxLength="20" FontSize="14">
                                 <PasswordBox.Style>
                                     <Style TargetType="PasswordBox" BasedOn="{StaticResource MaterialDesignFloatingHintPasswordBox}">
                                         <Style.Setters>
@@ -130,13 +130,15 @@
                                 Converter={StaticResource ParametrizedBooleanToVisibilityConverter},
                                 FallbackValue=Collapsed}"
                                 Style="{StaticResource MaterialDesignCircularProgressBar}"
-                                Value="35" 
-                                Margin="20 320 20 60"
+                                Value="35"
+                                Width="40"
+                                Height="40"
+                                Margin="20 0 20 0"
                                 IsIndeterminate="{Binding IsVisibleProgressBar}" />
                     <Button Command="{Binding RegisterCommand}" Visibility="{Binding IsVisibleProgressBar,
                                     Converter={StaticResource ParametrizedBooleanToVisibilityConverter},
                                     ConverterParameter=false}" IsEnabled="{Binding IsVisibleProgressBar,Converter={StaticResource InverseBooleanConverter}}" VerticalAlignment="Bottom" Margin="81,0,70.4,63" Foreground="#DDFFFFFF" Background="#FF607D8B" BorderBrush="#FF607D8B" Content="Зарегистрироваться" RenderTransformOrigin="0.485,1.356"/>
-                    <Button Command="{Binding LoginCommand}" IsEnabled="{Binding IsVisibleProgressBar,Converter={StaticResource InverseBooleanConverter}}" VerticalAlignment="Bottom" Margin="96,0,95.4,19" Content="Вход" Background="#ffffff" BorderBrush="#ffffff" RenderTransformOrigin="0.507,1.408"/>
+                    <Button Command="{Binding LoginCommand}" IsEnabled="{Binding IsVisibleProgressBar,Converter={StaticResource InverseBooleanConverter}}" VerticalAlignment="Bottom" Margin="96,0,95.4,19" Content="Вход" Background="#ffffff" BorderBrush="#ffffff" RenderTransformOrigin="0.507,1.408" Foreground="#FF607D8B"/>
                 </Grid>
             </materialDesign:TransitioningContent>
         </Grid>

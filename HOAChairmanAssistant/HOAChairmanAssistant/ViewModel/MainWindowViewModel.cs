@@ -59,7 +59,7 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
-        public bool IsAdmin
+        public bool IsChairman
         {
             get
             {
@@ -76,7 +76,7 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
-        public bool IsCook
+        public bool IsAccountant
         {
             get
             {

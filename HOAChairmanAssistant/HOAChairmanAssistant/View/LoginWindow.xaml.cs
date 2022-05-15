@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Messaging;
 using HOAChairmanAssistant.Helpers.Locator;
 using HOAChairmanAssistant.Helpers.MessageWindow;
+using HOAChairmanAssistant.Model;
 using HOAChairmanAssistant.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -36,8 +37,8 @@ namespace HOAChairmanAssistant.View
                   {
                       var modalWindowVM = SimpleIoc.Default.GetInstance<MainWindowViewModel>();
                       modalWindowVM.User = message.Argument;
-                      //modalWindowVM.IsAdmin = modalWindowVM.User.Role == UserRole.Admin;
-                      //modalWindowVM.IsCook = modalWindowVM.User.Role == UserRole.Cook;
+                      modalWindowVM.IsChairman = modalWindowVM.User.Role == UserRole.Chairman;
+                      modalWindowVM.IsAccountant = modalWindowVM.User.Role == UserRole.Accountant;
                       var mainWindow = new MainWindow();
                       mainWindow.Show();
                       this.Close();

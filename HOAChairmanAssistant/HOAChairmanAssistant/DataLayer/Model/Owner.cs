@@ -25,7 +25,7 @@ namespace HOAChairmanAssistant.Model
 
         public int CurrentDebt { get; set; }
 
-        public PhoneNumber PhoneNumberId { get; set; }
+        public int PhoneNumberId { get; set; }
         [ForeignKey("PhoneNumberId")]
         public PhoneNumber PhoneNumber { get; set; }
 

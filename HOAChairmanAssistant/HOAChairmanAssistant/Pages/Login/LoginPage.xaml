@@ -34,7 +34,7 @@
                         <Rectangle.Fill>
                             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                 <GradientStop Color="#607D8B"/>
-                                <GradientStop Color="#099877" Offset="1"/>
+                                <GradientStop Color="#FF009688" Offset="1"/>
                             </LinearGradientBrush>
                         </Rectangle.Fill>
                     </Rectangle >
@@ -48,7 +48,7 @@
                         </Rectangle.Effect>
                     </Rectangle>
                     <Grid Width="280" Height="240" VerticalAlignment="Bottom" Margin="0,100">
-                        <TextBlock Text="Вход" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="117,20,117,0" Foreground="Gray" FontSize="18"/>
+                        <TextBlock Text="Вход" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="117,32,117,0" Foreground="Gray" FontSize="18"/>
                         <StackPanel VerticalAlignment="Center" Margin="24,63">
                             <TextBox x:Name="loginTextBox" materialDesign:HintAssist.Hint="Логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" FontSize="14">
                                 <TextBox.Text>
@@ -81,19 +81,21 @@
                                     </Style>
                                 </PasswordBox.Style>
                             </PasswordBox>
-                            <ProgressBar 
+                        </StackPanel>
+                    </Grid>
+                    <Grid>
+                        <ProgressBar 
                                 Visibility="{Binding IsVisibleProgressBar,
                                 Converter={StaticResource ParametrizedBooleanToVisibilityConverter},
                                 FallbackValue=Collapsed}"
                                 Style="{StaticResource MaterialDesignCircularProgressBar}"
                                 Value="35" 
-                                Margin="20 20 20 10"
+                                Width="40"
+                                Height="40"
+                                Margin="20 0 20 0"
                                 IsIndeterminate="{Binding IsVisibleProgressBar}"/>
-                        </StackPanel>
-                    </Grid>
-                    <Grid>
                         <Button Command="{Binding LoginCommand}"  VerticalAlignment="Bottom" Margin="100,0,100.4,66" Width="150" IsEnabled="{Binding IsVisibleProgressBar,Converter={StaticResource InverseBooleanConverter}}" Content="Войти" Foreground="#DDFFFFFF" Background="#FF607D8B" BorderBrush="#FF607D8B"/>
-                        <Button Command="{Binding RegisterCommand}"  VerticalAlignment="Bottom" Margin="100,0,100.4,20" Width="150" IsEnabled="{Binding IsVisibleProgressBar,Converter={StaticResource InverseBooleanConverter}}" Background="#ffffff" BorderBrush="#ffffff" Content="Регистрация"/>
+                        <Button Command="{Binding RegisterCommand}"  VerticalAlignment="Bottom" Margin="100,0,100.4,20" Width="150" IsEnabled="{Binding IsVisibleProgressBar,Converter={StaticResource InverseBooleanConverter}}" Background="#ffffff" BorderBrush="#ffffff" Content="Регистрация" Foreground="#FF607D8B"/>
                     </Grid>
                 </Grid>
             </materialDesign:TransitioningContent>
