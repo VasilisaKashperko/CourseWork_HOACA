@@ -100,6 +100,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Houses\AddHousePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Houses\HousesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Login\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,6 +117,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ListBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,7 +161,7 @@
     <Compile Include="Helpers\MessageWindow\WindowType.cs" />
     <Compile Include="Helpers\Navigation\FrameNavigationService.cs" />
     <Compile Include="Helpers\Navigation\IFrameNavigationService.cs" />
-    <Compile Include="Helpers\RelayCommandParametr.cs" />
+    <Compile Include="Helpers\RelayCommand\RelayCommandParametr.cs" />
     <Compile Include="Helpers\RelayCommand\RelayCommand.cs" />
     <Compile Include="Helpers\ValidationRules\LoginValidationRule.cs" />
     <Compile Include="Helpers\ValidationRules\MaximumCharacterRule.cs" />
@@ -169,6 +181,12 @@
     <Compile Include="DataLayer\Enums\UserRole.cs" />
     <Compile Include="Helpers\ValidationRules\OnlyLettersRule.cs" />
     <Compile Include="Helpers\ValidationRules\PasswordRule.cs" />
+    <Compile Include="Pages\Houses\AddHousePage.xaml.cs">
+      <DependentUpon>AddHousePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Houses\HousesPage.xaml.cs">
+      <DependentUpon>HousesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Login\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -187,6 +205,7 @@
     <Compile Include="UserControls\SettingsUC.xaml.cs">
       <DependentUpon>SettingsUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\HousesViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />

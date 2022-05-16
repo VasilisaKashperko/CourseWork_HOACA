@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Threading;
+using HOAChairmanAssistant.Helpers.MessageWindow;
 using HOAChairmanAssistant.Helpers.Navigation;
 using HOAChairmanAssistant.Model;
 
@@ -106,21 +109,26 @@ namespace HOAChairmanAssistant.ViewModel
                     ?? (_loginpageCommand = new RelayCommand(
                     () =>
                     {
-                        _navigationService.NavigateTo("Login");
+                        DispatcherHelper.CheckBeginInvokeOnUI(
+                        () =>
+                        {
+                            _navigationService.NavigateTo("Login");
+                        });
+                        
                     }));
             }
         }
 
-        private RelayCommand _homeCommand;
-        public RelayCommand HomeCommand
+        private RelayCommand _housesCommand;
+        public RelayCommand HousesCommand
         {
             get
             {
-                return _homeCommand
-                    ?? (_homeCommand = new RelayCommand(
+                return _housesCommand
+                    ?? (_housesCommand = new RelayCommand(
                     () =>
                     {
-                        _navigationService.NavigateTo("Home");
+                        _navigationService.NavigateTo("Houses");
                     }));
             }
         }

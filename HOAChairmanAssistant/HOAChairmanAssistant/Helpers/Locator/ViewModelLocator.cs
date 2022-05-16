@@ -23,8 +23,8 @@ namespace HOAChairmanAssistant.Helpers.Locator
             var navigationService = new FrameNavigationService();
             navigationService.Configure("Login", new Uri("../Pages/Login/LoginPage.xaml", UriKind.Relative));
             navigationService.Configure("Registration", new Uri("../Pages/Login/RegistrationPage.xaml", UriKind.Relative));
-            navigationService.Configure("Home", new Uri("../Pages/Menu/HomePage.xaml", UriKind.Relative));
-            navigationService.Configure("Menu", new Uri("../Pages/Menu/MenuPage.xaml", UriKind.Relative));
+            navigationService.Configure("Houses", new Uri("../Pages/Houses/HousesPage.xaml", UriKind.Relative));
+            navigationService.Configure("AddHousePage", new Uri("../Pages/Houses/AddHousePage.xaml", UriKind.Relative));
             navigationService.Configure("AboutDish", new Uri("../Pages/Menu/AboutDishPage.xaml", UriKind.Relative));
             navigationService.Configure("Reservation", new Uri("../Pages/Menu/ReservationPage.xaml", UriKind.Relative));
             navigationService.Configure("Feedback", new Uri("../Pages/Menu/FeedbackPage.xaml", UriKind.Relative));

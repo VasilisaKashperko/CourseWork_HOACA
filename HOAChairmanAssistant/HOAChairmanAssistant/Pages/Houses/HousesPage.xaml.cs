@@ -1,10 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
 using HOAChairmanAssistant.Helpers.Navigation;
-using HOAChairmanAssistant.Model;
 using HOAChairmanAssistant.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,14 +16,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HOAChairmanAssistant.UserControls
+namespace HOAChairmanAssistant.Pages.Houses
 {
     /// <summary>
-    /// Логика взаимодействия для HousesUC.xaml
+    /// Логика взаимодействия для HousesPage.xaml
     /// </summary>
-    public partial class HousesUC : UserControl
+    public partial class HousesPage : Page
     {
-        public HousesUC()
+        public HousesPage()
         {
             InitializeComponent();
             DataContext = new HousesViewModel(SimpleIoc.Default.GetInstance<IFrameNavigationService>());

@@ -18,6 +18,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using HOAChairmanAssistant.DataLayer.EF;
+using GalaSoft.MvvmLight.Ioc;
+using HOAChairmanAssistant.Helpers.Navigation;
+using System.Threading;
+using HOAChairmanAssistant.Pages.Houses;
+using GalaSoft.MvvmLight.Messaging;
+using HOAChairmanAssistant.Helpers.MessageWindow;
+using GalaSoft.MvvmLight.Threading;
 
 namespace HOAChairmanAssistant.View
 {
@@ -30,9 +37,9 @@ namespace HOAChairmanAssistant.View
         private readonly ResourceDictionary dictionary2 = new ResourceDictionary() { Source = new Uri("Helpers/Dictionaries/DictionaryEN.xaml", UriKind.Relative) };
         public MainWindow()
         {
-            InitializeComponent();
-            GridPrincipal.Children.Add(new HousesUC());
+            DataContext = new MainWindowViewModel(SimpleIoc.Default.GetInstance<IFrameNavigationService>());
             Resources.MergedDictionaries.Add(dictionary1);
+            InitializeComponent();
         }
         private void ButtonShutDown_Click(object sender, RoutedEventArgs e)
         {
@@ -42,34 +49,6 @@ namespace HOAChairmanAssistant.View
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
-        }
-
-        private void ListViewMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int index = ListViewMenu.SelectedIndex;
-            MoveCursorMenu(index);
-
-            switch (index)
-            {
-                case 0:
-                    GridPrincipal.Children.Clear();
-                    GridPrincipal.Children.Add(new HousesUC());
-                    break;
-                case 1:
-                    GridPrincipal.Children.Clear();
-                    GridPrincipal.Children.Add(new ContactsUC());
-                    break;
-                case 2:
-                    GridPrincipal.Children.Clear();
-                    GridPrincipal.Children.Add(new InformationUC());
-                    break;
-                case 3:
-                    GridPrincipal.Children.Clear();
-                    GridPrincipal.Children.Add(new SettingsUC());
-                    break;
-                default:
-                    break;
-            }
         }
 
         private void MoveCursorMenu(int index)
@@ -94,5 +73,17 @@ namespace HOAChairmanAssistant.View
         {
             this.WindowState = WindowState.Minimized;
         }
+
+        private void MainFrame_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new HousesPage());
+        }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
+        }
+
     }
 }
