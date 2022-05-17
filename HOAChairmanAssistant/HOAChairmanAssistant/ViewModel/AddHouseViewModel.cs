@@ -22,6 +22,7 @@ namespace HOAChairmanAssistant.ViewModel
         private string city;
         private string district;
         private string street;
+        private string houseName;
         private int houseNumber;
         private int housingNumber;
         private int numberOfFlats;
@@ -100,6 +101,23 @@ namespace HOAChairmanAssistant.ViewModel
                     return;
                 }
                 street = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public string HouseName
+        {
+            get
+            {
+                return houseName;
+            }
+            set
+            {
+                if (houseName == value)
+                {
+                    return;
+                }
+                houseName = value;
                 RaisePropertyChanged();
             }
         }
@@ -261,6 +279,7 @@ namespace HOAChairmanAssistant.ViewModel
                                 Address address = new Address(Country, City, District, Street, HouseNumber, HousingNumber);
                                 House house = new House()
                                 {
+                                HouseName = houseName,
                                 NumberOfFlats = numberOfFlats,
                                 NumberOfPorches = numberOfPorches,
                                 AddressId = address.AddressId,

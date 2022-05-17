@@ -10,15 +10,15 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HousesPage"
       DataContext="{Binding Path=Main, Source={StaticResource Locator}}">
-        <i:Interaction.Triggers>
-            <i:EventTrigger EventName="Loaded">
-                <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
-            </i:EventTrigger>
-        </i:Interaction.Triggers>
-        <Page.Resources>
-            <local1:ParametrizedBooleanToVisibilityConverter x:Key="ParametrizedBooleanToVisibilityConverter"/>
-            <local1:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
-        </Page.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Page.Resources>
+        <local1:ParametrizedBooleanToVisibilityConverter x:Key="ParametrizedBooleanToVisibilityConverter"/>
+        <local1:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+    </Page.Resources>
     <Grid Background="AliceBlue">
         <StackPanel Orientation="Vertical">
             <Grid VerticalAlignment="Top" HorizontalAlignment="Center">
@@ -38,18 +38,25 @@
                     <ListBox HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" x:Name="ListViewHouses" ItemsSource="{Binding Houses}"  ItemContainerStyle="{DynamicResource ListBoxItemStyleMenu}" Height="324" Width="Auto">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Grid Grid.Column="0" Height="370" Background="#FFF3F3F3" Margin="10">
-                                    <Grid.Effect>
-                                        <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" ShadowDepth="1"/>
-                                    </Grid.Effect>
-                                    <StackPanel Width="200">
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <TextBlock Margin="10" FontFamily="Roboto" FontSize="16" Text="Дом " Foreground="#607D8B"/>
-                                            <TextBlock Margin="10" FontFamily="Roboto" FontSize="16" Text="{Binding Street}" Foreground="#607D8B"/>
+                                <Border CornerRadius="20" Background="#FFE5E5E5">
+                                    <Grid Grid.Column="0" Height="100" Background="Transparent" Margin="10">
+                                        <Grid.Effect>
+                                            <DropShadowEffect BlurRadius="20" Color="LightGray" ShadowDepth="1"/>
+                                        </Grid.Effect>
+                                        <StackPanel Width="200">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <TextBlock Margin="10" FontFamily="Roboto" FontSize="18" Text="{Binding HouseName}">
+                                                    <TextBlock.Foreground>
+                                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                            <GradientStop Color="#FF607D8B" Offset="0"/>
+                                                            <GradientStop Color="#FF009677" Offset="1"/>
+                                                        </LinearGradientBrush>
+                                                    </TextBlock.Foreground>
+                                                </TextBlock>
+                                            </StackPanel>
                                         </StackPanel>
-                                        <TextBlock TextTrimming="WordEllipsis" Text="{Binding AddressId}" Height="100" FontSize="14" Margin="5" TextWrapping="Wrap" FontFamily="Roboto"/>
-                                    </StackPanel>
-                                </Grid>
+                                    </Grid>
+                                </Border>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                         <ListBox.ItemsPanel>

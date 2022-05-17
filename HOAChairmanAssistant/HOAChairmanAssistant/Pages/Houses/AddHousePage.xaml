@@ -70,7 +70,7 @@
                                     </Binding>
                                 </TextBox.Text>
                             </TextBox>
-                            <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="46" Margin="20 0 20 16"
+                            <TextBox ToolTip="Поле, необязательное для заполнения" VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="46" Margin="20 0 20 16"
                                     MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Район" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
                                 <TextBox.Text>
                                     <Binding Path="District" UpdateSourceTrigger="PropertyChanged">
@@ -108,7 +108,7 @@
                                     </Binding>
                                 </TextBox.Text>
                             </TextBox>
-                            <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="50" Margin="20 0 20 16"
+                            <TextBox ToolTip="Поле, необязательное для заполнения" VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="50" Margin="20 0 20 16"
                                     MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Номер корпуса" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
                                 <TextBox.Text>
                                     <Binding Path="HousingNumber" UpdateSourceTrigger="PropertyChanged">
@@ -120,15 +120,27 @@
                                 </TextBox.Text>
                             </TextBox>
                         </StackPanel>
-                        <Grid Margin="19.6,0,19.8,19.4" Grid.Column="1">
+                        <Grid Margin="19.6,0,20,0.4" Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <TextBlock Text="Информация" Foreground="#696969" FontSize="20" HorizontalAlignment="Center" Margin="161,0,137.2,412.2" Width="124"/>
-                            <Image Source="/Assets/AddHousePic.png" Margin="58,206,0.2,0.4" />
+                            <Image Source="/Assets/AddHousePic.png" Margin="43,227,-0.2,-0.2" Grid.RowSpan="2" />
                             <StackPanel Margin="0,29,0,-0.4">
-                                <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="52" Margin="20 0 20 16"
+                                <TextBox ToolTip="Введите краткое название дома, которое вы бы хотели видеть на главном экране" VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="48" Margin="20,5,20.4,12"
+                                    MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Название дома*" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
+                                    <TextBox.Text>
+                                        <Binding Path="HouseName" UpdateSourceTrigger="PropertyChanged">
+                                            <Binding.ValidationRules>
+                                                <local2:NotEmptyValidationRule  />
+                                                <local2:MinimumCharacterRule MinimumCharacters="1" />
+                                                <local2:MaximumCharacterRule MaximumCharacters="31"/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox.Text>
+                                </TextBox>
+                                <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="52" Margin="20,0,20.4,12"
                                     MaxHeight="160" MaxWidth="300" materialDesign:HintAssist.Hint="Количество квартир*" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
                                     <TextBox.Text>
                                         <Binding Path="NumberOfFlats" UpdateSourceTrigger="PropertyChanged">
@@ -141,7 +153,7 @@
                                         </Binding>
                                     </TextBox.Text>
                                 </TextBox>
-                                <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="51" Margin="20 0 20 16"
+                                <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="48" Margin="20,0,20.4,16"
                                     MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Количество подъездов*" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
                                     <TextBox.Text>
                                         <Binding Path="NumberOfPorches" UpdateSourceTrigger="PropertyChanged">
@@ -168,7 +180,7 @@
                                     ConverterParameter=False}"
                          Foreground="#ffffff"
                          FontSize="18"
-                         Margin="0 12 0 0"
+                         Margin="0 4 0 0"
                          Width="120" Content="Добавить" 
                          Command="{Binding AddHouseCommand}"/>
                             </StackPanel>

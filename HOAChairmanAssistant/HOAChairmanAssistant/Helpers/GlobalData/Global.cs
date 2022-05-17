@@ -9,6 +9,6 @@ namespace HOAChairmanAssistant.Helpers.GlobalData
     public static class Global
     {
         public static string UserName { get; set; }
-        public static string UserId { get; set; }
+        public static int UserId { get; set; }
     }
 }

@@ -115,7 +115,7 @@ namespace HOAChairmanAssistant.ViewModel
                     ?? (loadedCommand = new RelayCommandParametr(
                     obj =>
                     {
-                        Houses = new ObservableCollection<House>(context.Houses.AsNoTracking().ToList());
+                        Houses = new ObservableCollection<House>(context.Houses.Where(u => u.UserId == Global.UserId).ToList());
 
                     }));
             }

@@ -14,6 +14,9 @@ namespace HOAChairmanAssistant.Model
         public int HouseId { get; set; }
 
         [Required]
+        public string HouseName { get; set; }
+
+        [Required]
         public int NumberOfFlats { get; set; }
 
         [Required]
@@ -31,8 +34,9 @@ namespace HOAChairmanAssistant.Model
         [ForeignKey("UserId")]
         public User User { get; set; }
 
-        public House(int numberOfFlats, int numberOfPorches, User user, Address address)
+        public House(string houseName, int numberOfFlats, int numberOfPorches, User user, Address address)
         {
+            HouseName = houseName;
             NumberOfFlats = numberOfFlats;
             NumberOfPorches = numberOfPorches;
             AddressId = address.AddressId;
