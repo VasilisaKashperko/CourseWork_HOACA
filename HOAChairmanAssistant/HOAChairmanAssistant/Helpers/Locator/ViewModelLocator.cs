@@ -26,16 +26,7 @@ namespace HOAChairmanAssistant.Helpers.Locator
             navigationService.Configure("Houses", new Uri("../Pages/Houses/HousesPage.xaml", UriKind.Relative));
             navigationService.Configure("AddHousePage", new Uri("../Pages/Houses/AddHousePage.xaml", UriKind.Relative));
             navigationService.Configure("Information", new Uri("../Pages/Information/InformationPage.xaml", UriKind.Relative));
-            navigationService.Configure("Reservation", new Uri("../Pages/Menu/ReservationPage.xaml", UriKind.Relative));
-            navigationService.Configure("Feedback", new Uri("../Pages/Menu/FeedbackPage.xaml", UriKind.Relative));
-            navigationService.Configure("Favourites", new Uri("../Pages/Menu/FavouritesPage.xaml", UriKind.Relative));
-            navigationService.Configure("Admin", new Uri("../Pages/Menu/AdminPage.xaml", UriKind.Relative));
-            navigationService.Configure("Cook", new Uri("../Pages/Menu/CookPage.xaml", UriKind.Relative));
-            navigationService.Configure("AddMenuDish", new Uri("../Pages/Admin/AddMenuDishPage.xaml", UriKind.Relative));
-            navigationService.Configure("AddNewsBlock", new Uri("../Pages/Admin/AddNewsBlockPage.xaml", UriKind.Relative));
-            navigationService.Configure("ReservedTables", new Uri("../Pages/Admin/ReservedTablesPage.xaml", UriKind.Relative));
-            navigationService.Configure("OrderingProduct", new Uri("../Pages/Cook/OrderingProductPage.xaml", UriKind.Relative));
-            navigationService.Configure("Warehouse", new Uri("../Pages/Cook/WarehousePage.xaml", UriKind.Relative));
+            navigationService.Configure("Contacts", new Uri("../Pages/ContactsPage.xaml", UriKind.Relative));
             SimpleIoc.Default.Register<IFrameNavigationService>(() => navigationService);
         }
 

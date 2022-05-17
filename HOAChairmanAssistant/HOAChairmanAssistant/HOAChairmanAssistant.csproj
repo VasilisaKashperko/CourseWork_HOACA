@@ -100,6 +100,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Contacts\ContactsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Houses\AddHousePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -187,6 +191,9 @@
     <Compile Include="Helpers\ValidationRules\OnlyLettersRule.cs" />
     <Compile Include="Helpers\ValidationRules\OnlyNumbersRule.cs" />
     <Compile Include="Helpers\ValidationRules\PasswordRule.cs" />
+    <Compile Include="Pages\Contacts\ContactsPage.xaml.cs">
+      <DependentUpon>ContactsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Houses\AddHousePage.xaml.cs">
       <DependentUpon>AddHousePage.xaml</DependentUpon>
     </Compile>
