@@ -107,6 +107,11 @@
                         <materialDesign:PackIcon Kind="NewspaperVariant" Width="34" Height="30" VerticalAlignment="Center" Margin="5"/>
                         <TextBlock Text="Справка" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0"/>
                     </StackPanel>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding InformationCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </ListViewItem>
                 <ListViewItem Height="60">
                     <StackPanel Orientation="Horizontal">

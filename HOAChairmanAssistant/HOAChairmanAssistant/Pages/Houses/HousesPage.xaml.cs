@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
+using HOAChairmanAssistant.Helpers.GlobalData;
 using HOAChairmanAssistant.Helpers.Navigation;
 using HOAChairmanAssistant.ViewModel;
 using System;
@@ -40,6 +41,11 @@ namespace HOAChairmanAssistant.Pages.Houses
                 scrollViewer.LineUp();
             }
             e.Handled = true;
+        }
+
+        private void userNameLabel_Loaded(object sender, RoutedEventArgs e)
+        {
+            userNameLabel.Text = Global.UserName;
         }
     }
 }

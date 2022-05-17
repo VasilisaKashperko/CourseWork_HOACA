@@ -265,7 +265,7 @@ namespace HOAChairmanAssistant.ViewModel
                                 NumberOfPorches = numberOfPorches,
                                 AddressId = address.AddressId,
                                 UserId = user.UserId
-                            };
+                                };
                                 context.Addresses.Add(address);
                                 context.Houses.Add(house);
                                 context.SaveChanges();

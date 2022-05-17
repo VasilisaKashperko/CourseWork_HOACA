@@ -5,15 +5,27 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HOAChairmanAssistant.Pages.Houses"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:local1="clr-namespace:HOAChairmanAssistant.Helpers.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HousesPage"
       DataContext="{Binding Path=Main, Source={StaticResource Locator}}">
-
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="Loaded">
+                <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+        <Page.Resources>
+            <local1:ParametrizedBooleanToVisibilityConverter x:Key="ParametrizedBooleanToVisibilityConverter"/>
+            <local1:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+        </Page.Resources>
     <Grid Background="AliceBlue">
         <StackPanel Orientation="Vertical">
             <Grid VerticalAlignment="Top" HorizontalAlignment="Center">
-                <TextBlock Text="Здравствуйте, Василиса!" FontSize="30" HorizontalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Здравствуйте, " FontSize="30" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="userNameLabel" FontSize="30" HorizontalAlignment="Center" Loaded="userNameLabel_Loaded"/>
+                </StackPanel>
             </Grid>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0 20 0 0">
                 <Line X1="0" Y1="0" X2="800" Y2="0" Stroke="#607D8B" VerticalAlignment="Center" Width="300"/>
@@ -23,7 +35,7 @@
             <StackPanel Orientation="Horizontal">
                 <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible"
               PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
-                    <ListBox HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" x:Name="ListViewMenuDish" ItemsSource="{Binding MenuDishes}"  ItemContainerStyle="{DynamicResource ListBoxItemStyleMenu}" Height="324">
+                    <ListBox HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" x:Name="ListViewHouses" ItemsSource="{Binding Houses}"  ItemContainerStyle="{DynamicResource ListBoxItemStyleMenu}" Height="324" Width="Auto">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid Grid.Column="0" Height="370" Background="#FFF3F3F3" Margin="10">
@@ -31,14 +43,11 @@
                                         <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" ShadowDepth="1"/>
                                     </Grid.Effect>
                                     <StackPanel Width="200">
-                                        <TextBlock Margin="10" FontFamily="Roboto" FontSize="16" Text="{Binding MenuDishName}" Foreground="#607D8B"/>
-                                        <Image Source="{Binding MenuDishImage, Mode=OneTime}" Width="200" Height="150" Stretch="UniformToFill" />
-                                        <TextBlock TextTrimming="WordEllipsis" Text="{Binding MenuDishDescription}" Height="100" FontSize="14" Margin="5" TextWrapping="Wrap" FontFamily="Roboto"/>
                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding DishCostValue, StringFormat={}{0:C}}" Foreground="#607D8B" VerticalAlignment="Center" Margin="10" FontSize="20" FontFamily="Roboto"/>
-                                            <Button Width="110" Content="Подробнее" Command="{Binding ElementName= ListViewMenuDish, Path= DataContext.AboutDishCommand}"
-                                            CommandParameter="{Binding Path= SelectedItem , ElementName=ListViewMenuDish}" FontFamily="Roboto" Margin="10"/>
+                                            <TextBlock Margin="10" FontFamily="Roboto" FontSize="16" Text="Дом " Foreground="#607D8B"/>
+                                            <TextBlock Margin="10" FontFamily="Roboto" FontSize="16" Text="{Binding Street}" Foreground="#607D8B"/>
                                         </StackPanel>
+                                        <TextBlock TextTrimming="WordEllipsis" Text="{Binding AddressId}" Height="100" FontSize="14" Margin="5" TextWrapping="Wrap" FontFamily="Roboto"/>
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>

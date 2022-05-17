@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using HOAChairmanAssistant.DataLayer.EF;
 using HOAChairmanAssistant.Helpers;
+using HOAChairmanAssistant.Helpers.GlobalData;
 using HOAChairmanAssistant.Helpers.Navigation;
 using HOAChairmanAssistant.Model;
 using System;
@@ -19,6 +20,9 @@ namespace HOAChairmanAssistant.ViewModel
         private IFrameNavigationService _navigationService;
         private ObservableCollection<House> houses = new ObservableCollection<House>();
         private string searchField;
+        private string street;
+        private string userName;
+        //private int houseNumber;
         private bool isVisibleProgressBar;
         //private Thread searchedThread;
 
@@ -36,6 +40,29 @@ namespace HOAChairmanAssistant.ViewModel
                     return;
                 }
                 houses = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public string UserName
+        {
+            get { return userName; }
+            set
+            {
+                userName = Global.UserName;
+            }
+        }
+
+        public string Street
+        {
+            get { return street; }
+            set
+            {
+                if (street == value)
+                {
+                    return;
+                }
+                street = context.Addresses.Select(c => c.Street).FirstOrDefault();
                 RaisePropertyChanged();
             }
         }

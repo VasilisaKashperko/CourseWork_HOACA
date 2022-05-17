@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Threading;
 using HOAChairmanAssistant.DataLayer.EF;
 using HOAChairmanAssistant.Helpers;
+using HOAChairmanAssistant.Helpers.GlobalData;
 using HOAChairmanAssistant.Helpers.MessageWindow;
 using HOAChairmanAssistant.Helpers.Navigation;
 using HOAChairmanAssistant.Model;
@@ -170,8 +171,9 @@ namespace HOAChairmanAssistant.ViewModel
                             string tmpPassword = User.getHash(password);
                             if (context.Users.FirstOrDefault(x1 => x1.Login == login && x1.Password == tmpPassword) != null)
                             {
-
                                 User user = context.Users.FirstOrDefault(x1 => x1.Login == login);
+                                Global.UserName = user.Name.ToString();
+                                Global.UserId = user.UserId.ToString();
                                 context.SaveChanges();
                                 DispatcherHelper.CheckBeginInvokeOnUI(
                                     () =>

@@ -133,16 +133,16 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
-        private RelayCommand _menuCommand;
-        public RelayCommand MenuCommand
+        private RelayCommand _informationCommand;
+        public RelayCommand InformationCommand
         {
             get
             {
-                return _menuCommand
-                    ?? (_menuCommand = new RelayCommand(
+                return _informationCommand
+                    ?? (_informationCommand = new RelayCommand(
                     () =>
                     {
-                        _navigationService.NavigateTo("Menu");
+                        _navigationService.NavigateTo("Information");
                     }));
             }
         }
