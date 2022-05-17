@@ -1,4 +1,7 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Ioc;
+using HOAChairmanAssistant.Helpers.Navigation;
+using HOAChairmanAssistant.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +25,7 @@ namespace HOAChairmanAssistant.Pages.Houses
     {
         public AddHousePage()
         {
+            DataContext = new AddHouseViewModel(SimpleIoc.Default.GetInstance<IFrameNavigationService>());
             InitializeComponent();
         }
     }

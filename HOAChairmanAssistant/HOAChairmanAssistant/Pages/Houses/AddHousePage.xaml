@@ -4,13 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:HOAChairmanAssistant.Pages.Houses" xmlns:local1="clr-namespace:HOAChairmanAssistant.Helpers.Converters" xmlns:local2="clr-namespace:HOAChairmanAssistant"
+      xmlns:local="clr-namespace:HOAChairmanAssistant.Pages.Houses" xmlns:local1="clr-namespace:HOAChairmanAssistant.Helpers.Converters" xmlns:local2="clr-namespace:HOAChairmanAssistant" xmlns:local3="clr-namespace:HOAChairmanAssistant.Helpers.ValidationRules"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="500" d:DesignWidth="924"
       Title="AddHousePage">
 
     <Page.Resources>
         <local1:ParametrizedBooleanToVisibilityConverter x:Key="ParametrizedBooleanToVisibilityConverter"/>
+        <local1:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
     </Page.Resources>
 
     <materialDesign:DialogHost 
@@ -32,118 +33,127 @@
                         <RowDefinition Height="80"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Добавление дома" Margin="0,0,0,10" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="#607D8B" FontWeight="Bold"/>
-                    <Grid Grid.Row="1">
+                    <Button Command="{Binding HousesPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,844,40" Height="Auto">
+                        <materialDesign:PackIcon  Kind="ArrowBack" Foreground="#607D8B" FontSize="30" Width="50" Height="35"/>
+                    </Button>
+                    <TextBlock Grid.Row="0" Text="Добавление дома" Margin="329,0,329,40" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="#607D8B" FontWeight="Bold" Height="40"/>
+                    <Grid Margin="0,60,0,-0.4" Grid.RowSpan="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel>
-                            <TextBlock Text="Адрес" Foreground="#696969" FontSize="20" HorizontalAlignment="Center"/>
-                            <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="30" Margin="20 10 20 10"
-                                    MaxHeight="160" MaxWidth="400" materialDesign:HintAssist.Hint="Страна*" materialDesign:HintAssist.Foreground="#696969" FontSize="14" Grid.ColumnSpan="2" >
+                        <TextBlock Text="Адрес" Foreground="#696969" FontSize="20" HorizontalAlignment="Center" Margin="204,0,203.4,411.4"/>
+                        <StackPanel Margin="0,29,0,-0.4">
+                            <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="52" Margin="20 0 20 16"
+                                    MaxHeight="160" MaxWidth="300" materialDesign:HintAssist.Hint="Страна*" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
                                 <TextBox.Text>
-                                    <Binding Path="MenuDishName" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding Path="Country" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <local2:NotEmptyValidationRule  />
                                             <local2:MinimumCharacterRule MinimumCharacters="3" />
+                                            <local2:MaximumCharacterRule MaximumCharacters="31"/>
+                                            <local3:OnlyLettersRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="51" Margin="20 0 20 16"
+                                    MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Город*" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
+                                <TextBox.Text>
+                                    <Binding Path="City" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <local2:NotEmptyValidationRule  />
+                                            <local2:MinimumCharacterRule MinimumCharacters="3" />
+                                            <local2:MaximumCharacterRule MaximumCharacters="31"/>
+                                            <local3:OnlyLettersRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="46" Margin="20 0 20 16"
+                                    MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Район" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
+                                <TextBox.Text>
+                                    <Binding Path="District" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <local2:MinimumCharacterRule MinimumCharacters="3" />
+                                            <local2:MaximumCharacterRule MaximumCharacters="31"/>
+                                            <local3:OnlyLettersRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="50" Margin="20 0 20 16"
+                                    MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Улица*" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
+                                <TextBox.Text>
+                                    <Binding Path="Street" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <local2:NotEmptyValidationRule  />
+                                            <local2:MinimumCharacterRule MinimumCharacters="3" />
+                                            <local2:MaximumCharacterRule MaximumCharacters="31"/>
+                                            <local3:OnlyLettersRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <TextBox x:Name="HouseNumberTB" VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="51" Margin="20 0 20 16"
+                                    MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Номер дома*" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2">
+                                <TextBox.Text>
+                                    <Binding Path="HouseNumber" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <local2:NotEmptyValidationRule  />
+                                            <local2:MinimumCharacterRule MinimumCharacters="1" />
+                                            <local2:MaximumCharacterRule MaximumCharacters="4"/>
+                                            <local3:OnlyNumbersRule />
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="50" Margin="20 0 20 16"
+                                    MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Номер корпуса" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
+                                <TextBox.Text>
+                                    <Binding Path="HousingNumber" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <local2:MaximumCharacterRule MaximumCharacters="3"/>
+                                            <local3:OnlyNumbersRule />
                                         </Binding.ValidationRules>
                                     </Binding>
                                 </TextBox.Text>
                             </TextBox>
                         </StackPanel>
-                        <Grid Margin="20" Grid.Column="1">
+                        <Grid Margin="19.6,0,19.8,19.4" Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <StackPanel Grid.Row="1">
-                                <TextBox 
-                         VerticalAlignment="Top"
-                         HorizontalAlignment="Stretch"
-                         AcceptsReturn="True"
-                         TextWrapping="Wrap"
-                         Height="30"
-                         Margin="20 10 20 10"
-                         MaxHeight="160"
-                         MaxWidth="400"
-                         materialDesign:HintAssist.Hint="Наименование*"
-                         materialDesign:HintAssist.Foreground="#696969"
-                         FontSize="18" Grid.ColumnSpan="2" >
+                            <TextBlock Text="Информация" Foreground="#696969" FontSize="20" HorizontalAlignment="Center" Margin="161,0,137.2,412.2" Width="124"/>
+                            <Image Source="/Assets/AddHousePic.png" Margin="58,206,0.2,0.4" />
+                            <StackPanel Margin="0,29,0,-0.4">
+                                <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="52" Margin="20 0 20 16"
+                                    MaxHeight="160" MaxWidth="300" materialDesign:HintAssist.Hint="Количество квартир*" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
                                     <TextBox.Text>
-                                        <Binding Path="MenuDishName" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding Path="NumberOfFlats" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
-                                                <local2:NotEmptyValidationRule  />
-                                                <local2:MinimumCharacterRule MinimumCharacters="3" />
-                                            </Binding.ValidationRules>
-                                        </Binding>
-                                    </TextBox.Text>
-                                </TextBox>
-                                <TextBox 
-                         VerticalAlignment="Top"
-                         HorizontalAlignment="Stretch"
-                         AcceptsReturn="True"
-                         TextWrapping="Wrap"
-                         Height="30"
-                         Margin="20 10 20 10"
-                         MaxHeight="60"
-                         MaxWidth="400"
-                         materialDesign:HintAssist.Hint="Вес порции*"
-                         materialDesign:HintAssist.Foreground="#696969"
-                         FontSize="18" Grid.ColumnSpan="2" >
-                                    <TextBox.Text>
-                                        <Binding Path="DishServingWeight" UpdateSourceTrigger="PropertyChanged">
-                                            <Binding.ValidationRules>
-                                                <local2:NotEmptyValidationRule/>
-                                                <!--<local:OnlyNumbersRule/>-->
-                                                <local2:MinimumCharacterRule MinimumCharacters="2" />
-                                            </Binding.ValidationRules>
-                                        </Binding>
-                                    </TextBox.Text>
-                                </TextBox>
-                                <TextBox 
-                         VerticalAlignment="Top"
-                         HorizontalAlignment="Stretch"
-                         AcceptsReturn="True"
-                         TextWrapping="Wrap"
-                         Height="30"
-                         Margin="20 10 20 10"
-                         MaxHeight="60"
-                         MaxWidth="400"
-                         materialDesign:HintAssist.Hint="Цена*"
-                         materialDesign:HintAssist.Foreground="#696969"
-                         FontSize="18" Grid.ColumnSpan="2" >
-                                    <TextBox.Text>
-                                        <Binding Path="DishCostValue" UpdateSourceTrigger="PropertyChanged">
-                                            <Binding.ValidationRules>
-                                                <!--<local:OnlyNumbersRule/>-->
                                                 <local2:NotEmptyValidationRule  />
                                                 <local2:MinimumCharacterRule MinimumCharacters="1" />
+                                                <local2:MaximumCharacterRule MaximumCharacters="5"/>
+                                                <local3:OnlyNumbersRule />
                                             </Binding.ValidationRules>
                                         </Binding>
                                     </TextBox.Text>
                                 </TextBox>
-                                <TextBox Grid.Row="1"
-                         Margin="20,10,20,20"
-                         AcceptsReturn="True"
-                         TextWrapping="Wrap"
-                         Height="150"
-                         MaxHeight="250"
-                         VerticalScrollBarVisibility="Auto"
-                         MaxWidth="400"
-                         materialDesign:HintAssist.Hint="Описание"
-                         materialDesign:HintAssist.Foreground="#696969"
-                         FontSize="18" Grid.ColumnSpan="2" >
+                                <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="51" Margin="20 0 20 16"
+                                    MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Количество подъездов*" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
                                     <TextBox.Text>
-                                        <Binding Path="MenuDishDescription" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding Path="NumberOfPorches" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
-                                                <local2:MinimumCharacterRule MinimumCharacters="2" />
-                                                <local2:MaximumCharacterRule MaximumCharacters="700"/>
+                                                <local2:NotEmptyValidationRule  />
+                                                <local2:MinimumCharacterRule MinimumCharacters="1" />
+                                                <local2:MaximumCharacterRule MaximumCharacters="3"/>
+                                                <local3:OnlyNumbersRule />
                                             </Binding.ValidationRules>
                                         </Binding>
                                     </TextBox.Text>
                                 </TextBox>
-
                                 <ProgressBar 
                                 Visibility="{Binding IsVisibleProgressBar,
                                     Converter={StaticResource ParametrizedBooleanToVisibilityConverter},
@@ -157,9 +167,10 @@
                                     Converter={StaticResource ParametrizedBooleanToVisibilityConverter},
                                     ConverterParameter=False}"
                          Foreground="#ffffff"
-                         FontSize="14"
+                         FontSize="18"
+                         Margin="0 12 0 0"
                          Width="120" Content="Добавить" 
-                         Command="{Binding AddDishCommand}"/>
+                         Command="{Binding AddHouseCommand}"/>
                             </StackPanel>
                         </Grid>
                     </Grid>

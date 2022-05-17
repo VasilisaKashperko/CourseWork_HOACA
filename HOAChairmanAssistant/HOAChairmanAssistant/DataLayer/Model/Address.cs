@@ -27,5 +27,15 @@ namespace HOAChairmanAssistant.Model
         public int HouseNumber { get; set; }
 
         public int HousingNumber { get; set; }
+
+        public Address(string country, string city, string district, string street, int houseNumber, int housingNumber)
+        {
+            Country = country;
+            City = city;
+            District = district;
+            Street = street;
+            HouseNumber = houseNumber;
+            HousingNumber = housingNumber;
+        }
     }
 }

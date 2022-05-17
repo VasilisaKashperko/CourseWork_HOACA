@@ -180,6 +180,7 @@
     <Compile Include="DataLayer\Model\User.cs" />
     <Compile Include="DataLayer\Enums\UserRole.cs" />
     <Compile Include="Helpers\ValidationRules\OnlyLettersRule.cs" />
+    <Compile Include="Helpers\ValidationRules\OnlyNumbersRule.cs" />
     <Compile Include="Helpers\ValidationRules\PasswordRule.cs" />
     <Compile Include="Pages\Houses\AddHousePage.xaml.cs">
       <DependentUpon>AddHousePage.xaml</DependentUpon>
@@ -205,6 +206,7 @@
     <Compile Include="UserControls\SettingsUC.xaml.cs">
       <DependentUpon>SettingsUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AddHouseViewModel.cs" />
     <Compile Include="ViewModel\HousesViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
@@ -251,6 +253,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\LogoForAssistant.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\AddHousePic.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" />

@@ -17,7 +17,7 @@ namespace HOAChairmanAssistant
             string charString = value as string;
 
             if (charString.Length < MinimumCharacters)
-                return new ValidationResult(false, $"Это поле должно содержать {MinimumCharacters} символов.");
+                return new ValidationResult(false, $"Это поле должно содержать не менее {MinimumCharacters} символов.");
 
             return ValidationResult.ValidResult;
         }

@@ -17,7 +17,7 @@
             <i:InvokeCommandAction Command="{Binding HousesCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
@@ -58,7 +58,7 @@
             </Grid>
         </StackPanel>
 
-        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="80,80,20,20" Loaded="MainFrame_Loaded"/>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="60,60,0,0" Loaded="MainFrame_Loaded"/>
 
         <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left">
             <Grid.Background>
