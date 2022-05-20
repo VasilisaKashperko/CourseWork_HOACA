@@ -26,9 +26,9 @@ namespace HOAChairmanAssistant.Model
         [Required]
         public int HouseNumber { get; set; }
 
-        public int HousingNumber { get; set; }
+        public string HousingNumber { get; set; }
 
-        public Address(string country, string city, string district, string street, int houseNumber, int housingNumber)
+        public Address(string country, string city, string district, string street, int houseNumber, string housingNumber)
         {
             Country = country;
             City = city;

@@ -113,8 +113,7 @@
                                 <TextBox.Text>
                                     <Binding Path="HousingNumber" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
-                                            <local2:MaximumCharacterRule MaximumCharacters="3"/>
-                                            <local3:OnlyNumbersRule />
+                                            <local2:MaximumCharacterRule MaximumCharacters="4"/>
                                         </Binding.ValidationRules>
                                     </Binding>
                                 </TextBox.Text>
@@ -135,7 +134,7 @@
                                             <Binding.ValidationRules>
                                                 <local2:NotEmptyValidationRule  />
                                                 <local2:MinimumCharacterRule MinimumCharacters="1" />
-                                                <local2:MaximumCharacterRule MaximumCharacters="31"/>
+                                                <local2:MaximumCharacterRule MaximumCharacters="16"/>
                                             </Binding.ValidationRules>
                                         </Binding>
                                     </TextBox.Text>

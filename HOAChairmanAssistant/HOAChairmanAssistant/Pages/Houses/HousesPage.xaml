@@ -10,6 +10,7 @@
       d:DesignHeight="450" d:DesignWidth="924"
       Title="HousesPage"
       DataContext="{Binding Path=Main, Source={StaticResource Locator}}">
+    
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
@@ -34,17 +35,17 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
-                    <ListBox HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" x:Name="ListViewHouses" ItemsSource="{Binding Houses}" ItemContainerStyle="{DynamicResource ListBoxItemStyleMenu}" Height="324" Width="Auto" MaxWidth="664" Margin="20 0 0 0">
+                    <ListBox HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" x:Name="ListViewHouses" ItemsSource="{Binding Houses}" ItemContainerStyle="{DynamicResource ListBoxItemStyleMenu}" Height="324" Width="Auto" MaxWidth="692" Margin="32 0 0 0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Border CornerRadius="4" Background="#FFE5E5E5" BorderBrush="#FFE5E5E5" Width="200" Height="100" Margin="20 0 0 0">
+                                <Border CornerRadius="4" Background="#FFE5E5E5" BorderBrush="#FFE5E5E5" Width="200" Height="100" Margin="0 16 20 0">
                                     <Border.Effect>
                                         <DropShadowEffect BlurRadius="5" Color="LightGray" ShadowDepth="1"/>
                                     </Border.Effect>
                                     <Grid Grid.Column="0" Height="100" Background="Transparent">
                                         <StackPanel Width="200" Orientation="Vertical" VerticalAlignment="Center">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                <TextBlock Margin="10" FontFamily="Roboto" VerticalAlignment="Center" FontSize="20" Text="{Binding HouseName}">
+                                                <TextBlock Margin="10" FontFamily="Segoe UI" VerticalAlignment="Center" FontSize="20" Text="{Binding HouseName}">
                                                     <TextBlock.Foreground>
                                                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                                             <GradientStop Color="#FF607D8B" Offset="0"/>
@@ -65,7 +66,7 @@
                         </ListBox.ItemsPanel>
                     </ListBox>
                 </ScrollViewer>
-                <Button Command="{Binding AddHousePageCommand}" Background="#FFE5E5E5" Width="200" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20 1 0 40" Padding="0 0 0 0" BorderBrush="{x:Null}">
+                <Button Command="{Binding AddHousePageCommand}" Background="#FFE5E5E5" Width="200" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 16 32 0" Padding="0 0 0 0" BorderBrush="{x:Null}">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="PlusBold" Width="40" Height="40" Foreground="#FF9F9898" Margin="0 0 10 0"/>
                         <TextBlock FontSize="18" Text="Добавить дом" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF9F9898"/>

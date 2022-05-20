@@ -120,7 +120,7 @@
                     </StackPanel>
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding ContactsCommand}"/>
+                            <i:InvokeCommandAction Command="{Binding SettingsCommand}"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ListViewItem>

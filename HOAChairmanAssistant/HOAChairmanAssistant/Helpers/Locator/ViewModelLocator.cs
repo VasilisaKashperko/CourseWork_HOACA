@@ -26,7 +26,8 @@ namespace HOAChairmanAssistant.Helpers.Locator
             navigationService.Configure("Houses", new Uri("../Pages/Houses/HousesPage.xaml", UriKind.Relative));
             navigationService.Configure("AddHousePage", new Uri("../Pages/Houses/AddHousePage.xaml", UriKind.Relative));
             navigationService.Configure("Information", new Uri("../Pages/Information/InformationPage.xaml", UriKind.Relative));
-            navigationService.Configure("Contacts", new Uri("../Pages/ContactsPage.xaml", UriKind.Relative));
+            navigationService.Configure("Contacts", new Uri("../Pages/Contacts/ContactsPage.xaml", UriKind.Relative));
+            navigationService.Configure("Settings", new Uri("../Pages/Settings/SettingsPage.xaml", UriKind.Relative));
             SimpleIoc.Default.Register<IFrameNavigationService>(() => navigationService);
         }
 

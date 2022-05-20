@@ -161,6 +161,20 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
+        private RelayCommand _settingsCommand;
+        public RelayCommand SettingsCommand
+        {
+            get
+            {
+                return _settingsCommand
+                    ?? (_settingsCommand = new RelayCommand(
+                    () =>
+                    {
+                        _navigationService.NavigateTo("Settings");
+                    }));
+            }
+        }
+
         private RelayCommand _reservationCommand;
         public RelayCommand ReservationCommand
         {

@@ -24,11 +24,12 @@ namespace HOAChairmanAssistant.ViewModel
         private string street;
         private string houseName;
         private int houseNumber;
-        private int housingNumber;
+        private string housingNumber;
         private int numberOfFlats;
         private int numberOfPorches;
         private bool isVisibleProgressBar;
         private bool isOpenDialog;
+        private bool isAdded = false;
         private string message;
 
         #endregion
@@ -139,7 +140,7 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
-        public int HousingNumber
+        public string HousingNumber
         {
             get
             {
@@ -242,20 +243,45 @@ namespace HOAChairmanAssistant.ViewModel
                 RaisePropertyChanged();
             }
         }
+
+        public bool IsAdded
+        {
+            get
+            {
+                return isAdded;
+            }
+            set
+            {
+                if (isAdded == value)
+                {
+                    return;
+                }
+                isAdded = value;
+                RaisePropertyChanged();
+            }
+        }
         #endregion
 
         #region Commands
 
-        private RelayCommand closeDialodCommand;
-        public RelayCommand CloseDialodCommand
+        private RelayCommand closeDialogCommand;
+        public RelayCommand CloseDialogCommand
         {
             get
             {
-                return closeDialodCommand
-                    ?? (closeDialodCommand = new RelayCommand(
+                return closeDialogCommand
+                    ?? (closeDialogCommand = new RelayCommand(
                     () =>
                     {
-                        IsOpenDialog = false;
+                        if (isAdded == true)
+                        {
+                            IsOpenDialog = false;
+                            _navigationService.NavigateTo("Houses");
+                        }
+                        else
+                        {
+                            IsOpenDialog = false;
+                        }
                     }));
             }
         }
@@ -291,8 +317,9 @@ namespace HOAChairmanAssistant.ViewModel
                                 IsVisibleProgressBar = false;
                                 Message = "Дом успешно добавлен!";
                                 IsOpenDialog = true;
-                                Country = City = District = Street = string.Empty;
-                                HouseNumber = HousingNumber = NumberOfFlats = NumberOfPorches = 0;
+                                isAdded = true;
+                                Country = City = District = Street = HouseName = HousingNumber = string.Empty;
+                                HouseNumber = NumberOfFlats = NumberOfPorches = 0;
                             });
                         }
 
@@ -327,6 +354,11 @@ namespace HOAChairmanAssistant.ViewModel
                 District = String.Empty;
                 City = String.Empty;
                 Street = String.Empty;
+                HouseName = String.Empty;
+                NumberOfFlats = 0;
+                NumberOfPorches = 0;
+                HouseNumber = 0;
+                HousingNumber = String.Empty;
             }
 
         }

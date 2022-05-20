@@ -14,18 +14,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HOAChairmanAssistant.UserControls
+namespace HOAChairmanAssistant.Pages.Settings
 {
     /// <summary>
-    /// Логика взаимодействия для SettingsUC.xaml
+    /// Логика взаимодействия для SettingsPage.xaml
     /// </summary>
-    public partial class SettingsUC : UserControl
+    public partial class SettingsPage : Page
     {
         public readonly ResourceDictionary dictionary0 = new ResourceDictionary() { Source = new Uri("Helpers/Dictionaries/DictionaryRU.xaml", UriKind.Relative) };
         public readonly ResourceDictionary dictionary1 = new ResourceDictionary() { Source = new Uri("Helpers/Dictionaries/DictionaryEN.xaml", UriKind.Relative) };
         public int language;
 
-        public SettingsUC()
+        public SettingsPage()
         {
             InitializeComponent();
             DataContext = new SettingsViewModel();
@@ -39,9 +39,9 @@ namespace HOAChairmanAssistant.UserControls
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            if(ComboBox.SelectedIndex == 0)
+            if (ComboBox.SelectedIndex == 0)
             {
                 Resources.MergedDictionaries.Remove(dictionary1);
 
