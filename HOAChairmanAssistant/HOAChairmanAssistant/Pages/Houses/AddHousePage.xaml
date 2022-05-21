@@ -70,7 +70,7 @@
                                     </Binding>
                                 </TextBox.Text>
                             </TextBox>
-                            <TextBox ToolTip="Поле, необязательное для заполнения" VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="46" Margin="20 0 20 16"
+                            <TextBox ToolTip="Поле, необязательное для заполнения" VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="50" Margin="20 0 20 16"
                                     MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Район" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
                                 <TextBox.Text>
                                     <Binding Path="District" UpdateSourceTrigger="PropertyChanged">
@@ -127,14 +127,14 @@
                             <TextBlock Text="Информация" Foreground="#FF1F1F1F" FontSize="20" HorizontalAlignment="Center" Margin="161,0,137.2,412.2" Width="124"/>
                             <Image Source="/Assets/AddHousePic.png" Margin="43,227,-0.2,-0.2" Grid.RowSpan="2" />
                             <StackPanel Margin="0,29,0,-0.4">
-                                <TextBox ToolTip="Введите краткое название дома, которое вы бы хотели видеть на главном экране" VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="48" Margin="20,5,20.4,12"
+                                <TextBox ToolTip="Введите краткое название дома, которое вы бы хотели видеть на главном экране" VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="50" Margin="20,5,20.4,12"
                                     MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Название дома*" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
                                     <TextBox.Text>
                                         <Binding Path="HouseName" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
                                                 <local2:NotEmptyValidationRule  />
                                                 <local2:MinimumCharacterRule MinimumCharacters="1" />
-                                                <local2:MaximumCharacterRule MaximumCharacters="10"/>
+                                                <local2:MaximumCharacterRule MaximumCharacters="11"/>
                                             </Binding.ValidationRules>
                                         </Binding>
                                     </TextBox.Text>
@@ -152,7 +152,7 @@
                                         </Binding>
                                     </TextBox.Text>
                                 </TextBox>
-                                <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="48" Margin="20,0,20.4,16"
+                                <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="50" Margin="20,0,20.4,16"
                                     MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Количество подъездов*" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
                                     <TextBox.Text>
                                         <Binding Path="NumberOfPorches" UpdateSourceTrigger="PropertyChanged">
@@ -161,6 +161,7 @@
                                                 <local2:MinimumCharacterRule MinimumCharacters="1" />
                                                 <local2:MaximumCharacterRule MaximumCharacters="3"/>
                                                 <local3:OnlyNumbersRule />
+                                                <local3:PorchesValidationRule/>
                                             </Binding.ValidationRules>
                                         </Binding>
                                     </TextBox.Text>
@@ -179,7 +180,7 @@
                                     ConverterParameter=False}"
                          Foreground="#ffffff"
                          FontSize="18"
-                         Margin="0 4 0 0"
+                         Margin="0 16 0 0"
                          Width="120" Content="Добавить" 
                          Command="{Binding AddHouseCommand}"/>
                             </StackPanel>

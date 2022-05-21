@@ -179,6 +179,7 @@
     <Compile Include="Helpers\ValidationRules\OnlyLettersRule.cs" />
     <Compile Include="Helpers\ValidationRules\OnlyNumbersRule.cs" />
     <Compile Include="Helpers\ValidationRules\PasswordRule.cs" />
+    <Compile Include="Helpers\ValidationRules\PorchesValidationRule.cs" />
     <Compile Include="Pages\Contacts\ContactsPage.xaml.cs">
       <DependentUpon>ContactsPage.xaml</DependentUpon>
     </Compile>

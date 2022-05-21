@@ -10,5 +10,7 @@ namespace HOAChairmanAssistant.Helpers.GlobalData
     {
         public static string UserName { get; set; }
         public static int UserId { get; set; }
+        public static int NumberOfFlats { get; set; }
+        public static int NumberOfPorches { get; set; }
     }
 }
