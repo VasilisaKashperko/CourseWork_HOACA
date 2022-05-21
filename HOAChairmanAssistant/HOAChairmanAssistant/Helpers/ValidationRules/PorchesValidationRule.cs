@@ -16,7 +16,7 @@ namespace HOAChairmanAssistant.Helpers.ValidationRules
         {
             int charString = Convert.ToInt32(value);
             cultureInfo = CultureInfo.CurrentCulture;
-            if (Global.NumberOfFlats < charString)
+            if (GlobalData.GlobalData.NumberOfFlats < charString)
             {
                 return new ValidationResult(false, $"Количество подъездов не может быть больше количества квартир.");
             }

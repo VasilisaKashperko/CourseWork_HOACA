@@ -20,8 +20,8 @@ namespace HOAChairmanAssistant.ViewModel
     {
         #region Private Fields
         private User user;
-        private bool isAdmin;
-        private bool isCook;
+        private bool isChairman;
+        private bool isAccountant;
         private bool isOpenDialog;
         private IFrameNavigationService _navigationService;
         #endregion
@@ -66,15 +66,15 @@ namespace HOAChairmanAssistant.ViewModel
         {
             get
             {
-                return isAdmin;
+                return isChairman;
             }
             set
             {
-                if (isAdmin == value)
+                if (isChairman == value)
                 {
                     return;
                 }
-                isAdmin = value;
+                isChairman = value;
                 RaisePropertyChanged();
             }
         }
@@ -83,15 +83,15 @@ namespace HOAChairmanAssistant.ViewModel
         {
             get
             {
-                return isCook;
+                return isAccountant;
             }
             set
             {
-                if (isCook == value)
+                if (isAccountant == value)
                 {
                     return;
                 }
-                isCook = value;
+                isAccountant = value;
                 RaisePropertyChanged();
             }
         }
@@ -175,47 +175,6 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
-        private RelayCommand _reservationCommand;
-        public RelayCommand ReservationCommand
-        {
-            get
-            {
-                return _reservationCommand
-                       ?? (_reservationCommand = new RelayCommand(
-                           () =>
-                           {
-                               _navigationService.NavigateTo("Reservation");
-                           }));
-            }
-        }
-
-        private RelayCommand _feedbackCommand;
-        public RelayCommand FeedbackCommand
-        {
-            get
-            {
-                return _feedbackCommand
-                       ?? (_feedbackCommand = new RelayCommand(
-                           () =>
-                           {
-                               _navigationService.NavigateTo("Feedback");
-                           }));
-            }
-        }
-
-        private RelayCommand _favouritesCommand;
-        public RelayCommand FavouritesCommand
-        {
-            get
-            {
-                return _favouritesCommand
-                       ?? (_favouritesCommand = new RelayCommand(
-                           () =>
-                           {
-                               _navigationService.NavigateTo("Favourites");
-                           }));
-            }
-        }
 
         private RelayCommand _adminCommand;
         public RelayCommand AdminCommand

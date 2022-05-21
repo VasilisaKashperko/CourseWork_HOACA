@@ -29,7 +29,6 @@ namespace HOAChairmanAssistant.ViewModel
         private string message;
         #endregion
 
-
         #region Public Fields
 
         public string Login
@@ -172,8 +171,8 @@ namespace HOAChairmanAssistant.ViewModel
                             if (context.Users.FirstOrDefault(x1 => x1.Login == login && x1.Password == tmpPassword) != null)
                             {
                                 User user = context.Users.FirstOrDefault(x1 => x1.Login == login);
-                                Global.UserName = user.Name.ToString();
-                                Global.UserId = user.UserId;
+                                GlobalData.UserName = user.Name.ToString();
+                                GlobalData.UserId = user.UserId;
                                 context.SaveChanges();
                                 DispatcherHelper.CheckBeginInvokeOnUI(
                                     () =>

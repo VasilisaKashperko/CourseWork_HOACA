@@ -104,6 +104,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Houses\AboutHousePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Houses\AddHousePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -152,7 +156,7 @@
     <Compile Include="Helpers\AttachedProperties\PasswordBoxAssistant.cs" />
     <Compile Include="Helpers\Converters\InverseBooleanConverter.cs" />
     <Compile Include="Helpers\Converters\ParametrizedBooleanToVisibilityConverter.cs" />
-    <Compile Include="Helpers\GlobalData\Global.cs" />
+    <Compile Include="Helpers\GlobalData\GlobalData.cs" />
     <Compile Include="Helpers\Locator\ViewModelLocator.cs" />
     <Compile Include="Helpers\MessageWindow\OpenWindowMessage.cs" />
     <Compile Include="Helpers\MessageWindow\WindowType.cs" />
@@ -183,6 +187,9 @@
     <Compile Include="Pages\Contacts\ContactsPage.xaml.cs">
       <DependentUpon>ContactsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Houses\AboutHousePage.xaml.cs">
+      <DependentUpon>AboutHousePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Houses\AddHousePage.xaml.cs">
       <DependentUpon>AddHousePage.xaml</DependentUpon>
     </Compile>
@@ -201,6 +208,7 @@
     <Compile Include="Pages\Settings\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AboutHouseViewModel.cs" />
     <Compile Include="ViewModel\AddHouseViewModel.cs" />
     <Compile Include="ViewModel\HousesViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />

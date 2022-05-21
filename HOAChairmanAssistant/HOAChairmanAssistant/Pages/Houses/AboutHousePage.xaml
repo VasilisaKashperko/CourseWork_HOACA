@@ -1,0 +1,40 @@
+﻿<Page x:Class="HOAChairmanAssistant.Pages.Houses.AboutHousePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:local="clr-namespace:HOAChairmanAssistant.Pages.Houses"
+      xmlns:local1="clr-namespace:HOAChairmanAssistant.Helpers.Converters" xmlns:viewmodel="clr-namespace:HOAChairmanAssistant.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:AboutHouseViewModel}"
+      mc:Ignorable="d" 
+      d:DesignHeight="540" d:DesignWidth="964"
+      Title="AboutHousePage">
+    <Page.Resources>
+        <local1:ParametrizedBooleanToVisibilityConverter x:Key="ParametrizedBooleanToVisibilityConverter"/>
+    </Page.Resources>
+    <materialDesign:DialogHost 
+        IsOpen="{Binding IsOpenDialog,FallbackValue=False}">
+        <materialDesign:DialogHost.DialogContent>
+            <Border Height="Auto" Width="Auto">
+                <StackPanel Margin="16">
+                    <TextBlock Text="{Binding Message}"/>
+                    <Button Margin="0 10 0 0" Style="{StaticResource MaterialDesignFlatAccentButton}"
+                                Content="Закрыть" Foreground="#FF607D8B" Width="90" Height="30" Command="{Binding CloseDialogCommand}"/>
+                </StackPanel>
+            </Border>
+        </materialDesign:DialogHost.DialogContent>
+        <materialDesign:TransitioningContent x:Name="TransitioningContentSlide" 
+                                                 OpeningEffect="{materialDesign:TransitionEffect FadeIn, Duration=0:0:0.5}">
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Loaded">
+                    <i:InvokeCommandAction Command="{Binding LoadedPageCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <Grid Background="AliceBlue">
+                <TextBlock Text="{Binding AboutHouse.HouseName}" HorizontalAlignment="Center" FontFamily="Roboto" FontSize="30"/>
+            </Grid>
+        </materialDesign:TransitioningContent>
+    </materialDesign:DialogHost>
+</Page>

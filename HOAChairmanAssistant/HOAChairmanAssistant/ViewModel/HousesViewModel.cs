@@ -22,7 +22,6 @@ namespace HOAChairmanAssistant.ViewModel
         private string searchField;
         private string street;
         private string userName;
-        //private int houseNumber;
         private bool isVisibleProgressBar;
         //private Thread searchedThread;
 
@@ -49,7 +48,7 @@ namespace HOAChairmanAssistant.ViewModel
             get { return userName; }
             set
             {
-                userName = Global.UserName;
+                userName = GlobalData.UserName;
             }
         }
 
@@ -115,12 +114,11 @@ namespace HOAChairmanAssistant.ViewModel
                     ?? (loadedCommand = new RelayCommandParametr(
                     obj =>
                     {
-                        Houses = new ObservableCollection<House>(context.Houses.Where(u => u.UserId == Global.UserId).ToList());
+                        Houses = new ObservableCollection<House>(context.Houses.Where(u => u.UserId == GlobalData.UserId).ToList());
 
                     }));
             }
         }
-
 
         private RelayCommandParametr _aboutHouseCommand;
         public RelayCommandParametr AboutHouseCommand

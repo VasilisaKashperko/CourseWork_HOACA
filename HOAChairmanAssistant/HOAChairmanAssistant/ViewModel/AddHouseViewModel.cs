@@ -172,7 +172,7 @@ namespace HOAChairmanAssistant.ViewModel
                     return;
                 }
                 numberOfFlats = value;
-                Global.NumberOfFlats = value;
+                GlobalData.NumberOfFlats = value;
                 RaisePropertyChanged();
             }
         }
@@ -190,7 +190,7 @@ namespace HOAChairmanAssistant.ViewModel
                     return;
                 }
                 numberOfPorches = value;
-                Global.NumberOfPorches = value;
+                GlobalData.NumberOfPorches = value;
                 RaisePropertyChanged();
             }
         }
@@ -354,6 +354,21 @@ namespace HOAChairmanAssistant.ViewModel
                             });
                     },
                     (x1) => Street?.Length > 0 && Country?.Length > 0 && City?.Length > 0 && HouseName?.Length > 0 && HouseNumber != 0 && NumberOfFlats != 0 && NumberOfPorches != 0));
+            }
+        }
+
+        private RelayCommandParametr _aboutHouseCommand;
+        public RelayCommandParametr AboutHouseCommand
+        {
+            get
+            {
+                return _aboutHouseCommand
+                       ?? (_aboutHouseCommand = new RelayCommandParametr(
+                           (obj) =>
+                           {
+
+                               _navigationService.NavigateTo("AboutHouse", obj);
+                           }));
             }
         }
 

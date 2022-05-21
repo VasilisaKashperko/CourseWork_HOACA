@@ -35,7 +35,7 @@
                 <Line X1="0" Y1="0" X2="800" Y2="0" Stroke="#607D8B" VerticalAlignment="Center" Width="350"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
                     <ListBox HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" x:Name="ListViewHouses" ItemsSource="{Binding Houses}" ItemContainerStyle="{DynamicResource ListBoxItemStyleMenu}" Height="Auto" Width="Auto" MaxWidth="692" Margin="32 0 0 0">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -43,7 +43,10 @@
                                     <Grid Grid.Column="0" Background="Transparent">
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                <Button Command="{Binding AddHousePageCommand}" Background="#FFE5E5E5" Width="200" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="0 0 0 0" BorderBrush="{x:Null}">
+                                                <Button Command="{Binding ElementName= ListViewHouse, Path= AboutHouseCommand}"
+                                                        CommandParameter="{Binding Path= SelectedItem , ElementName=ListViewHouse}"
+                                                        Background="#FFE5E5E5" Width="200" Height="100" HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top" Padding="0 0 0 0" BorderBrush="{x:Null}">
                                                     <StackPanel Orientation="Horizontal">
                                                         <Grid ShowGridLines="False">
                                                             <Grid.RowDefinitions>
