@@ -21,7 +21,7 @@
                 <StackPanel Margin="16">
                     <TextBlock Text="{Binding Message}"/>
                     <Button Margin="0 10 0 0" Style="{StaticResource MaterialDesignFlatAccentButton}"
-                                Content="Закрыть" Foreground="#607D8B" Width="90" Height="30" Command="{Binding CloseDialodCommand}"/>
+                                Content="Закрыть" Foreground="#607D8B" Width="90" Height="30" Command="{Binding CloseDialogCommand}"/>
                 </StackPanel>
             </Border>
         </materialDesign:DialogHost.DialogContent>
@@ -134,7 +134,7 @@
                                             <Binding.ValidationRules>
                                                 <local2:NotEmptyValidationRule  />
                                                 <local2:MinimumCharacterRule MinimumCharacters="1" />
-                                                <local2:MaximumCharacterRule MaximumCharacters="16"/>
+                                                <local2:MaximumCharacterRule MaximumCharacters="10"/>
                                             </Binding.ValidationRules>
                                         </Binding>
                                     </TextBox.Text>
