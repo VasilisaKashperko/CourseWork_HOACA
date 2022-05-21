@@ -48,7 +48,7 @@
                         </Rectangle.Effect>
                     </Rectangle>
                     <Grid Width="280" Height="240" VerticalAlignment="Bottom" Margin="0,100">
-                        <TextBlock Text="Вход" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="117,32,117,0" Foreground="Gray" FontSize="18"/>
+                        <TextBlock Text="Вход" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="117,32,117,0" Foreground="#FF1F1F1F" FontSize="18"/>
                         <StackPanel VerticalAlignment="Center" Margin="24,61,24,10" Height="169">
                             <TextBox x:Name="loginTextBox" materialDesign:HintAssist.Hint="Логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,16,0,0" FontSize="14">
                                 <TextBox.Text>

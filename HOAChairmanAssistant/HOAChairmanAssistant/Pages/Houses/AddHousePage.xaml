@@ -6,7 +6,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HOAChairmanAssistant.Pages.Houses" xmlns:local1="clr-namespace:HOAChairmanAssistant.Helpers.Converters" xmlns:local2="clr-namespace:HOAChairmanAssistant" xmlns:local3="clr-namespace:HOAChairmanAssistant.Helpers.ValidationRules"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="924"
+      d:DesignHeight="540" d:DesignWidth="924"
       Title="AddHousePage">
 
     <Page.Resources>
@@ -33,16 +33,16 @@
                         <RowDefinition Height="80"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Button Command="{Binding HousesPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,844,40" Height="Auto">
+                    <Button Command="{Binding HousesPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,844,14" Height="Auto">
                         <materialDesign:PackIcon  Kind="ArrowBack" Foreground="#607D8B" FontSize="30" Width="50" Height="35"/>
                     </Button>
-                    <TextBlock Grid.Row="0" Text="Добавление дома" Margin="329,0,329,40" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="#607D8B" FontWeight="Bold" Height="40"/>
-                    <Grid Margin="0,60,0,-0.4" Grid.RowSpan="2">
+                    <TextBlock Grid.Row="0" Text="Добавление дома" Margin="329,6,329,34" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="#607D8B" Height="40" FontWeight="Bold"/>
+                    <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="Адрес" Foreground="#696969" FontSize="20" HorizontalAlignment="Center" Margin="204,0,203.4,411.4"/>
+                        <TextBlock Text="Адрес" Foreground="#FF1F1F1F" FontSize="20" HorizontalAlignment="Center" Margin="204,0,203.4,411.4"/>
                         <StackPanel Margin="0,29,0,-0.4">
                             <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="52" Margin="20 0 20 16"
                                     MaxHeight="160" MaxWidth="300" materialDesign:HintAssist.Hint="Страна*" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
@@ -124,7 +124,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Text="Информация" Foreground="#696969" FontSize="20" HorizontalAlignment="Center" Margin="161,0,137.2,412.2" Width="124"/>
+                            <TextBlock Text="Информация" Foreground="#FF1F1F1F" FontSize="20" HorizontalAlignment="Center" Margin="161,0,137.2,412.2" Width="124"/>
                             <Image Source="/Assets/AddHousePic.png" Margin="43,227,-0.2,-0.2" Grid.RowSpan="2" />
                             <StackPanel Margin="0,29,0,-0.4">
                                 <TextBox ToolTip="Введите краткое название дома, которое вы бы хотели видеть на главном экране" VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="48" Margin="20,5,20.4,12"

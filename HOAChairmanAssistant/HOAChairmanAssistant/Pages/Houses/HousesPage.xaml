@@ -8,10 +8,10 @@
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:local1="clr-namespace:HOAChairmanAssistant.Helpers.Converters"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="924"
+      d:DesignHeight="540" d:DesignWidth="924"
       Title="HousesPage"
       DataContext="{Binding Path=Main, Source={StaticResource Locator}}">
-    
+
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
@@ -24,15 +24,15 @@
     <Grid Background="AliceBlue">
         <StackPanel Orientation="Vertical">
             <Grid VerticalAlignment="Top" HorizontalAlignment="Center">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Здравствуйте, " FontSize="30" HorizontalAlignment="Center"/>
-                    <TextBlock x:Name="userNameLabel" FontSize="30" HorizontalAlignment="Center" Loaded="userNameLabel_Loaded"/>
+                <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
+                    <TextBlock Text="Здравствуйте, " FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#FF607D8B"/>
+                    <TextBlock x:Name="userNameLabel" FontSize="30" HorizontalAlignment="Center" Loaded="userNameLabel_Loaded" FontWeight="Bold" Foreground="#FF607D8B"/>
                 </StackPanel>
             </Grid>
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="0 20 0 0">
-                <Line X1="0" Y1="0" X2="800" Y2="0" Stroke="#607D8B" VerticalAlignment="Center" Width="300"/>
-                <TextBlock Text="Ваши дома" FontSize="30" Margin="5 0 5 24" VerticalAlignment="Center"/>
-                <Line X1="0" Y1="0" X2="800" Y2="0" Stroke="#607D8B" VerticalAlignment="Center" Width="300"/>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="32,20,30,0" Width="862">
+                <Line X1="0" Y1="0" X2="800" Y2="0" Stroke="#607D8B" VerticalAlignment="Center" Width="350"/>
+                <TextBlock Text="Ваши дома" FontSize="30" Margin="5 0 5 24" VerticalAlignment="Center" Foreground="#FF1F1F1F"/>
+                <Line X1="0" Y1="0" X2="800" Y2="0" Stroke="#607D8B" VerticalAlignment="Center" Width="350"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">

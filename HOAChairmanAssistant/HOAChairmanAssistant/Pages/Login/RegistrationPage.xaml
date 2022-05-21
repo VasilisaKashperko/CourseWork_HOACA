@@ -49,7 +49,7 @@
                         </Rectangle.Effect>
                     </Rectangle>
                     <Grid Height="361" VerticalAlignment="Bottom" Margin="40,0,40.4,79">
-                        <TextBlock Text="Регистрация" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="80,16,80,0" Foreground="Gray" FontSize="18" RenderTransformOrigin="0.497,2.148" Height="24"/>
+                        <TextBlock Text="Регистрация" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="80,16,80,0" Foreground="#FF1F1F1F" FontSize="18" RenderTransformOrigin="0.497,2.148" Height="24"/>
                         <StackPanel VerticalAlignment="Center" Margin="24,40,24,21" Height="300">
                             <TextBox x:Name="surnameTextBox" materialDesign:HintAssist.Hint="Фамилия" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0 10 0 10" FontSize="14" Padding="2">
                                 <TextBox.Text>
