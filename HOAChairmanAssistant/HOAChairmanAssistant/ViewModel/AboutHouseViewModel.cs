@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Ioc;
 using HOAChairmanAssistant.DataLayer.EF;
 using HOAChairmanAssistant.Helpers.Navigation;
 using HOAChairmanAssistant.Model;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 
@@ -15,11 +16,14 @@ namespace HOAChairmanAssistant.ViewModel
         #region Private Fields
         private IFrameNavigationService _navigationService;
         private HOAChairmanAssistantContext context = new HOAChairmanAssistantContext();
+        private ObservableCollection<Porch> porches = new ObservableCollection<Porch>();
+        private ObservableCollection<Flat> flats = new ObservableCollection<Flat>();
         private bool isFavorite;
         private User user;
         private House aboutHouse { get; set; }
         private bool isOpenDialog;
         private string message;
+        private int porchNumber;
         #endregion
 
         #region Public Fields
@@ -36,6 +40,51 @@ namespace HOAChairmanAssistant.ViewModel
                     return;
                 }
                 aboutHouse = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Porch> Porches
+        {
+            get { return porches; }
+            set
+            {
+                if (porches == value)
+                {
+                    return;
+                }
+                porches = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Flat> Flats
+        {
+            get { return flats; }
+            set
+            {
+                if (flats == value)
+                {
+                    return;
+                }
+                flats = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public int PorchNumber
+        {
+            get
+            {
+                return porchNumber;
+            }
+            set
+            {
+                if (porchNumber == value)
+                {
+                    return;
+                }
+                porchNumber = value;
                 RaisePropertyChanged();
             }
         }
@@ -169,7 +218,8 @@ namespace HOAChairmanAssistant.ViewModel
                 () =>
                 {
                     user = SimpleIoc.Default.GetInstance<MainWindowViewModel>().User;
-                    House house = context.Houses.AsNoTracking().Where(x => x.UserId == user.UserId && x.HouseId == aboutHouse.HouseId).FirstOrDefault(); // house
+                    Porches = new ObservableCollection<Porch>(context.Porches.Where(x => x.HouseId == aboutHouse.HouseId).ToList());
+                    House house = context.Houses.AsNoTracking().Where(x => x.UserId == user.UserId && x.HouseId == aboutHouse.HouseId).FirstOrDefault();
                     IsFavorite = house != null ? true : false;
                 }));
             }

@@ -38,22 +38,45 @@
                 </Button>
                 <TextBlock Text="{Binding AboutHouse.HouseName}" TextAlignment="Center" FontWeight="Bold" FontFamily="Roboto" FontSize="30" Foreground="#FF607D8B" Margin="162,19,163,473" Width="639"/>
                 <StackPanel Orientation="Vertical" Margin="60">
-                    <TabControl>
-                        <ListBox HorizontalAlignment="Center" x:Name="ListViewPorches" ItemsSource="{Binding Porches}">
-                            <TabItem>
-                                <TabItem.Header>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding PorchNumber}"/>
-                                        <TextBlock Text=" подъезд"/>
-                                    </StackPanel>
-                                </TabItem.Header>
-                                <TabItem.Content>
-                                    <StackPanel>
-                                    </StackPanel>
-                                </TabItem.Content>
-                            </TabItem>
+                    <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                        <ListBox HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" x:Name="ListViewPorches" ItemsSource="{Binding Porches}" ItemContainerStyle="{DynamicResource ListBoxItemStyleMenu}" Height="Auto" Width="Auto" MaxWidth="924" Margin="32 0 0 0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Width="150" Height="50" Margin="0 14 20 0">
+                                        <Grid Grid.Column="0" Background="Transparent">
+                                            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                    <Button Command="{Binding ElementName= ListViewPorches, Path= DataContext.AboutHouseCommand}"
+                                                        CommandParameter="{Binding Path= SelectedItem , ElementName=ListViewPorches}"
+                                                        Background="#FFE5E5E5" Width="200" Height="100" HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top" Padding="0 0 0 0" BorderBrush="{x:Null}">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock FontSize="20" Text="{Binding PorchNumber}" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            <TextBlock FontSize="20" Text=" подъезд" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            <TextBlock.Foreground>
+                                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                    <GradientStop Color="#FF607D8B" Offset="0"/>
+                                                                    <GradientStop Color="#FF009677" Offset="1"/>
+                                                                </LinearGradientBrush>
+                                                            </TextBlock.Foreground>
+                                                        </StackPanel>
+                                                    </Button>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
                         </ListBox>
-                    </TabControl>
+                    </ScrollViewer>
+                    <Frame></Frame>
+                    <DataGrid Margin="0 20 0 0" AutoGenerateColumns="True" ItemsSource="{Binding Flats}">
+                    </DataGrid>
                 </StackPanel>
             </Grid>
         </materialDesign:TransitioningContent>

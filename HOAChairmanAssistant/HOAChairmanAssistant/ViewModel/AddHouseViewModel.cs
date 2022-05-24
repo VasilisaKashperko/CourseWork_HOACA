@@ -344,9 +344,15 @@ namespace HOAChairmanAssistant.ViewModel
                                         Porch porch = new Porch(i, house);
                                         context.Porches.Add(porch);
                                         context.SaveChanges();
-                                        for (int n = 1; n <= amount; n++)
+                                        int n = 1;
+                                        if (i > 1)
                                         {
-                                            Flat flat = new Flat(n, porch);
+                                            n = 1 + amount * (i - 1);
+                                        }
+
+                                        for (int y = n; y <= amount * i; y++)
+                                        {
+                                            Flat flat = new Flat(y, porch);
                                             context.Flats.Add(flat);
                                             context.SaveChanges();
                                         }

@@ -28,5 +28,18 @@ namespace HOAChairmanAssistant.Pages.Houses
             DataContext = new AboutHouseViewModel(SimpleIoc.Default.GetInstance<IFrameNavigationService>());
             InitializeComponent();
         }
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer scrollViewer = (ScrollViewer)sender;
+            if (e.Delta < 0)
+            {
+                scrollViewer.LineDown();
+            }
+            else
+            {
+                scrollViewer.LineUp();
+            }
+            e.Handled = true;
+        }
     }
 }
