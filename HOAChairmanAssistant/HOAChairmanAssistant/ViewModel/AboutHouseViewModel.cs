@@ -145,6 +145,19 @@ namespace HOAChairmanAssistant.ViewModel
         //    }
         //}
 
+        private RelayCommand _housesPageCommand;
+        public RelayCommand HousesPageCommand
+        {
+            get
+            {
+                return _housesPageCommand
+                    ?? (_housesPageCommand = new RelayCommand(
+                    () =>
+                    {
+                        _navigationService.NavigateTo("Houses");
+                    }));
+            }
+        }
 
         private RelayCommand _loadedpageCommand;
         public RelayCommand LoadedPageCommand

@@ -338,6 +338,19 @@ namespace HOAChairmanAssistant.ViewModel
                                     context.Addresses.Add(address);
                                     context.Houses.Add(house);
                                     context.SaveChanges();
+                                    int amount = NumberOfFlats / NumberOfPorches;
+                                    for (int i = 1; i <= NumberOfPorches; i++)
+                                    {
+                                        Porch porch = new Porch(i, house);
+                                        context.Porches.Add(porch);
+                                        context.SaveChanges();
+                                        for (int n = 1; n <= amount; n++)
+                                        {
+                                            Flat flat = new Flat(n, porch);
+                                            context.Flats.Add(flat);
+                                            context.SaveChanges();
+                                        }
+                                    }
                                     Country = City = District = Street = HouseName = HousingNumber = string.Empty;
                                     HouseNumber = NumberOfFlats = NumberOfPorches = 0;
                                     IsVisibleProgressBar = false;

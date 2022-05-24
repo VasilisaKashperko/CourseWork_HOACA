@@ -9,8 +9,7 @@
       xmlns:local1="clr-namespace:HOAChairmanAssistant.Helpers.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="924"
-      Title="HousesPage"
-      DataContext="{Binding Path=Main, Source={StaticResource Locator}}">
+      Title="HousesPage">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -43,8 +42,8 @@
                                     <Grid Grid.Column="0" Background="Transparent">
                                         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                <Button Command="{Binding ElementName= ListViewHouse, Path= AboutHouseCommand}"
-                                                        CommandParameter="{Binding Path= SelectedItem , ElementName=ListViewHouse}"
+                                                <Button Command="{Binding ElementName= ListViewHouses, Path= DataContext.AboutHouseCommand}"
+                                                        CommandParameter="{Binding Path= SelectedItem , ElementName=ListViewHouses}"
                                                         Background="#FFE5E5E5" Width="200" Height="100" HorizontalAlignment="Left"
                                                         VerticalAlignment="Top" Padding="0 0 0 0" BorderBrush="{x:Null}">
                                                     <StackPanel Orientation="Horizontal">
