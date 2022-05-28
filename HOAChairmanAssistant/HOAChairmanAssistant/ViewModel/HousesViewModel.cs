@@ -115,7 +115,6 @@ namespace HOAChairmanAssistant.ViewModel
                     obj =>
                     {
                         Houses = new ObservableCollection<House>(context.Houses.Where(u => u.UserId == GlobalData.UserId).ToList());
-
                     }));
             }
         }
@@ -129,7 +128,6 @@ namespace HOAChairmanAssistant.ViewModel
                        ?? (_aboutHouseCommand = new RelayCommandParametr(
                            (obj) =>
                            {
-
                                _navigationService.NavigateTo("AboutHouse", obj);
                            }));
             }

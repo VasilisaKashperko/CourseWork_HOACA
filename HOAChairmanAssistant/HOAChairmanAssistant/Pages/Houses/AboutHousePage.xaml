@@ -46,7 +46,7 @@
                                         <Grid Grid.Column="0" Background="Transparent">
                                             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                    <Button Command="{Binding ElementName= ListViewPorches, Path= DataContext.AboutHouseCommand}"
+                                                    <Button Command="{Binding ElementName= ListViewPorches, Path= DataContext.ChangeDataCommand}"
                                                         CommandParameter="{Binding Path= SelectedItem , ElementName=ListViewPorches}"
                                                         Background="#FFE5E5E5" Width="200" Height="100" HorizontalAlignment="Left"
                                                         VerticalAlignment="Top" Padding="0 0 0 0" BorderBrush="{x:Null}">
@@ -75,7 +75,14 @@
                         </ListBox>
                     </ScrollViewer>
                     <Frame></Frame>
-                    <DataGrid Margin="0 20 0 0" AutoGenerateColumns="True" ItemsSource="{Binding Flats}">
+                    <DataGrid Margin="0 20 0 0" AutoGenerateColumns="False" ItemsSource="{Binding Flats}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding FlatNumber}" Header="№ квартиры" Width="150" FontFamily="Roboto" FontSize="16"/>
+                            <DataGridTextColumn Binding="{Binding ReservationDate}" Header="ФИО собственника" Width="200" FontFamily="Roboto" FontSize="16"/>
+                            <DataGridTextColumn Binding="{Binding ClientName}" Header="Номер телефона" Width="150" FontFamily="Roboto" FontSize="16"/>
+                            <DataGridTextColumn Binding="{Binding Phone}" Header="Статус" Width="150" FontFamily="Roboto" FontSize="16"/>
+                            <DataGridTextColumn Binding="{Binding Phone}" Header="Задолженность" Width="150" FontFamily="Roboto" FontSize="16"/>
+                        </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
             </Grid>

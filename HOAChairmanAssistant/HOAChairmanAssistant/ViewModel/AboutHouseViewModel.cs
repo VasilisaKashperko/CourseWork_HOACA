@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using HOAChairmanAssistant.DataLayer.EF;
+using HOAChairmanAssistant.Helpers;
 using HOAChairmanAssistant.Helpers.Navigation;
 using HOAChairmanAssistant.Model;
 using System.Collections.ObjectModel;
@@ -21,6 +22,7 @@ namespace HOAChairmanAssistant.ViewModel
         private bool isFavorite;
         private User user;
         private House aboutHouse { get; set; }
+        private Porch aboutPorch { get; set; }
         private bool isOpenDialog;
         private string message;
         private int porchNumber;
@@ -40,6 +42,22 @@ namespace HOAChairmanAssistant.ViewModel
                     return;
                 }
                 aboutHouse = value;
+                RaisePropertyChanged();
+            }
+        }
+        public Porch AboutPorch
+        {
+            get
+            {
+                return aboutPorch;
+            }
+            set
+            {
+                if (aboutPorch == value)
+                {
+                    return;
+                }
+                aboutPorch = value;
                 RaisePropertyChanged();
             }
         }
@@ -145,55 +163,6 @@ namespace HOAChairmanAssistant.ViewModel
 
         #region Commands
 
-        //private RelayCommandParametr addToFavoriteCommand;
-        //public RelayCommandParametr AddToFavoriteCommand
-        //{
-        //    get
-        //    {
-        //        return addToFavoriteCommand
-        //            ?? (addToFavoriteCommand = new RelayCommandParametr(
-        //            (x) =>
-        //            {
-        //                Thread temp;
-        //                if (!IsFavorite)
-        //                {
-        //                    FavoriteDish favorite = new FavoriteDish()
-        //                    {
-        //                        UserId = user.UserId,
-        //                        MenuDishId = MenuDish.MenuDishId
-        //                    };
-        //                    temp = new Thread(() =>
-        //                    {
-
-        //                        context.FavoriteDishes.Add(favorite);
-        //                        context.SaveChanges();
-        //                        IsFavorite = true;
-        //                        Message = "Блюдо добавлено в избранные!";
-        //                        IsOpenDialog = true;
-
-        //                    });
-        //                }
-        //                else
-        //                {
-        //                    temp = new Thread(() =>
-        //                    {
-        //                        FavoriteDish favdish = context.FavoriteDishes.Where(x1 => x1.UserId == user.UserId && x1.MenuDishId == menuDish.MenuDishId).First();
-        //                        if (favdish != null)
-        //                        {
-        //                            context.FavoriteDishes.Remove(favdish);
-        //                        }
-        //                        context.SaveChanges();
-        //                        Message = "Блюдо удалено из избранных!";
-        //                        IsOpenDialog = true;
-        //                        IsFavorite = false;
-        //                    });
-        //                }
-        //                temp.IsBackground = true;
-        //                temp.Start();
-        //            }));
-        //    }
-        //}
-
         private RelayCommand _housesPageCommand;
         public RelayCommand HousesPageCommand
         {
@@ -220,7 +189,6 @@ namespace HOAChairmanAssistant.ViewModel
                     user = SimpleIoc.Default.GetInstance<MainWindowViewModel>().User;
                     Porches = new ObservableCollection<Porch>(context.Porches.Where(x => x.HouseId == aboutHouse.HouseId).ToList());
                     House house = context.Houses.AsNoTracking().Where(x => x.UserId == user.UserId && x.HouseId == aboutHouse.HouseId).FirstOrDefault();
-                    IsFavorite = house != null ? true : false;
                 }));
             }
         }
@@ -238,6 +206,23 @@ namespace HOAChairmanAssistant.ViewModel
                     }));
             }
         }
+
+        private RelayCommandParametr _changeDataCommand;
+        public RelayCommandParametr ChangeDataCommand
+        {
+            get
+            {
+                return _changeDataCommand
+                       ?? (_changeDataCommand = new RelayCommandParametr(
+                           (obj) =>
+                           {
+                               AboutPorch = obj as Porch;
+                               Porch porch = Porches.Where(x => x.PorchId == aboutPorch.PorchId).FirstOrDefault();
+                               Flats = new ObservableCollection<Flat>(context.Flats.Where(x => x.PorchId == porch.PorchId).ToList());
+                           }));
+            }
+        }
+
         #endregion
 
         #region ctor
