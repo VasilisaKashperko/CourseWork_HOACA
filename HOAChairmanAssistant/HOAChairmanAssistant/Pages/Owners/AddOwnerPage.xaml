@@ -37,12 +37,13 @@
                         <RowDefinition Height="80"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Button Command="{Binding AboutHouseCommand}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,844,14" Height="Auto">
+                    <Button Command="{Binding AboutHouseCommand}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,852,14" Height="Auto">
                         <materialDesign:PackIcon  Kind="ArrowBack" Foreground="#607D8B" FontSize="30" Width="50" Height="35"/>
                     </Button>
-                    <TextBlock Grid.Row="0" Text="Добавление жильца" TextAlignment="Center" Margin="80,6,385,34" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="#607D8B" Height="40" FontWeight="Bold" Width="459"/>
-                    <TextBlock Grid.Row="0" Text="Квартира " TextAlignment="Center" Margin="642,6,122,34" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="#607D8B" Height="40" FontWeight="Bold" Width="160"/>
-                    <TextBlock Grid.Row="0" Text="{Binding SelectedFlat.FlatNumber}" TextAlignment="Center" Margin="802,6,44,34" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="#607D8B" Height="40" FontWeight="Bold" Width="78"/>
+                    <TextBlock Grid.Row="0" Text="Добавление жильца" TextAlignment="Center" Margin="77,6,78,34" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="30" Foreground="#607D8B" Height="40" FontWeight="Bold" Width="769"/>
+                    <TextBlock Grid.Row="0" Text="Квартира " TextAlignment="Center" Margin="750,40,78,13" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="#607D8B" Height="27" Width="96"/>
+                    <TextBlock Grid.Row="0" Text="{Binding SelectedFlat.FlatNumber}" TextAlignment="Left" Margin="846,40,29,14" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="#607D8B" Height="26" Width="49"/>
+                    <TextBlock Grid.Row="0" Text="{Binding AboutHouse.HouseName}" TextAlignment="Left" Margin="752,11,48,40" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Foreground="#607D8B" Height="29" Width="124"/>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>

@@ -297,7 +297,7 @@ namespace HOAChairmanAssistant.ViewModel
                                if (isAdded == true)
                                {
                                    IsOpenDialog = false;
-                                   _navigationService.NavigateTo("AboutHouse");
+                                   _navigationService.NavigateTo("AboutHouse", AboutHouse);
                                }
                                else
                                {
@@ -338,32 +338,13 @@ namespace HOAChairmanAssistant.ViewModel
                                     AdditionalInfo = additionalInfo,
                                     PhoneNumberId = phoneNumber.PhoneNumberId,
                                     OwnerStatusId = ownerStatus,
-                                    //FlatId = 
+                                    FlatId = selectedFlat.FlatId
                                 };
-                                //context.Addresses.Add(address);
-                                //context.Houses.Add(house);
-                                //context.SaveChanges();
-                                //int amount = NumberOfFlats / NumberOfPorches;
-                                //for (int i = 1; i <= NumberOfPorches; i++)
-                                //{
-                                //    Porch porch = new Porch(i, house);
-                                //    context.Porches.Add(porch);
-                                //    context.SaveChanges();
-                                //    int n = 1;
-                                //    if (i > 1)
-                                //    {
-                                //        n = 1 + amount * (i - 1);
-                                //    }
-
-                                //    for (int y = n; y <= amount * i; y++)
-                                //    {
-                                //        Flat flat = new Flat(y, porch);
-                                //        context.Flats.Add(flat);
-                                //        context.SaveChanges();
-                                //    }
-                                //}
-                                //Country = City = District = Street = HouseName = HousingNumber = string.Empty;
-                                //HouseNumber = NumberOfFlats = NumberOfPorches = 0;
+                                GlobalData.OwnerFlatId = owner.FlatId;
+                                context.PhoneNumbers.Add(phoneNumber);
+                                context.Owners.Add(owner);
+                                context.SaveChanges();
+                                Surname = Name = Patronymic = AdditionalInfo = MobilePhone = HomePhone = AdditionalPhone = string.Empty;
                                 IsVisibleProgressBar = false;
                                 Message = "Успешно добавлено!";
                                 IsOpenDialog = true;

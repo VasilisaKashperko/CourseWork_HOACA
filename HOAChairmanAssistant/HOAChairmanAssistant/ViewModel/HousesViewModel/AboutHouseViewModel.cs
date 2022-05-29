@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using HOAChairmanAssistant.DataLayer.EF;
 using HOAChairmanAssistant.Helpers;
+using HOAChairmanAssistant.Helpers.GlobalData;
 using HOAChairmanAssistant.Helpers.Navigation;
 using HOAChairmanAssistant.Model;
 using System.Collections.ObjectModel;
@@ -77,6 +78,8 @@ namespace HOAChairmanAssistant.ViewModel
                     return;
                 }
                 selectedFlat = value;
+                Owner ownerForCheck = context.Owners.Where(x => x.FlatId == selectedFlat.FlatId).FirstOrDefault();
+                GlobalData.OwnerForCheckFlatId = ownerForCheck.FlatId;
                 RaisePropertyChanged();
             }
         }
@@ -252,7 +255,7 @@ namespace HOAChairmanAssistant.ViewModel
                            Flat flat = context.Flats.Find(selectedFlat.FlatId);
                            _navigationService.NavigateTo("AddOwnerPage", AboutHouse, flat);
                            },
-                           x => selectedFlat != null));
+                           x => selectedFlat != null && selectedFlat.FlatId != GlobalData.OwnerFlatId && selectedFlat.FlatId != GlobalData.OwnerForCheckFlatId));
             }
         }
 

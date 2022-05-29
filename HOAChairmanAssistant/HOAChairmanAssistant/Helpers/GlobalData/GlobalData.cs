@@ -13,7 +13,7 @@ namespace HOAChairmanAssistant.Helpers.GlobalData
         public static int UserId { get; set; }
         public static int NumberOfFlats { get; set; }
         public static int NumberOfPorches { get; set; }
-        public static int HouseId { get; set; }
-        public static House House { get; set; }
+        public static int OwnerFlatId { get; set; }
+        public static int OwnerForCheckFlatId { get; set; }
     }
 }
