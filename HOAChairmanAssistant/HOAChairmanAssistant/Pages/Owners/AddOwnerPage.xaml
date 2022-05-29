@@ -89,28 +89,18 @@
                                     </Binding>
                                 </TextBox.Text>
                             </TextBox>
-                            <TextBox ToolTip="Поле, необязательное для заполнения" VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="50" Margin="20 0 20 16"
-                                    MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Отчество" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
+                            <TextBox ToolTip="Можете ввести дополнительную информацию" VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="189" Margin="20,0,20.4,16"
+                                    MaxHeight="250" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Дополнительная информация" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
                                 <TextBox.Text>
-                                    <Binding Path="Patronymic" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding Path="AdditionalInfo" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
-                                            <local2:MinimumCharacterRule MinimumCharacters="3" />
+                                            <local2:MinimumCharacterRule MinimumCharacters="2" />
                                             <local2:MaximumCharacterRule MaximumCharacters="31"/>
                                             <local3:OnlyLettersRule />
                                         </Binding.ValidationRules>
                                     </Binding>
                                 </TextBox.Text>
                             </TextBox>
-                            <RichTextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" ToolTip="Можете ввести дополнительную информацию" AcceptsReturn="True" Height="160" MaxHeight="200" MaxWidth="300"
-                                         Margin="82,12,82.4,16" Style="{StaticResource MaterialDesignRichTextBox}" materialDesign:HintAssist.Hint=" Дополнительная информация" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2">
-                                <RichTextBox.BindingGroup>
-                                    <Binding Path="AdditionalInfo" UpdateSourceTrigger="PropertyChanged">
-                                        <Binding.ValidationRules>
-                                            <local2:MaximumCharacterRule MaximumCharacters="250"/>
-                                        </Binding.ValidationRules>
-                                    </Binding>
-                                </RichTextBox.BindingGroup>
-                            </RichTextBox>
                         </StackPanel>
                         <Grid Margin="19.6,0,20,0.4" Grid.Column="1">
                             <Grid.RowDefinitions>
