@@ -90,7 +90,6 @@
                                 <RichTextBox.BindingGroup>
                                     <Binding Path="AdditionalInfo" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
-                                            <local2:MinimumCharacterRule MinimumCharacters="2"/>
                                             <local2:MaximumCharacterRule MaximumCharacters="250"/>
                                         </Binding.ValidationRules>
                                     </Binding>
@@ -104,8 +103,8 @@
                             </Grid.RowDefinitions>
                             <TextBlock Text="Информация" Foreground="#FF1F1F1F" FontSize="20" HorizontalAlignment="Center" Margin="161,0,137.2,412.2" Width="124"/>
                             <StackPanel Margin="0,29,0,-0.4">
-                                <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="50" Margin="20,5,20.4,12"
-                                    MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Мобильный телефон" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
+                                <TextBox ToolTip="Возможны два формата ввода: +375000000000 и 80000000000" VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="50" Margin="20,5,20.4,12"
+                                    MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Мобильный телефон*" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
                                     <TextBox.Text>
                                         <Binding Path="MobilePhone" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
@@ -116,19 +115,19 @@
                                         </Binding>
                                     </TextBox.Text>
                                 </TextBox>
-                                <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="52" Margin="20,0,20.4,12"
-                                    MaxHeight="160" MaxWidth="300" materialDesign:HintAssist.Hint="Домашний телефон" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
+                                <TextBox ToolTip="Возможный формат ввода: 000000" VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="52" Margin="20,0,20.4,12"
+                                    MaxHeight="160" MaxWidth="300" materialDesign:HintAssist.Hint="Домашний телефон*" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
                                     <TextBox.Text>
                                         <Binding Path="HomePhone" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
-                                                <local2:MinimumCharacterRule MinimumCharacters="1" />
+                                                <local2:MinimumCharacterRule MinimumCharacters="6" />
                                                 <local2:MaximumCharacterRule MaximumCharacters="7"/>
                                                 <local3:OnlyNumbersRule />
                                             </Binding.ValidationRules>
                                         </Binding>
                                     </TextBox.Text>
                                 </TextBox>
-                                <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="50" Margin="20,0,20.4,16"
+                                <TextBox ToolTip="Возможны два формата ввода: +375000000000 и 80000000000" VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="50" Margin="20,0,20.4,16"
                                     MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Доп. мобильный телефон" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
                                     <TextBox.Text>
                                         <Binding Path="AdditionalPhone" UpdateSourceTrigger="PropertyChanged">
@@ -143,6 +142,7 @@
                                 <ComboBox materialDesign:HintAssist.Hint="Статус*"
                                   SelectedValue="{Binding OwnerStatus, Converter={StaticResource EnumConverter}}"
                                   ItemsSource="{Binding Source={local1:EnumToItemsSource {x:Type local4:OwnerStatus}}}"
+                                  SelectedIndex="0"
                                   Margin="71,10,72.4,10"
                                   MaxHeight="60"
                                   MaxWidth="400"
@@ -165,7 +165,7 @@
                          FontSize="18"
                          Margin="0 42 0 0"
                          Width="120" Content="Добавить" 
-                         Command="{Binding AddHouseCommand}"/>
+                         Command="{Binding AddOwnerCommand}"/>
                             </StackPanel>
                         </Grid>
                     </Grid>

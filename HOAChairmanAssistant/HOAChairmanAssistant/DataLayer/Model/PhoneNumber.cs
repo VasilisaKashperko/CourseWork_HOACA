@@ -18,5 +18,10 @@ namespace HOAChairmanAssistant.Model
         public string HomePhone { get; set; }
 
         public string AdditionalPhone { get; set; }
+
+        public PhoneNumber()
+        {
+
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace HOAChairmanAssistant.Model
     public enum OwnerStatus
     {
         [Description("Проживает")]
-        Lives = 1,
+        Lives = 0,
         [Description("Сдает")]
         Rents
     }

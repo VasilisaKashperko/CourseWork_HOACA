@@ -19,7 +19,7 @@ namespace HOAChairmanAssistant
 
             if (charString.Length >= MaximumCharacters)
             {
-                return new ValidationResult(false, $"Поле должно содержать не более {MaximumCharacters} символов.");
+                return new ValidationResult(false, $"Поле должно содержать не более {MaximumCharacters-1} символов.");
             }
 
             return ValidationResult.ValidResult;
