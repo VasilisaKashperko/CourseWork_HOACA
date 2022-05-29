@@ -19,6 +19,7 @@ namespace HOAChairmanAssistant.ViewModel
         private HOAChairmanAssistantContext context = new HOAChairmanAssistantContext();
         private ObservableCollection<Porch> porches = new ObservableCollection<Porch>();
         private ObservableCollection<Flat> flats = new ObservableCollection<Flat>();
+        private ObservableCollection<Owner> owners = new ObservableCollection<Owner>();
         private bool isFavorite;
         private User user;
         private House aboutHouse { get; set; }
@@ -86,6 +87,20 @@ namespace HOAChairmanAssistant.ViewModel
                     return;
                 }
                 flats = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public ObservableCollection<Owner> Owners
+        {
+            get { return owners; }
+            set
+            {
+                if (owners == value)
+                {
+                    return;
+                }
+                owners = value;
                 RaisePropertyChanged();
             }
         }
@@ -207,6 +222,21 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
+        private RelayCommandParametr _addOwnerCommand;
+        public RelayCommandParametr AddOwnerCommand
+        {
+            get
+            {
+                return _addOwnerCommand
+                       ?? (_addOwnerCommand = new RelayCommandParametr(
+                           (obj) =>
+                           {
+                               _navigationService.NavigateTo("AddOwnerPage", AboutHouse);
+                           }));
+            }
+        }
+
+
         private RelayCommandParametr _changeDataCommand;
         public RelayCommandParametr ChangeDataCommand
         {
@@ -215,10 +245,19 @@ namespace HOAChairmanAssistant.ViewModel
                 return _changeDataCommand
                        ?? (_changeDataCommand = new RelayCommandParametr(
                            (obj) =>
-                           {
+                           {   
                                AboutPorch = obj as Porch;
                                Porch porch = Porches.Where(x => x.PorchId == aboutPorch.PorchId).FirstOrDefault();
                                Flats = new ObservableCollection<Flat>(context.Flats.Where(x => x.PorchId == porch.PorchId).ToList());
+                               //Owners = new ObservableCollection<Owner>();
+                               //foreach(Flat y in Flats)
+                               //{
+                               //    Owner owner = new Owner(y);
+                               //    context.Owners.Add(owner);
+                               //    context.SaveChanges();
+
+                               //    Owners.Add(owner);
+                               //}
                            }));
             }
         }

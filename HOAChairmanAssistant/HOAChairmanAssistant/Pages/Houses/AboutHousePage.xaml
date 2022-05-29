@@ -36,7 +36,18 @@
                 <Button Command="{Binding HousesPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="10,0,874,467" Height="Auto">
                     <materialDesign:PackIcon  Kind="ArrowBack" Foreground="#607D8B" FontSize="30" Width="50" Height="35"/>
                 </Button>
-                <TextBlock Text="{Binding AboutHouse.HouseName}" TextAlignment="Center" FontWeight="Bold" FontFamily="Roboto" FontSize="30" Foreground="#FF607D8B" Margin="162,19,163,473" Width="639"/>
+                <TextBlock Text="{Binding AboutHouse.HouseName}" TextAlignment="Center" FontWeight="Bold" FontFamily="Roboto" FontSize="30" Foreground="#FF607D8B" Margin="80,19,644,480"/>
+                <Button
+                         Foreground="#ffffff"
+                         FontSize="18"
+                         Margin="681,17,44,482" Content="Добавить информацию" 
+                         Command="{Binding AddOwnerCommand}" Height="Auto"/>
+                <Button
+                         Foreground="#ffffff"
+                         FontSize="18"
+                         Margin="532,17,312,482"
+                         Width="120" Content="Изменить" 
+                         Command="{Binding AddOwnerCommand}" Height="Auto"/>
                 <StackPanel Orientation="Vertical" Margin="60">
                     <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
                         <ListBox HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" x:Name="ListViewPorches" ItemsSource="{Binding Porches}" ItemContainerStyle="{DynamicResource ListBoxItemStyleMenu}" Height="Auto" Width="Auto" MaxWidth="924" Margin="32 0 0 0">
@@ -75,10 +86,10 @@
                         </ListBox>
                     </ScrollViewer>
                     <Frame></Frame>
-                    <DataGrid Margin="0 20 0 0" AutoGenerateColumns="False" ItemsSource="{Binding Flats}">
+                    <DataGrid Margin="0 20 0 0" AutoGenerateColumns="False" ItemsSource="{Binding Flats}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="True" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxHeight="350">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding FlatNumber}" Header="№ квартиры" Width="150" FontFamily="Roboto" FontSize="16"/>
-                            <DataGridTextColumn Binding="{Binding ReservationDate}" Header="ФИО собственника" Width="200" FontFamily="Roboto" FontSize="16"/>
+                            <DataGridTextColumn Binding="{Binding Name}" Header="ФИО собственника" Width="200" FontFamily="Roboto" FontSize="16"/>
                             <DataGridTextColumn Binding="{Binding ClientName}" Header="Номер телефона" Width="150" FontFamily="Roboto" FontSize="16"/>
                             <DataGridTextColumn Binding="{Binding Phone}" Header="Статус" Width="150" FontFamily="Roboto" FontSize="16"/>
                             <DataGridTextColumn Binding="{Binding Phone}" Header="Задолженность" Width="150" FontFamily="Roboto" FontSize="16"/>

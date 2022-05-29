@@ -15,7 +15,7 @@ namespace HOAChairmanAssistant.Helpers.ValidationRules
         {
             string charString = value as string;
             cultureInfo = CultureInfo.CurrentCulture;
-            if (!Regex.Match(charString, "^[a-zA-ZА-Яа-я][a-zA-ZА-Яа-я ]*[a-zA-ZА-Яа-я]$").Success)
+            if (!Regex.Match(charString, "^[a-zA-ZА-Яа-я][a-zA-ZА-Яа-я -]*[a-zA-ZА-Яа-я]$").Success)
             {
                 return new ValidationResult(false, $"Поле может содержать только буквы");
             }

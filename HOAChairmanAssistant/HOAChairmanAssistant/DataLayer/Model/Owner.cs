@@ -36,5 +36,11 @@ namespace HOAChairmanAssistant.Model
         public int FlatId { get; set; }
         [ForeignKey("FlatId")]
         public Flat Flat { get; set; }
+
+        public Owner(Flat flat)
+        {
+            FlatId = flat.FlatId;
+            Name = "Name";
+        }
     }
 }

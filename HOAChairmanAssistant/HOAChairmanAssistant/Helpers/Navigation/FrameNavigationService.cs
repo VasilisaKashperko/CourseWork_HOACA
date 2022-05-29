@@ -73,7 +73,7 @@ namespace HOAChairmanAssistant.Helpers.Navigation
                 Frame frame = GetDescendantFromName(Application.Current.Windows[0], "MainFrame") as Frame;
                 if (Application.Current.Windows.Count > 2)
                 {
-                    if (Application.Current.Windows[2].Name == "KlingenRestaurantWindow")
+                    if (Application.Current.Windows[2].Name == "MainWindow")
                         frame = GetDescendantFromName(Application.Current.Windows[2], "MainFrame") as Frame;
                 }
 
