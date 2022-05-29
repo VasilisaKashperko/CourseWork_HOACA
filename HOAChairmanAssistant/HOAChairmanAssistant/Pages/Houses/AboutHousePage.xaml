@@ -12,6 +12,7 @@
       Title="AboutHousePage">
     <Page.Resources>
         <local1:ParametrizedBooleanToVisibilityConverter x:Key="ParametrizedBooleanToVisibilityConverter"/>
+        <local1:EnumConverter x:Key="EnumConverter"/>
     </Page.Resources>
     <materialDesign:DialogHost 
         IsOpen="{Binding IsOpenDialog,FallbackValue=False}">
@@ -85,14 +86,17 @@
                             </ListBox.ItemsPanel>
                         </ListBox>
                     </ScrollViewer>
-                    <Frame></Frame>
-                    <DataGrid SelectedItem="{Binding SelectedFlat}" Margin="0 20 0 0" AutoGenerateColumns="False" ItemsSource="{Binding Flats}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="True" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxHeight="350">
+                </StackPanel>
+                <StackPanel Margin="0 140 0 0">
+                    <DataGrid GridLinesVisibility="All" SelectedItem="{Binding SelectedFlat}" Margin="0 20 0 0" AutoGenerateColumns="False" ItemsSource="{Binding OwnersData}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="True" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" MaxHeight="350" MaxWidth="850" BorderBrush="#FF3E697D">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding FlatNumber}" Header="№ квартиры" Width="120" FontFamily="Roboto" FontSize="16"/>
-                            <DataGridTextColumn Binding="{Binding FlatId}" Header="ФИО собственника" Width="270" FontFamily="Roboto" FontSize="16"/>
-                            <DataGridTextColumn Binding="{Binding ClientName}" Header="Номер телефона" Width="200" FontFamily="Roboto" FontSize="16"/>
-                            <DataGridTextColumn Binding="{Binding Phone}" Header="Статус" Width="100" FontFamily="Roboto" FontSize="16"/>
-                            <DataGridTextColumn Binding="{Binding Phone}" Header="Задолженность" Width="150" FontFamily="Roboto" FontSize="16"/>
+                            <DataGridTextColumn Binding="{Binding FlatNumber}" Header="№ кв." Width="70" FontFamily="Roboto" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding Surname}" Header="Фамилия" Width="140" FontFamily="Roboto" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding Name}" Header="Имя" Width="120" FontFamily="Roboto" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding Patronymic}" Header="Отчество" Width="140" FontFamily="Roboto" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding MobilePhone}" Header="Номер телефона" Width="150" FontFamily="Roboto" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding OwnerStatusId, Converter={StaticResource EnumConverter}}" Header="Статус" Width="100" FontFamily="Roboto" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding CurrentDebt}" Header="Долг" Width="110" FontFamily="Roboto" FontSize="14"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>

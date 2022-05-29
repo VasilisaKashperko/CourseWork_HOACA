@@ -17,11 +17,15 @@ namespace HOAChairmanAssistant.Helpers.Converters
                 {
                     case OwnerStatus.Lives:
                         {
-                            return "Проживает";
+                            return "Живет";
                         }
                     case OwnerStatus.Rents:
                         {
                             return "Сдает";
+                        }
+                    case OwnerStatus.Undefined:
+                        {
+                            return "Не задан";
                         }
                 }
             }
@@ -35,13 +39,17 @@ namespace HOAChairmanAssistant.Helpers.Converters
             if (value == null) return "";
             switch (value.ToString())
             {
-                case "Проживает":
+                case "Живет":
                     {
                         return OwnerStatus.Lives;
                     }
                 case "Сдает":
                     {
                         return OwnerStatus.Rents;
+                    }
+                case "Не задан":
+                    {
+                        return OwnerStatus.Undefined;
                     }
             }
             return null;

@@ -120,7 +120,7 @@
                                     </TextBox.Text>
                                 </TextBox>
                                 <TextBox ToolTip="Возможный формат ввода: 000000" VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="52" Margin="20,0,20.4,12"
-                                    MaxHeight="160" MaxWidth="300" materialDesign:HintAssist.Hint="Домашний телефон*" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
+                                    MaxHeight="160" MaxWidth="300" materialDesign:HintAssist.Hint="Домашний телефон" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
                                     <TextBox.Text>
                                         <Binding Path="HomePhone" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>

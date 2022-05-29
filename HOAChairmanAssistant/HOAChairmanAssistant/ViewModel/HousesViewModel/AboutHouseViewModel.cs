@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using HOAChairmanAssistant.DataLayer.EF;
 using HOAChairmanAssistant.Helpers;
+using HOAChairmanAssistant.Helpers.Converters;
 using HOAChairmanAssistant.Helpers.GlobalData;
 using HOAChairmanAssistant.Helpers.Navigation;
 using HOAChairmanAssistant.Model;
@@ -21,8 +22,9 @@ namespace HOAChairmanAssistant.ViewModel
         private ObservableCollection<Porch> porches = new ObservableCollection<Porch>();
         private ObservableCollection<Flat> flats = new ObservableCollection<Flat>();
         private ObservableCollection<Owner> owners = new ObservableCollection<Owner>();
+        private ObservableCollection<OwnerData> ownersData = new ObservableCollection<OwnerData>();
         private bool isFavorite;
-        private Flat selectedFlat;
+        private OwnerData selectedFlat;
         private User user;
         private House aboutHouse { get; set; }
         private Porch aboutPorch { get; set; }
@@ -65,7 +67,7 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
-        public Flat SelectedFlat
+        public OwnerData SelectedFlat
         {
             get
             {
@@ -108,6 +110,20 @@ namespace HOAChairmanAssistant.ViewModel
                     return;
                 }
                 flats = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public ObservableCollection<OwnerData> OwnersData
+        {
+            get { return ownersData; }
+            set
+            {
+                if (ownersData == value)
+                {
+                    return;
+                }
+                ownersData = value;
                 RaisePropertyChanged();
             }
         }
@@ -276,7 +292,29 @@ namespace HOAChairmanAssistant.ViewModel
                            {   
                                AboutPorch = obj as Porch;
                                Porch porch = Porches.Where(x => x.PorchId == aboutPorch.PorchId).FirstOrDefault();
-                               Flats = new ObservableCollection<Flat>(context.Flats.Where(x => x.PorchId == porch.PorchId).ToList());
+                               //Flats = new ObservableCollection<Flat>(context.Flats.Where(x => x.PorchId == porch.PorchId).ToList());
+                               OwnersData.Clear();
+                           var ownersDataQuery = (
+                                            from flat in context.Flats
+                                            where flat.PorchId == porch.PorchId
+                                            join owner in context.Owners on flat.FlatId equals owner.FlatId into q1
+                                            from owner in q1.DefaultIfEmpty()
+                                            join phoneNumber in context.PhoneNumbers on owner.PhoneNumberId equals phoneNumber.PhoneNumberId into q2
+                                            from phoneNumber in q2.DefaultIfEmpty()
+                                            select new {
+                                            FlatId = flat.FlatId,
+                                            FlatNumber = flat.FlatNumber,
+                                            Surname = (owner == null? string.Empty : owner.Surname),
+                                            Name = (owner == null ? string.Empty : owner.Name),
+                                            Patronymic = (owner == null ? string.Empty : owner.Patronymic),
+                                            MobilePhone = (phoneNumber == null ? string.Empty : phoneNumber.MobilePhone),
+                                            OwnerStatusId = (owner == null ? OwnerStatus.Undefined: owner.OwnerStatusId),
+                                            CurrentDebt = (owner == null ? 0 : owner.CurrentDebt)
+                                            }).ToList();
+                               foreach (var x in ownersDataQuery)
+                               {
+                                   OwnersData.Add(new OwnerData(x.FlatId, x.FlatNumber, x.Surname, x.Name, x.Patronymic, x.MobilePhone, x.CurrentDebt, x.OwnerStatusId));
+                               }
                            }));
             }
         }

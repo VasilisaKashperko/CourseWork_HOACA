@@ -163,6 +163,7 @@
     <Compile Include="Helpers\Converters\InverseBooleanConverter.cs" />
     <Compile Include="Helpers\Converters\ParametrizedBooleanToVisibilityConverter.cs" />
     <Compile Include="Helpers\GlobalData\GlobalData.cs" />
+    <Compile Include="Helpers\GlobalData\OwnerData.cs" />
     <Compile Include="Helpers\Locator\ViewModelLocator.cs" />
     <Compile Include="Helpers\MessageWindow\OpenWindowMessage.cs" />
     <Compile Include="Helpers\MessageWindow\WindowType.cs" />
