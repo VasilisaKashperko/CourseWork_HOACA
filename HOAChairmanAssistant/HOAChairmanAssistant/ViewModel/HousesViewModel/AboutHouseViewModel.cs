@@ -143,6 +143,12 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
+        //For DataGrid
+
+
+
+        //
+
         public bool IsFavorite
         {
             get

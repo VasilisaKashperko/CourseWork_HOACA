@@ -88,10 +88,10 @@
                     <Frame></Frame>
                     <DataGrid SelectedItem="{Binding SelectedFlat}" Margin="0 20 0 0" AutoGenerateColumns="False" ItemsSource="{Binding Flats}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="True" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxHeight="350">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding FlatNumber}" Header="№ квартиры" Width="150" FontFamily="Roboto" FontSize="16"/>
-                            <DataGridTextColumn Binding="{Binding Name}" Header="ФИО собственника" Width="200" FontFamily="Roboto" FontSize="16"/>
-                            <DataGridTextColumn Binding="{Binding ClientName}" Header="Номер телефона" Width="150" FontFamily="Roboto" FontSize="16"/>
-                            <DataGridTextColumn Binding="{Binding Phone}" Header="Статус" Width="150" FontFamily="Roboto" FontSize="16"/>
+                            <DataGridTextColumn Binding="{Binding FlatNumber}" Header="№ квартиры" Width="120" FontFamily="Roboto" FontSize="16"/>
+                            <DataGridTextColumn Binding="{Binding FlatId}" Header="ФИО собственника" Width="270" FontFamily="Roboto" FontSize="16"/>
+                            <DataGridTextColumn Binding="{Binding ClientName}" Header="Номер телефона" Width="200" FontFamily="Roboto" FontSize="16"/>
+                            <DataGridTextColumn Binding="{Binding Phone}" Header="Статус" Width="100" FontFamily="Roboto" FontSize="16"/>
                             <DataGridTextColumn Binding="{Binding Phone}" Header="Задолженность" Width="150" FontFamily="Roboto" FontSize="16"/>
                         </DataGrid.Columns>
                     </DataGrid>
