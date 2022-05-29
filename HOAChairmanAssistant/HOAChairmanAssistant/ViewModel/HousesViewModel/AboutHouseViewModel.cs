@@ -281,6 +281,22 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
+        private RelayCommandParametr _changeOwnerCommand;
+        public RelayCommandParametr ChangeOwnerCommand
+        {
+            get
+            {
+                return _changeOwnerCommand
+                       ?? (_changeOwnerCommand = new RelayCommandParametr(
+                           (obj) =>
+                           {
+                               Flat flat = context.Flats.Find(selectedFlat.FlatId);
+                               _navigationService.NavigateTo("ChangeOwnerPage", AboutHouse, flat);
+                           },
+                           x => selectedFlat != null && selectedFlat.FlatId == GlobalData.OwnerForCheckFlatId));
+            }
+        }
+
         private RelayCommandParametr _changeDataCommand;
         public RelayCommandParametr ChangeDataCommand
         {
@@ -292,7 +308,6 @@ namespace HOAChairmanAssistant.ViewModel
                            {   
                                AboutPorch = obj as Porch;
                                Porch porch = Porches.Where(x => x.PorchId == aboutPorch.PorchId).FirstOrDefault();
-                               //Flats = new ObservableCollection<Flat>(context.Flats.Where(x => x.PorchId == porch.PorchId).ToList());
                                OwnersData.Clear();
                            var ownersDataQuery = (
                                             from flat in context.Flats

@@ -44,3 +44,7 @@
                             </ListBox.ItemsPanel>
                         </ListBox>
                     </TabControl>
+
+
+
+                               //Flats = new ObservableCollection<Flat>(context.Flats.Where(x => x.PorchId == porch.PorchId).ToList());

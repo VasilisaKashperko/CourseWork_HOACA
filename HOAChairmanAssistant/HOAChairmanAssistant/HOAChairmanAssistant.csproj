@@ -132,6 +132,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Owners\ChangeOwnerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Settings\SettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -216,9 +220,13 @@
     <Compile Include="Pages\Owners\AddOwnerPage.xaml.cs">
       <DependentUpon>AddOwnerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Owners\ChangeOwnerPage.xaml.cs">
+      <DependentUpon>ChangeOwnerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Settings\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\OwnersViewModel\ChangeOwnerViewModel.cs" />
     <Compile Include="ViewModel\HousesViewModel\AboutHouseViewModel.cs" />
     <Compile Include="ViewModel\HousesViewModel\AddHouseViewModel.cs" />
     <Compile Include="ViewModel\OwnersViewModel\AddOwnerViewModel.cs" />
