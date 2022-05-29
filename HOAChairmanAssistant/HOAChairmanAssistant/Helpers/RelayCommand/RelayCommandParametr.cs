@@ -7,6 +7,7 @@ namespace HOAChairmanAssistant.Helpers
     {
         private Action<object> execute;
         private Func<object, bool> canExecute;
+        private Func<object, bool> canExecute2;
 
         public event EventHandler CanExecuteChanged
         {

@@ -23,6 +23,7 @@ namespace HOAChairmanAssistant.ViewModel
         private HOAChairmanAssistantContext context = new HOAChairmanAssistantContext();
         private House aboutHouse { get; set; }
         private OwnerStatus ownerStatus;
+        private Flat selectedFlat { get; set; }
         private string surname;
         private string name;
         private string patronymic;
@@ -52,6 +53,23 @@ namespace HOAChairmanAssistant.ViewModel
                     return;
                 }
                 aboutHouse = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public Flat SelectedFlat
+        {
+            get
+            {
+                return selectedFlat;
+            }
+            set
+            {
+                if (selectedFlat == value)
+                {
+                    return;
+                }
+                selectedFlat = value;
                 RaisePropertyChanged();
             }
         }
@@ -383,6 +401,7 @@ namespace HOAChairmanAssistant.ViewModel
         {
             _navigationService = navigationService;
             AboutHouse = navigationService.Parameter as House;
+            SelectedFlat = navigationService.Parameter2 as Flat;
             if (!IsVisibleProgressBar)
             {
                 Surname = String.Empty;

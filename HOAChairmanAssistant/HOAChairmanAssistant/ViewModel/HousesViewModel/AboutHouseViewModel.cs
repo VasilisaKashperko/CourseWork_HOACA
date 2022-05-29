@@ -250,7 +250,7 @@ namespace HOAChairmanAssistant.ViewModel
                            (obj) =>
                            {
                            Flat flat = context.Flats.Find(selectedFlat.FlatId);
-                           _navigationService.NavigateTo("AddOwnerPage", AboutHouse);
+                           _navigationService.NavigateTo("AddOwnerPage", AboutHouse, flat);
                            },
                            x => selectedFlat != null));
             }
