@@ -90,6 +90,7 @@
                                 <RichTextBox.BindingGroup>
                                     <Binding Path="AdditionalInfo" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
+                                            <local2:MinimumCharacterRule MinimumCharacters="2"/>
                                             <local2:MaximumCharacterRule MaximumCharacters="250"/>
                                         </Binding.ValidationRules>
                                     </Binding>

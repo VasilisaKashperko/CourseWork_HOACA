@@ -23,7 +23,7 @@ namespace HOAChairmanAssistant.ViewModel
         private HOAChairmanAssistantContext context = new HOAChairmanAssistantContext();
         private House aboutHouse { get; set; }
         private OwnerStatus ownerStatus;
-        private string country;
+        private string surname;
         private string city;
         private string district;
         private string street;
@@ -75,20 +75,20 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
-        public string Country
+        public string Surname
         {
             get
             {
-                return country;
+                return surname;
             }
             set
             {
-                if (country == value)
+                if (surname == value)
                 {
                     return;
                 }
 
-                country = value;
+                surname = value;
                 RaisePropertyChanged();
             }
         }
@@ -327,91 +327,91 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
-        private RelayCommandParametr addHouseCommand;
-        public RelayCommandParametr AddHouseCommand
-        {
-            get
-            {
-                return addHouseCommand
-                    ?? (addHouseCommand = new RelayCommandParametr(
-                    (obj) =>
-                    {
-                        IsVisibleProgressBar = true;
-                        ThreadPool.QueueUserWorkItem(
-                        (o) =>
-                        {
-                            if (context.Houses.FirstOrDefault(x1 => x1.HouseName == houseName) != null)
-                            {
-                                IsVisibleProgressBar = false;
-                                Message = "Дом с таким названием уже добавлен.";
-                                IsOpenDialog = true;
-                            }
-                            if (context.Houses.FirstOrDefault(x1 => x1.Address.HouseNumber == houseNumber) != null
-                                && context.Houses.FirstOrDefault(x1 => x1.Address.Street == street) != null
-                                && context.Houses.FirstOrDefault(x1 => x1.Address.City == city) != null)
-                            {
-                                IsVisibleProgressBar = false;
-                                Message = "Дом с таким адресом уже добавлен.";
-                                IsOpenDialog = true;
-                            }
-                            if (!String.IsNullOrWhiteSpace(Country)
-                                && !String.IsNullOrWhiteSpace(City)
-                                && !String.IsNullOrWhiteSpace(Street)
-                                && HouseNumber != 0
-                                && NumberOfFlats != 0
-                                && NumberOfPorches != 0
-                                && !String.IsNullOrWhiteSpace(HouseName))
-                            {
-                                var user = SimpleIoc.Default.GetInstance<MainWindowViewModel>().User;
-                                Address address = new Address(Country, City, District, Street, HouseNumber, HousingNumber);
-                                House house = new House()
-                                {
-                                    HouseName = houseName,
-                                    NumberOfFlats = numberOfFlats,
-                                    NumberOfPorches = numberOfPorches,
-                                    AddressId = address.AddressId,
-                                    UserId = user.UserId
-                                };
-                                context.Addresses.Add(address);
-                                context.Houses.Add(house);
-                                context.SaveChanges();
-                                int amount = NumberOfFlats / NumberOfPorches;
-                                for (int i = 1; i <= NumberOfPorches; i++)
-                                {
-                                    Porch porch = new Porch(i, house);
-                                    context.Porches.Add(porch);
-                                    context.SaveChanges();
-                                    int n = 1;
-                                    if (i > 1)
-                                    {
-                                        n = 1 + amount * (i - 1);
-                                    }
+        //private RelayCommandParametr addHouseCommand;
+        //public RelayCommandParametr AddHouseCommand
+        //{
+        //    get
+        //    {
+        //        return addHouseCommand
+        //            ?? (addHouseCommand = new RelayCommandParametr(
+        //            (obj) =>
+        //            {
+        //                IsVisibleProgressBar = true;
+        //                ThreadPool.QueueUserWorkItem(
+        //                (o) =>
+        //                {
+        //                    if (context.Houses.FirstOrDefault(x1 => x1.HouseName == houseName) != null)
+        //                    {
+        //                        IsVisibleProgressBar = false;
+        //                        Message = "Дом с таким названием уже добавлен.";
+        //                        IsOpenDialog = true;
+        //                    }
+        //                    if (context.Houses.FirstOrDefault(x1 => x1.Address.HouseNumber == houseNumber) != null
+        //                        && context.Houses.FirstOrDefault(x1 => x1.Address.Street == street) != null
+        //                        && context.Houses.FirstOrDefault(x1 => x1.Address.City == city) != null)
+        //                    {
+        //                        IsVisibleProgressBar = false;
+        //                        Message = "Дом с таким адресом уже добавлен.";
+        //                        IsOpenDialog = true;
+        //                    }
+        //                    if (!String.IsNullOrWhiteSpace(Country)
+        //                        && !String.IsNullOrWhiteSpace(City)
+        //                        && !String.IsNullOrWhiteSpace(Street)
+        //                        && HouseNumber != 0
+        //                        && NumberOfFlats != 0
+        //                        && NumberOfPorches != 0
+        //                        && !String.IsNullOrWhiteSpace(HouseName))
+        //                    {
+        //                        var user = SimpleIoc.Default.GetInstance<MainWindowViewModel>().User;
+        //                        Address address = new Address(Country, City, District, Street, HouseNumber, HousingNumber);
+        //                        House house = new House()
+        //                        {
+        //                            HouseName = houseName,
+        //                            NumberOfFlats = numberOfFlats,
+        //                            NumberOfPorches = numberOfPorches,
+        //                            AddressId = address.AddressId,
+        //                            UserId = user.UserId
+        //                        };
+        //                        context.Addresses.Add(address);
+        //                        context.Houses.Add(house);
+        //                        context.SaveChanges();
+        //                        int amount = NumberOfFlats / NumberOfPorches;
+        //                        for (int i = 1; i <= NumberOfPorches; i++)
+        //                        {
+        //                            Porch porch = new Porch(i, house);
+        //                            context.Porches.Add(porch);
+        //                            context.SaveChanges();
+        //                            int n = 1;
+        //                            if (i > 1)
+        //                            {
+        //                                n = 1 + amount * (i - 1);
+        //                            }
 
-                                    for (int y = n; y <= amount * i; y++)
-                                    {
-                                        Flat flat = new Flat(y, porch);
-                                        context.Flats.Add(flat);
-                                        context.SaveChanges();
-                                    }
-                                }
-                                Country = City = District = Street = HouseName = HousingNumber = string.Empty;
-                                HouseNumber = NumberOfFlats = NumberOfPorches = 0;
-                                IsVisibleProgressBar = false;
-                                Message = "Дом успешно добавлен!";
-                                IsOpenDialog = true;
-                                isAdded = true;
-                            }
-                            else
-                            {
-                                IsVisibleProgressBar = false;
-                                Message = "Некорректно введены данные.";
-                                IsOpenDialog = true;
-                            }
-                        });
-                    },
-                    (x1) => Street?.Length > 0 && Country?.Length > 0 && City?.Length > 0 && HouseName?.Length > 0 && HouseNumber != 0 && NumberOfFlats != 0 && NumberOfPorches != 0));
-            }
-        }
+        //                            for (int y = n; y <= amount * i; y++)
+        //                            {
+        //                                Flat flat = new Flat(y, porch);
+        //                                context.Flats.Add(flat);
+        //                                context.SaveChanges();
+        //                            }
+        //                        }
+        //                        Country = City = District = Street = HouseName = HousingNumber = string.Empty;
+        //                        HouseNumber = NumberOfFlats = NumberOfPorches = 0;
+        //                        IsVisibleProgressBar = false;
+        //                        Message = "Дом успешно добавлен!";
+        //                        IsOpenDialog = true;
+        //                        isAdded = true;
+        //                    }
+        //                    else
+        //                    {
+        //                        IsVisibleProgressBar = false;
+        //                        Message = "Некорректно введены данные.";
+        //                        IsOpenDialog = true;
+        //                    }
+        //                });
+        //            },
+        //            (x1) => Street?.Length > 0 && Country?.Length > 0 && City?.Length > 0 && HouseName?.Length > 0 && HouseNumber != 0 && NumberOfFlats != 0 && NumberOfPorches != 0));
+        //    }
+        //}
 
         private RelayCommandParametr _aboutHouseCommand;
         public RelayCommandParametr AboutHouseCommand
@@ -435,7 +435,7 @@ namespace HOAChairmanAssistant.ViewModel
             AboutHouse = navigationService.Parameter as House;
             if (!IsVisibleProgressBar)
             {
-                Country = String.Empty;
+                Surname = String.Empty;
                 District = String.Empty;
                 City = String.Empty;
                 Street = String.Empty;
