@@ -23,6 +23,8 @@ namespace HOAChairmanAssistant.ViewModel
         private HOAChairmanAssistantContext context = new HOAChairmanAssistantContext();
         private House aboutHouse { get; set; }
         private OwnerStatus ownerStatus;
+        private Owner owner;
+        private PhoneNumber phoneNumber;
         private Flat selectedFlat { get; set; }
         private string surname;
         private string name;
@@ -316,9 +318,9 @@ namespace HOAChairmanAssistant.ViewModel
                     ?? (loadedCommand = new RelayCommandParametr(
                     obj =>
                     {
-                        Owner owner = new Owner();
+                        owner = new Owner();
                         owner = context.Owners.Where(x => x.FlatId == GlobalData.OwnerForCheckFlatId).FirstOrDefault();
-                        PhoneNumber phoneNumber = new PhoneNumber();
+                        phoneNumber = new PhoneNumber();
                         phoneNumber = context.PhoneNumbers.Where(x => x.PhoneNumberId == owner.PhoneNumberId).FirstOrDefault();
                         Surname = owner.Surname;
                         Name = owner.Name;
@@ -349,25 +351,16 @@ namespace HOAChairmanAssistant.ViewModel
                                 && !String.IsNullOrWhiteSpace(Name))
                             {
                                 var user = SimpleIoc.Default.GetInstance<MainWindowViewModel>().User;
-                                PhoneNumber phoneNumber = new PhoneNumber()
-                                {
-                                    MobilePhone = mobilePhone,
-                                    HomePhone = homePhone,
-                                    AdditionalPhone = additionalPhone
-                                };
-                                Owner owner = new Owner()
-                                {
-                                    Surname = surname,
-                                    Name = name,
-                                    Patronymic = patronymic,
-                                    AdditionalInfo = additionalInfo,
-                                    PhoneNumberId = phoneNumber.PhoneNumberId,
-                                    OwnerStatusId = ownerStatus,
-                                    FlatId = selectedFlat.FlatId
-                                };
-                                GlobalData.OwnerFlatId = owner.FlatId;
-                                context.PhoneNumbers.Add(phoneNumber);
-                                context.Owners.Add(owner);
+
+                                owner.Surname = Surname;
+                                owner.Name = Name;
+                                owner.Patronymic = Patronymic;
+                                owner.AdditionalInfo = AdditionalInfo;
+                                owner.OwnerStatusId = OwnerStatus;
+                                phoneNumber.MobilePhone = MobilePhone;
+                                phoneNumber.HomePhone = HomePhone;
+                                phoneNumber.AdditionalPhone = AdditionalPhone;
+
                                 context.SaveChanges();
                                 IsVisibleProgressBar = false;
                                 Message = "Успешно изменено!";

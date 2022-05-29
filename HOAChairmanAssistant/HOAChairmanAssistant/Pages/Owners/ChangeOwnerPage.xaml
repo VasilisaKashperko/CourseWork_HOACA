@@ -100,9 +100,8 @@
                                 <TextBox.Text>
                                     <Binding Path="AdditionalInfo" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
-                                            <local2:MinimumCharacterRule MinimumCharacters="2" />
-                                            <local2:MaximumCharacterRule MaximumCharacters="31"/>
-                                            <local3:OnlyLettersRule />
+                                            <local2:MinimumCharacterRule MinimumCharacters="2"/>
+                                            <local2:MaximumCharacterRule MaximumCharacters="251"/>
                                         </Binding.ValidationRules>
                                     </Binding>
                                 </TextBox.Text>
@@ -175,8 +174,7 @@
                                     ConverterParameter=False}"
                          Foreground="#ffffff"
                          FontSize="18"
-                         Margin="0 42 0 0"
-                         Width="120" Content="Добавить" 
+                         Margin="151,42,146.4,0" Content="Сохранить" 
                          Command="{Binding AddOwnerCommand}"/>
                             </StackPanel>
                         </Grid>

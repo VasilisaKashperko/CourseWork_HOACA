@@ -95,8 +95,7 @@
                                     <Binding Path="AdditionalInfo" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <local2:MinimumCharacterRule MinimumCharacters="2" />
-                                            <local2:MaximumCharacterRule MaximumCharacters="31"/>
-                                            <local3:OnlyLettersRule />
+                                            <local2:MaximumCharacterRule MaximumCharacters="251"/>
                                         </Binding.ValidationRules>
                                     </Binding>
                                 </TextBox.Text>
