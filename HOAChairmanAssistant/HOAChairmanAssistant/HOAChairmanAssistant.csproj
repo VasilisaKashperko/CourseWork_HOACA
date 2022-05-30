@@ -108,7 +108,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Houses\AddAccountantPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Houses\AddHousePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Houses\ChangeAccountantPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -202,8 +210,14 @@
     <Compile Include="Pages\Houses\AboutHousePage.xaml.cs">
       <DependentUpon>AboutHousePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Houses\AddAccountantPage.xaml.cs">
+      <DependentUpon>AddAccountantPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Houses\AddHousePage.xaml.cs">
       <DependentUpon>AddHousePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Houses\ChangeAccountantPage.xaml.cs">
+      <DependentUpon>ChangeAccountantPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Houses\HousesPage.xaml.cs">
       <DependentUpon>HousesPage.xaml</DependentUpon>
@@ -226,6 +240,8 @@
     <Compile Include="Pages\Settings\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\HousesViewModel\AddAccountantViewModel.cs" />
+    <Compile Include="ViewModel\HousesViewModel\ChangeAccountantViewModel.cs" />
     <Compile Include="ViewModel\OwnersViewModel\ChangeOwnerViewModel.cs" />
     <Compile Include="ViewModel\HousesViewModel\AboutHouseViewModel.cs" />
     <Compile Include="ViewModel\HousesViewModel\AddHouseViewModel.cs" />

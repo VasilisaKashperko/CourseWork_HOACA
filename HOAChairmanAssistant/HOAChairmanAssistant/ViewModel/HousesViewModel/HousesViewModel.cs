@@ -78,7 +78,7 @@ namespace HOAChairmanAssistant.ViewModel
                     return;
                 }
                 var user = context.Users.Where(x => x.UserId == GlobalData.UserId).FirstOrDefault();
-                accountantName = user.Accountant.Surname;
+                accountantSurname = user.Accountant.Surname;
                 RaisePropertyChanged();
             }
         }
