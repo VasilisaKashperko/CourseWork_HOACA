@@ -395,9 +395,11 @@ namespace HOAChairmanAssistant.ViewModel
                             context.Owners.Remove(ownerForDelete);
                             context.PhoneNumbers.Remove(phoneNumberForDelete);
                         }
+                        GlobalData.OwnerForCheckFlatId = 0;
+                        GlobalData.OwnerFlatId = 0;
                         context.SaveChanges();
                         IsVisibleProgressBar = false;
-                        Message = "Успешно изменено!";
+                        Message = "Успешно удалено!";
                         IsOpenDialog = true;
                         isAdded = true;
                     },
