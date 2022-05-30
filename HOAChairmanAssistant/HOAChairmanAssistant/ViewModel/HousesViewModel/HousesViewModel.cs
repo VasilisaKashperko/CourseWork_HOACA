@@ -22,8 +22,6 @@ namespace HOAChairmanAssistant.ViewModel
         private string searchField;
         private string street;
         private string userName;
-        private string accountantName;
-        private string accountantSurname;
         private bool isVisibleProgressBar;
         private bool isOpenDialog;
         private bool isAdded = false;
@@ -123,46 +121,6 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
-        public string AccountantSurname
-        {
-            get {
-                var user = context.Users.Where(x => x.AccountantId == GlobalData.UserId).FirstOrDefault();
-                accountantSurname = user.Surname;
-                GlobalData.AccountantSurname = user.Surname;
-                return accountantSurname; }
-            set
-            {
-                if (accountantSurname == value)
-                {
-                    return;
-                }
-                var user = context.Users.Where(x => x.AccountantId == GlobalData.UserId).FirstOrDefault();
-                accountantSurname = user.Surname;
-                GlobalData.AccountantSurname = user.Surname;
-                RaisePropertyChanged();
-            }
-        }
-
-        public string AccountantName
-        {
-            get {
-                var user = context.Users.Where(x => x.AccountantId == GlobalData.UserId).FirstOrDefault();
-                accountantName = user.Name;
-                GlobalData.AccountantName = user.Name;
-                return accountantName; }
-            set
-            {
-                if (accountantName == value)
-                {
-                    return;
-                }
-                var user = context.Users.Where(x => x.AccountantId == GlobalData.UserId).FirstOrDefault();
-                accountantName = user.Name;
-                GlobalData.AccountantName = user.Name;
-                RaisePropertyChanged();
-            }
-        }
-
         public bool IsVisibleProgressBar
         {
             get
@@ -239,6 +197,8 @@ namespace HOAChairmanAssistant.ViewModel
                         if (isAdded == true)
                         {
                             IsOpenDialog = false;
+                            GlobalData.AccountantName = "";
+                            GlobalData.AccountantSurname = "";
                             _navigationService.NavigateTo("Houses");
                         }
                         else
@@ -273,16 +233,25 @@ namespace HOAChairmanAssistant.ViewModel
                     (o) =>
                     {
                         User userForDelete = context.Users.Where(x => x.AccountantId == GlobalData.UserId).FirstOrDefault();
-                            context.Users.Remove(userForDelete);
-                        GlobalData.AccountantName = null;
-                        GlobalData.AccountantSurname = null;
+                        context.Users.Remove(userForDelete);
                         context.SaveChanges();
                         isAdded = true;
                         IsVisibleProgressBar = false;
                         Message = "Бухгалтер удален!";
                         IsOpenDialog = true;
+                        var user1 = context.Users.FirstOrDefault(y => y.AccountantId == GlobalData.UserId);
+                        if (user1 != null)
+                        {
+                            GlobalData.AccountantSurname = user1.Surname.ToString();
+                            GlobalData.AccountantName = user1.Name.ToString();
+                        }
+                        else
+                        {
+                            GlobalData.AccountantSurname = "";
+                            GlobalData.AccountantName = "";
+                        }
                     },
-                    x => GlobalData.AccountantName != null && GlobalData.AccountantSurname != null));
+                    x => GlobalData.AccountantName != null && GlobalData.AccountantSurname != null && GlobalData.AccountantName != "" && GlobalData.AccountantSurname != ""));
             }
         }
 

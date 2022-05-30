@@ -22,98 +22,112 @@
         <local1:ParametrizedBooleanToVisibilityConverter x:Key="ParametrizedBooleanToVisibilityConverter"/>
         <local1:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
     </Page.Resources>
-    <Grid Background="AliceBlue">
-        <StackPanel Orientation="Vertical">
-            <Grid VerticalAlignment="Top" HorizontalAlignment="Center">
-                <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
-                    <TextBlock Text="Здравствуйте, " FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#FF607D8B"/>
-                    <TextBlock x:Name="userNameLabel" FontSize="30" HorizontalAlignment="Center" Loaded="userNameLabel_Loaded" FontWeight="Bold" Foreground="#FF607D8B"/>
+    <materialDesign:DialogHost 
+        IsOpen="{Binding IsOpenDialog,FallbackValue=False}">
+        <materialDesign:DialogHost.DialogContent>
+            <Border Height="Auto" Width="Auto">
+                <StackPanel Margin="16">
+                    <TextBlock Text="{Binding Message}"/>
+                    <Button Margin="0 10 0 0" Style="{StaticResource MaterialDesignFlatAccentButton}"
+                                Content="Закрыть" Foreground="#607D8B" Width="90" Height="30" Command="{Binding CloseDialogCommand}"/>
                 </StackPanel>
-            </Grid>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <TextBlock Text="Ваш бухгалтер: " HorizontalAlignment="Center" Margin="40 10 0 0" Foreground="#FF1F1F1F" FontSize="25" Height="34"/>
-                <TextBlock x:Name="accNameLabel" HorizontalAlignment="Center" Margin="20 20 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="Auto" Loaded="accNameLabel_Loaded"/>
-                <TextBlock x:Name="accSurnameLabel" HorizontalAlignment="Center" Margin="5 20 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="Auto" Loaded="accSurnameLabel_Loaded"/>
-                <Button       
+            </Border>
+        </materialDesign:DialogHost.DialogContent>
+        <materialDesign:TransitioningContent x:Name="TransitioningContentSlide" 
+                                                 OpeningEffect="{materialDesign:TransitionEffect FadeIn, Duration=0:0:0.8}">
+            <Grid Background="AliceBlue">
+                <StackPanel Orientation="Vertical">
+                    <Grid VerticalAlignment="Top" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="0 12 0 0">
+                            <TextBlock Text="Здравствуйте, " FontSize="30" HorizontalAlignment="Center" FontWeight="Bold" Foreground="#FF607D8B"/>
+                            <TextBlock x:Name="userNameLabel" FontSize="30" HorizontalAlignment="Center" Loaded="userNameLabel_Loaded" FontWeight="Bold" Foreground="#FF607D8B"/>
+                        </StackPanel>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="Ваш бухгалтер: " HorizontalAlignment="Center" Margin="40 10 0 0" Foreground="#FF1F1F1F" FontSize="25" Height="34"/>
+                        <TextBlock x:Name="accNameLabel" HorizontalAlignment="Center" Margin="20 16 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="Auto" Loaded="accNameLabel_Loaded"/>
+                        <TextBlock x:Name="accSurnameLabel" HorizontalAlignment="Center" Margin="5 16 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="Auto" Loaded="accSurnameLabel_Loaded"/>
+                        <Button       
                          Visibility="{Binding IsVisibleProgressBar, ConverterParameter=False, Converter={StaticResource ParametrizedBooleanToVisibilityConverter}}"
                          ToolTip="Чтобы удалить бухгалтера, нажмите дважды"
                          Foreground="#ffffff"
                          FontSize="18"
-                         Margin="60 16 0 0"
-                         Width="120" Content="Удалить" 
-                         Command="{Binding DeleteAccountantCommand}" Background="#FF9A4848">
-                    <Button.InputBindings>
-                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding DeleteAccountantCommand}"/>
-                    </Button.InputBindings>
-                </Button>
-                <Button       
+                         Margin="60 16 0 10"
+                         Width="120" Content="Удалить" Background="#FF9A4848" MouseDoubleClick="Button_MouseDoubleClick">
+                            <Button.InputBindings>
+                                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding DeleteAccountantCommand}"/>
+                            </Button.InputBindings>
+                        </Button>
+                        <Button       
                          Visibility="{Binding IsVisibleProgressBar,
                                     Converter={StaticResource ParametrizedBooleanToVisibilityConverter},
                                     ConverterParameter=False}"
                          Foreground="#ffffff"
                          FontSize="18"
-                         Margin="20 16 0 0"
+                         Margin="20 16 0 10"
                          Width="120" Content="Добавить" 
                          Command="{Binding AddAccountantCommand}"/>
-            </StackPanel>
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="32,10,30,0" Width="862">
-                <Line X1="0" Y1="0" X2="800" Y2="0" Stroke="#607D8B" VerticalAlignment="Center" Width="350"/>
-                <TextBlock Text="Ваши дома" FontSize="30" Margin="5 0 5 24" VerticalAlignment="Center" Foreground="#FF1F1F1F"/>
-                <Line X1="0" Y1="0" X2="800" Y2="0" Stroke="#607D8B" VerticalAlignment="Center" Width="350"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
-                    <ListBox HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" x:Name="ListViewHouses" ItemsSource="{Binding Houses}" ItemContainerStyle="{DynamicResource ListBoxItemStyleMenu}" Height="Auto" Width="Auto" MaxWidth="692" Margin="32 0 0 0">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Border Width="200" Height="100" Margin="0 14 20 0">
-                                    <Grid Grid.Column="0" Background="Transparent">
-                                        <StackPanel Orientation="Vertical" VerticalAlignment="Center">
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                <Button Command="{Binding ElementName= ListViewHouses, Path= DataContext.AboutHouseCommand}"
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="32,10,30,0" Width="862">
+                        <Line X1="0" Y1="0" X2="800" Y2="0" Stroke="#607D8B" VerticalAlignment="Center" Width="350"/>
+                        <TextBlock Text="Ваши дома" FontSize="30" Margin="5 0 5 24" VerticalAlignment="Center" Foreground="#FF1F1F1F"/>
+                        <Line X1="0" Y1="0" X2="800" Y2="0" Stroke="#607D8B" VerticalAlignment="Center" Width="350"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+                            <ListBox HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" x:Name="ListViewHouses" ItemsSource="{Binding Houses}" ItemContainerStyle="{DynamicResource ListBoxItemStyleMenu}" Height="Auto" Width="Auto" MaxWidth="692" Margin="32 0 0 0">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Width="200" Height="100" Margin="0 14 20 0">
+                                            <Grid Grid.Column="0" Background="Transparent">
+                                                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                        <Button Command="{Binding ElementName= ListViewHouses, Path= DataContext.AboutHouseCommand}"
                                                         CommandParameter="{Binding Path= SelectedItem , ElementName=ListViewHouses}"
                                                         Background="#FFE5E5E5" Width="200" Height="100" HorizontalAlignment="Left"
                                                         VerticalAlignment="Top" Padding="0 0 0 0" BorderBrush="{x:Null}">
-                                                    <StackPanel Orientation="Horizontal">
-                                                        <Grid ShowGridLines="False">
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition></RowDefinition>
-                                                            </Grid.RowDefinitions>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="50"></ColumnDefinition>
-                                                                <ColumnDefinition Width="150"></ColumnDefinition>
-                                                            </Grid.ColumnDefinitions>
-                                                            <materialDesign:PackIcon Kind="House" Width="40" Height="40" Margin="12 0 0 0" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0"/>
-                                                            <TextBlock FontSize="20" Text="{Binding HouseName}" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
-                                                            <TextBlock.Foreground>
-                                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                                                    <GradientStop Color="#FF607D8B" Offset="0"/>
-                                                                    <GradientStop Color="#FF009677" Offset="1"/>
-                                                                </LinearGradientBrush>
-                                                            </TextBlock.Foreground>
-                                                        </Grid>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Grid ShowGridLines="False">
+                                                                    <Grid.RowDefinitions>
+                                                                        <RowDefinition></RowDefinition>
+                                                                    </Grid.RowDefinitions>
+                                                                    <Grid.ColumnDefinitions>
+                                                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                                                        <ColumnDefinition Width="150"></ColumnDefinition>
+                                                                    </Grid.ColumnDefinitions>
+                                                                    <materialDesign:PackIcon Kind="House" Width="40" Height="40" Margin="12 0 0 0" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0"/>
+                                                                    <TextBlock FontSize="20" Text="{Binding HouseName}" Margin="0 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
+                                                                    <TextBlock.Foreground>
+                                                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                            <GradientStop Color="#FF607D8B" Offset="0"/>
+                                                                            <GradientStop Color="#FF009677" Offset="1"/>
+                                                                        </LinearGradientBrush>
+                                                                    </TextBlock.Foreground>
+                                                                </Grid>
+                                                            </StackPanel>
+                                                        </Button>
                                                     </StackPanel>
-                                                </Button>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                        <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel/>
-                            </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
-                    </ListBox>
-                </ScrollViewer>
-                <Button Command="{Binding AddHousePageCommand}" Background="#FFE5E5E5" Width="200" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 16 32 0" Padding="0 0 0 0" BorderBrush="{x:Null}">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="PlusBold" Width="40" Height="40" Foreground="#FF9F9898" Margin="0 0 4 0"/>
-                        <TextBlock FontSize="20" Text="Добавить дом" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF9F9898"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                            </ListBox>
+                        </ScrollViewer>
+                        <Button Command="{Binding AddHousePageCommand}" Background="#FFE5E5E5" Width="200" Height="100" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 16 32 0" Padding="0 0 0 0" BorderBrush="{x:Null}">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="PlusBold" Width="40" Height="40" Foreground="#FF9F9898" Margin="0 0 4 0"/>
+                                <TextBlock FontSize="20" Text="Добавить дом" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF9F9898"/>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
-                </Button>
-            </StackPanel>
-        </StackPanel>
-    </Grid>
+                </StackPanel>
+            </Grid>
+        </materialDesign:TransitioningContent>
+    </materialDesign:DialogHost>
 </Page>

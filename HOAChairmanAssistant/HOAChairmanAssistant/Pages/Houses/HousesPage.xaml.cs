@@ -57,5 +57,10 @@ namespace HOAChairmanAssistant.Pages.Houses
         {
             accSurnameLabel.Text = GlobalData.AccountantSurname;
         }
+
+        private void Button_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            this.NavigationService.Refresh();
+        }
     }
 }

@@ -323,10 +323,10 @@ namespace HOAChairmanAssistant.ViewModel
                                 };
                                 context.Users.Add(user);
                                 context.SaveChanges();
+                                IsRegistrated = true;
+                                IsOpenDialog = true;
                                 IsVisibleProgressBar = false;
                                 Message = "Спасибо за регистрацию!";
-                                IsOpenDialog = true;
-                                IsRegistrated = true;
                             }
                             else
                             {
