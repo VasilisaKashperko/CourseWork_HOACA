@@ -334,13 +334,13 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
-        private RelayCommandParametr addOwnerCommand;
-        public RelayCommandParametr AddOwnerCommand
+        private RelayCommandParametr updateOwnerCommand;
+        public RelayCommandParametr UpdateOwnerCommand
         {
             get
             {
-                return addOwnerCommand
-                    ?? (addOwnerCommand = new RelayCommandParametr(
+                return updateOwnerCommand
+                    ?? (updateOwnerCommand = new RelayCommandParametr(
                     (obj) =>
                     {
                         IsVisibleProgressBar = true;
@@ -376,6 +376,32 @@ namespace HOAChairmanAssistant.ViewModel
                         });
                     },
                     (x1) => Surname?.Length > 0 && Name?.Length > 0 && MobilePhone?.Length > 0));
+            }
+        }
+
+        private RelayCommandParametr deleteOwnerCommand;
+        public RelayCommandParametr DeleteOwnerCommand
+        {
+            get
+            {
+                return deleteOwnerCommand
+                    ?? (deleteOwnerCommand = new RelayCommandParametr(
+                    (o) =>
+                    {
+                        Owner ownerForDelete = context.Owners.Find(owner.OwnerId);
+                        PhoneNumber phoneNumberForDelete = context.PhoneNumbers.Find(phoneNumber.PhoneNumberId);
+                        if (ownerForDelete != null && phoneNumberForDelete != null)
+                        {
+                            context.Owners.Remove(ownerForDelete);
+                            context.PhoneNumbers.Remove(phoneNumberForDelete);
+                        }
+                        context.SaveChanges();
+                        IsVisibleProgressBar = false;
+                        Message = "Успешно изменено!";
+                        IsOpenDialog = true;
+                        isAdded = true;
+                    },
+                    x => owner != null && phoneNumber != null));
             }
         }
 

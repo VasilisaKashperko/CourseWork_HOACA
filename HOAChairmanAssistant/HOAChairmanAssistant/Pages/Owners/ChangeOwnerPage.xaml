@@ -168,14 +168,25 @@
                                 Value="35" 
                                 Margin="20 20 20 10"
                                 IsIndeterminate="{Binding IsVisibleProgressBar}" />
-                                <Button       
-                         Visibility="{Binding IsVisibleProgressBar,
-                                    Converter={StaticResource ParametrizedBooleanToVisibilityConverter},
-                                    ConverterParameter=False}"
+                                <StackPanel Orientation="Horizontal" Height="54" Margin="0,98,0,0">
+                                    <Button
+                        ToolTip="Чтобы удалить жильца, нажмите на кнопку дважды"
+                         x:Name="DeleteButton"
                          Foreground="#ffffff"
                          FontSize="18"
-                         Margin="151,42,146.4,0" Content="Сохранить" 
-                         Command="{Binding AddOwnerCommand}"/>
+                         Margin="60 0 81 0" Content="Удалить"
+                         Background="#FF9A4848" BorderBrush="#FF9A4848">
+                                        <Button.InputBindings>
+                                            <MouseBinding Gesture="LeftDoubleClick" Command="{Binding DeleteOwnerCommand}"/>
+                                        </Button.InputBindings>
+                                    </Button>
+                                    <Button       
+                         Visibility="{Binding IsVisibleProgressBar, ConverterParameter=False, Converter={StaticResource ParametrizedBooleanToVisibilityConverter}}"
+                         Foreground="#ffffff"
+                         FontSize="18"
+                         Margin="0,0,0,0.0" Content="Сохранить" 
+                         Command="{Binding UpdateOwnerCommand}"/>
+                                </StackPanel>
                             </StackPanel>
                         </Grid>
                     </Grid>

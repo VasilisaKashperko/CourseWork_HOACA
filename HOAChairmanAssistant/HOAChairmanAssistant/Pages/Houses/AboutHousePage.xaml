@@ -58,7 +58,7 @@
                                         <Grid Grid.Column="0" Background="Transparent">
                                             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                                    <Button Command="{Binding ElementName= ListViewPorches, Path= DataContext.ChangeDataCommand}"
+                                                    <Button ToolTip="Получить данные о квартирах в подъезде" Command="{Binding ElementName= ListViewPorches, Path= DataContext.ChangeDataCommand}"
                                                         CommandParameter="{Binding Path= SelectedItem , ElementName=ListViewPorches}"
                                                         Background="#FFE5E5E5" Width="200" Height="100" HorizontalAlignment="Left"
                                                         VerticalAlignment="Top" Padding="0 0 0 0" BorderBrush="{x:Null}">
