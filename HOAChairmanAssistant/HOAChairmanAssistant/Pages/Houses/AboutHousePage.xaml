@@ -12,6 +12,7 @@
       Title="AboutHousePage">
     <Page.Resources>
         <local1:ParametrizedBooleanToVisibilityConverter x:Key="ParametrizedBooleanToVisibilityConverter"/>
+        <local1:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
         <local1:EnumConverter x:Key="EnumConverter"/>
     </Page.Resources>
     <materialDesign:DialogHost 
@@ -39,6 +40,17 @@
                 </Button>
                 <TextBlock Text="{Binding AboutHouse.HouseName}" TextAlignment="Center" FontWeight="Bold" FontFamily="Roboto" FontSize="30" Foreground="#FF607D8B" Margin="80,19,644,480"/>
                 <Button
+                        ToolTip="Чтобы удалить жильца, нажмите на кнопку дважды"
+                         x:Name="DeleteButton"
+                         Foreground="#ffffff"
+                         FontSize="18"
+                         Margin="363,17,461,482" Content="Удалить дом"
+                         Background="#FF9A4848" BorderBrush="#FF9A4848" Height="Auto">
+                    <Button.InputBindings>
+                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding DeleteHouseCommand}"/>
+                    </Button.InputBindings>
+                </Button>
+                <Button
                          Foreground="#ffffff"
                          FontSize="18"
                          Margin="681,17,44,482" Content="Добавить информацию" 
@@ -50,8 +62,15 @@
                          Width="120" Content="Изменить" 
                          Command="{Binding ChangeOwnerCommand}" Height="Auto"/>
                 <StackPanel Orientation="Vertical" Margin="60">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 10 0 0">
+                        <TextBox Width="500" Height="30" materialDesign:HintAssist.Hint="Поиск" IsEnabled="{Binding IsVisibleProgressBar,Converter={StaticResource InverseBooleanConverter}}"  Text="{Binding SearchField}" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Roboto" FontSize="20"/>
+                        <Button Height="30" Width="30" IsEnabled="{Binding IsVisibleProgressBar,Converter={StaticResource InverseBooleanConverter}}"
+                                Command="{Binding SearchCommand}" Padding="1" BorderBrush="#FF607D8B" Background="#FF607D8B" Margin="5 0">
+                            <materialDesign:PackIcon Kind="Magnify" Width="25" Height="25" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#ffffff"/>
+                        </Button>
+                    </StackPanel>
                     <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
-                        <ListBox HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Disabled" x:Name="ListViewPorches" ItemsSource="{Binding Porches}" ItemContainerStyle="{DynamicResource ListBoxItemStyleMenu}" Height="Auto" Width="Auto" MaxWidth="924" Margin="32 0 0 0">
+                        <ListBox HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto" x:Name="ListViewPorches" ItemsSource="{Binding Porches}" ItemContainerStyle="{DynamicResource ListBoxItemStyleMenu}" Height="70" Width="Auto" MaxWidth="924" Margin="32 0 0 0">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <Border Width="150" Height="50" Margin="0 14 20 0">
@@ -87,8 +106,8 @@
                         </ListBox>
                     </ScrollViewer>
                 </StackPanel>
-                <StackPanel Margin="0 140 0 0">
-                    <DataGrid GridLinesVisibility="All" SelectedItem="{Binding SelectedFlat}" Margin="0 20 0 0" AutoGenerateColumns="False" ItemsSource="{Binding OwnersData}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="True" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" MaxHeight="350" MaxWidth="850" BorderBrush="#FF3E697D">
+                <StackPanel Margin="0 160 0 0">
+                    <DataGrid GridLinesVisibility="All" SelectedItem="{Binding SelectedFlat}" Margin="0 20 0 0" AutoGenerateColumns="False" ItemsSource="{Binding OwnersData}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserSortColumns="True" IsReadOnly="True" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" MaxHeight="340" MaxWidth="850" BorderBrush="#FF3E697D">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding FlatNumber}" Header="№ кв." Width="70" FontFamily="Roboto" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding Surname}" Header="Фамилия" Width="140" FontFamily="Roboto" FontSize="14"/>

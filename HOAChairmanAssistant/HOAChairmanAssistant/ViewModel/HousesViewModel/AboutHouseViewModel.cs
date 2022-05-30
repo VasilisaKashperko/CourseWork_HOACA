@@ -7,6 +7,7 @@ using HOAChairmanAssistant.Helpers.Converters;
 using HOAChairmanAssistant.Helpers.GlobalData;
 using HOAChairmanAssistant.Helpers.Navigation;
 using HOAChairmanAssistant.Model;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
@@ -29,8 +30,10 @@ namespace HOAChairmanAssistant.ViewModel
         private House aboutHouse { get; set; }
         private Porch aboutPorch { get; set; }
         private bool isOpenDialog;
+        private bool isVisibleProgressBar;
         private string message;
         private int porchNumber;
+        private string searchField;
         #endregion
 
         #region Public Fields
@@ -50,6 +53,23 @@ namespace HOAChairmanAssistant.ViewModel
                 RaisePropertyChanged();
             }
         }
+
+        public bool IsVisibleProgressBar
+        {
+            get
+            {
+                return isVisibleProgressBar;
+            }
+            set
+            {
+                if (isVisibleProgressBar == value)
+                {
+                    return;
+                }
+                isVisibleProgressBar = value;
+                RaisePropertyChanged();
+            }
+        }
         public Porch AboutPorch
         {
             get
@@ -63,6 +83,24 @@ namespace HOAChairmanAssistant.ViewModel
                     return;
                 }
                 aboutPorch = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public string SearchField
+        {
+            get
+            {
+                return searchField;
+            }
+            set
+            {
+                if (searchField == value)
+                {
+                    return;
+                }
+
+                searchField = value;
                 RaisePropertyChanged();
             }
         }
@@ -235,6 +273,23 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
+        private RelayCommandParametr _deleteHouseCommand;
+        public RelayCommandParametr DeleteHouseCommand
+        {
+            get
+            {
+                return _deleteHouseCommand
+                       ?? (_deleteHouseCommand = new RelayCommandParametr(
+                           (obj) =>
+                           {
+                               var house = context.Houses.Find(AboutHouse.HouseId);
+                               context.Houses.Remove(house);
+                               context.SaveChanges();
+                               _navigationService.NavigateTo("Houses");
+                           }));
+            }
+        }
+
         private RelayCommand _loadedpageCommand;
         public RelayCommand LoadedPageCommand
         {
@@ -248,6 +303,112 @@ namespace HOAChairmanAssistant.ViewModel
                     Porches = new ObservableCollection<Porch>(context.Porches.Where(x => x.HouseId == aboutHouse.HouseId).ToList());
                     House house = context.Houses.AsNoTracking().Where(x => x.UserId == user.UserId && x.HouseId == aboutHouse.HouseId).FirstOrDefault();
                 }));
+            }
+        }
+
+        private RelayCommandParametr searchCommand;
+        public RelayCommandParametr SearchCommand
+        {
+            get
+            {
+                return searchCommand
+                    ?? (searchCommand = new RelayCommandParametr(
+                    (obj) =>
+                    {
+                        IsVisibleProgressBar = true;
+                        if (String.IsNullOrWhiteSpace(searchField))
+                        {
+                            OwnersData.Clear();
+                            foreach (Porch p in Porches)
+                            {
+                                var ownersDataQuery = (
+                                                 from flat in context.Flats
+                                                 where flat.PorchId == p.PorchId
+                                                 join owner in context.Owners on flat.FlatId equals owner.FlatId into q1
+                                                 from owner in q1.DefaultIfEmpty()
+                                                 join phoneNumber in context.PhoneNumbers on owner.PhoneNumberId equals phoneNumber.PhoneNumberId into q2
+                                                 from phoneNumber in q2.DefaultIfEmpty()
+                                                 select new
+                                                 {
+                                                     FlatId = flat.FlatId,
+                                                     FlatNumber = flat.FlatNumber,
+                                                     Surname = (owner == null ? string.Empty : owner.Surname),
+                                                     Name = (owner == null ? string.Empty : owner.Name),
+                                                     Patronymic = (owner == null ? string.Empty : owner.Patronymic),
+                                                     MobilePhone = (phoneNumber == null ? string.Empty : phoneNumber.MobilePhone),
+                                                     OwnerStatusId = (owner == null ? OwnerStatus.Undefined : owner.OwnerStatusId),
+                                                     CurrentDebt = (owner == null ? 0 : owner.CurrentDebt)
+                                                 }).ToList();
+                                foreach (var x in ownersDataQuery)
+                                {
+                                    OwnersData.Add(new OwnerData(x.FlatId, x.FlatNumber, x.Surname, x.Name, x.Patronymic, x.MobilePhone, x.CurrentDebt, x.OwnerStatusId));
+                                }
+                            }
+                        }
+                        else if (!String.IsNullOrWhiteSpace(searchField) && int.TryParse(searchField, out int result) == true)
+                        {
+                            OwnersData.Clear();
+                            foreach (Porch p in Porches)
+                            {
+                                var ownersDataQuery = (
+                                                 from flat in context.Flats
+                                                 where flat.FlatNumber == result && flat.PorchId == p.PorchId
+                                                 join owner in context.Owners on flat.FlatId equals owner.FlatId into q1
+                                                 from owner in q1.DefaultIfEmpty()
+                                                 join phoneNumber in context.PhoneNumbers on owner.PhoneNumberId equals phoneNumber.PhoneNumberId into q2
+                                                 from phoneNumber in q2.DefaultIfEmpty()
+                                                 select new
+                                                 {
+                                                     FlatId = flat.FlatId,
+                                                     FlatNumber = flat.FlatNumber,
+                                                     Surname = (owner == null ? string.Empty : owner.Surname),
+                                                     Name = (owner == null ? string.Empty : owner.Name),
+                                                     Patronymic = (owner == null ? string.Empty : owner.Patronymic),
+                                                     MobilePhone = (phoneNumber == null ? string.Empty : phoneNumber.MobilePhone),
+                                                     OwnerStatusId = (owner == null ? OwnerStatus.Undefined : owner.OwnerStatusId),
+                                                     CurrentDebt = (owner == null ? 0 : owner.CurrentDebt)
+                                                 }).ToList();
+                                foreach (var x in ownersDataQuery)
+                                {
+                                    OwnersData.Add(new OwnerData(x.FlatId, x.FlatNumber, x.Surname, x.Name, x.Patronymic, x.MobilePhone, x.CurrentDebt, x.OwnerStatusId));
+                                }
+                            }
+                        }
+                        else if (!String.IsNullOrWhiteSpace(searchField))
+                        {
+
+                            OwnersData.Clear();
+                            foreach (Porch p in Porches)
+                            {
+                                var ownersDataQuery = (
+                                                 from flat in context.Flats
+                                                 where flat.PorchId == p.PorchId
+                                                 join owner in context.Owners on flat.FlatId equals owner.FlatId into q1
+                                                 from owner in q1.DefaultIfEmpty()
+                                                 join phoneNumber in context.PhoneNumbers on owner.PhoneNumberId equals phoneNumber.PhoneNumberId into q2
+                                                 from phoneNumber in q2.DefaultIfEmpty()
+                                                 select new
+                                                 {
+                                                     FlatId = flat.FlatId,
+                                                     FlatNumber = flat.FlatNumber,
+                                                     Surname = (owner == null ? string.Empty : owner.Surname),
+                                                     Name = (owner == null ? string.Empty : owner.Name),
+                                                     Patronymic = (owner == null ? string.Empty : owner.Patronymic),
+                                                     MobilePhone = (phoneNumber == null ? string.Empty : phoneNumber.MobilePhone),
+                                                     OwnerStatusId = (owner == null ? OwnerStatus.Undefined : owner.OwnerStatusId),
+                                                     CurrentDebt = (owner == null ? 0 : owner.CurrentDebt)
+                                                 }).ToList();
+                                var search = searchField.ToLower();
+                                var ownersDataQuerySearchedSurname = ownersDataQuery.Where(x => x.Surname.ToLower().Contains(search));
+                                foreach (var x in ownersDataQuerySearchedSurname)
+                                {
+                                    OwnersData.Add(new OwnerData(x.FlatId, x.FlatNumber, x.Surname, x.Name, x.Patronymic, x.MobilePhone, x.CurrentDebt, x.OwnerStatusId));
+                                }
+                            }
+                        }
+                        SearchField = null;
+                            IsVisibleProgressBar = false;
+                    }));
             }
         }
 
