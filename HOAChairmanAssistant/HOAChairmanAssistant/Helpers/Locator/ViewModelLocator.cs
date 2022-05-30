@@ -14,7 +14,6 @@ namespace HOAChairmanAssistant.Helpers.Locator
             SimpleIoc.Default.Register<LoginWindowViewModel>();
             SimpleIoc.Default.Register<MainWindowViewModel>();
             //SimpleIoc.Default.Register<AdminViewModel>();
-            //SimpleIoc.Default.Register<CookViewModel>();
             SetupNavigation();
         }
 
@@ -31,6 +30,8 @@ namespace HOAChairmanAssistant.Helpers.Locator
             navigationService.Configure("AboutHouse", new Uri("../Pages/Houses/AboutHousePage.xaml", UriKind.Relative));
             navigationService.Configure("AddOwnerPage", new Uri("../Pages/Owners/AddOwnerPage.xaml", UriKind.Relative));
             navigationService.Configure("ChangeOwnerPage", new Uri("../Pages/Owners/ChangeOwnerPage.xaml", UriKind.Relative));
+            navigationService.Configure("AddAccountantPage", new Uri("../Pages/Houses/AddAccountantPage.xaml", UriKind.Relative));
+            navigationService.Configure("ChangeAccountantPage", new Uri("../Pages/Houses/ChangeAccountantPage.xaml", UriKind.Relative));
             SimpleIoc.Default.Register<IFrameNavigationService>(() => navigationService);
         }
 
@@ -56,14 +57,6 @@ namespace HOAChairmanAssistant.Helpers.Locator
         //    get
         //    {
         //        return ServiceLocator.Current.GetInstance<AdminViewModel>();
-        //    }
-        //}
-
-        //public CookViewModel CookViewModel
-        //{
-        //    get
-        //    {
-        //        return ServiceLocator.Current.GetInstance<CookViewModel>();
         //    }
         //}
 

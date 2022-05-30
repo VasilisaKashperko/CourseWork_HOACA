@@ -188,7 +188,7 @@ namespace HOAChairmanAssistant.ViewModel
                     ?? (addAccountantCommand = new RelayCommand(
                     () =>
                     {
-                        _navigationService.NavigateTo("AddHousePage");
+                        _navigationService.NavigateTo("AddAccountantPage");
                     }));
             }
         }
@@ -202,7 +202,7 @@ namespace HOAChairmanAssistant.ViewModel
                     ?? (changeAccountantCommand = new RelayCommand(
                     () =>
                     {
-                        _navigationService.NavigateTo("AddHousePage");
+                        _navigationService.NavigateTo("ChangeAccountantPage");
                     }));
             }
         }
