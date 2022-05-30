@@ -22,6 +22,8 @@ namespace HOAChairmanAssistant.ViewModel
         private string searchField;
         private string street;
         private string userName;
+        private string accountantName;
+        private string accountantSurname;
         private bool isVisibleProgressBar;
         //private Thread searchedThread;
 
@@ -62,6 +64,36 @@ namespace HOAChairmanAssistant.ViewModel
                     return;
                 }
                 street = context.Addresses.Select(c => c.Street).FirstOrDefault();
+                RaisePropertyChanged();
+            }
+        }
+
+        public string AccountantSurname
+        {
+            get { return accountantSurname; }
+            set
+            {
+                if (accountantSurname == value)
+                {
+                    return;
+                }
+                var user = context.Users.Where(x => x.UserId == GlobalData.UserId).FirstOrDefault();
+                accountantName = user.Accountant.Surname;
+                RaisePropertyChanged();
+            }
+        }
+
+        public string AccountantName
+        {
+            get { return accountantName; }
+            set
+            {
+                if (accountantName == value)
+                {
+                    return;
+                }
+                var user = context.Users.Where(x => x.UserId == GlobalData.UserId).FirstOrDefault();
+                accountantName = user.Accountant.Name;
                 RaisePropertyChanged();
             }
         }
@@ -147,37 +179,33 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
-        //private RelayCommandParametr searchCommand;
-        //public RelayCommandParametr SearchCommand
-        //{
-        //    get
-        //    {
-        //        return searchCommand
-        //            ?? (searchCommand = new RelayCommandParametr(
-        //            (obj) =>
-        //            {
-        //                IsVisibleProgressBar = true;
-        //                searchedThread = new Thread(() =>
-        //                {
-        //                    if (String.IsNullOrWhiteSpace(searchField))
-        //                    {
-        //                        MenuDishes = new ObservableCollection<MenuDish>(context.Dishes.AsNoTracking().ToList());
-        //                    }
-        //                    else if (!String.IsNullOrWhiteSpace(searchField))
-        //                    {
-        //                        MenuDishes = new ObservableCollection<MenuDish>(context.Dishes.Where(x => x.MenuDishName.Contains(searchField)));
+        private RelayCommand addAccountantCommand;
+        public RelayCommand AddAccountantCommand
+        {
+            get
+            {
+                return addAccountantCommand
+                    ?? (addAccountantCommand = new RelayCommand(
+                    () =>
+                    {
+                        _navigationService.NavigateTo("AddHousePage");
+                    }));
+            }
+        }
 
-        //                    }
-        //                    SearchField = null;
-        //                    IsVisibleProgressBar = false;
-        //                });
-        //                searchedThread.IsBackground = true;
-        //                searchedThread.Start();
-        //            }));
-        //    }
-        //}
-
-
+        private RelayCommand changeAccountantCommand;
+        public RelayCommand ChangeAccountantCommand
+        {
+            get
+            {
+                return changeAccountantCommand
+                    ?? (changeAccountantCommand = new RelayCommand(
+                    () =>
+                    {
+                        _navigationService.NavigateTo("AddHousePage");
+                    }));
+            }
+        }
 
         #endregion
 

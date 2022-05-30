@@ -28,7 +28,28 @@
                     <TextBlock x:Name="userNameLabel" FontSize="30" HorizontalAlignment="Center" Loaded="userNameLabel_Loaded" FontWeight="Bold" Foreground="#FF607D8B"/>
                 </StackPanel>
             </Grid>
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="32,20,30,0" Width="862">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <TextBlock Text="Ваш бухгалтер: " HorizontalAlignment="Center" Margin="40 10 0 0" Foreground="#FF1F1F1F" FontSize="25" Height="34"/>
+                <TextBlock Text="{Binding AccountantName}" HorizontalAlignment="Center" Margin="20 10 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="169"/>
+                <TextBlock Text="{Binding AccountantSurname}" HorizontalAlignment="Center" Margin="10 10 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="180"/>
+                <Button       
+                         Visibility="{Binding IsVisibleProgressBar, ConverterParameter=False, Converter={StaticResource ParametrizedBooleanToVisibilityConverter}}"
+                         Foreground="#ffffff"
+                         FontSize="18"
+                         Margin="60 16 0 0"
+                         Width="120" Content="Изменить" 
+                         Command="{Binding ChangeAccountantCommand}"/>
+                <Button       
+                         Visibility="{Binding IsVisibleProgressBar,
+                                    Converter={StaticResource ParametrizedBooleanToVisibilityConverter},
+                                    ConverterParameter=False}"
+                         Foreground="#ffffff"
+                         FontSize="18"
+                         Margin="20 16 0 0"
+                         Width="120" Content="Добавить" 
+                         Command="{Binding AddAccountantCommand}"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="32,10,30,0" Width="862">
                 <Line X1="0" Y1="0" X2="800" Y2="0" Stroke="#607D8B" VerticalAlignment="Center" Width="350"/>
                 <TextBlock Text="Ваши дома" FontSize="30" Margin="5 0 5 24" VerticalAlignment="Center" Foreground="#FF1F1F1F"/>
                 <Line X1="0" Y1="0" X2="800" Y2="0" Stroke="#607D8B" VerticalAlignment="Center" Width="350"/>

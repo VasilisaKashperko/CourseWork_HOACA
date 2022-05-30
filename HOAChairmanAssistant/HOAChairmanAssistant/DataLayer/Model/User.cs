@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HOAChairmanAssistant.Model
 {
@@ -30,6 +31,10 @@ namespace HOAChairmanAssistant.Model
 
         [Required]
         public UserRole Role { get; set; }
+
+        public int AccountantId { get; set; }
+        [ForeignKey("UserId")]
+        public User Accountant{ get; set; }
 
         public User() { }
 
