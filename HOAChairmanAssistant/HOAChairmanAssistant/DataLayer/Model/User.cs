@@ -33,8 +33,6 @@ namespace HOAChairmanAssistant.Model
         public UserRole Role { get; set; }
 
         public int AccountantId { get; set; }
-        [ForeignKey("UserId")]
-        public User Accountant{ get; set; }
 
         public User() { }
 

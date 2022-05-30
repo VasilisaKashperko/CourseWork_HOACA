@@ -25,7 +25,9 @@ namespace HOAChairmanAssistant.ViewModel
         private string accountantName;
         private string accountantSurname;
         private bool isVisibleProgressBar;
-        //private Thread searchedThread;
+        private bool isOpenDialog;
+        private bool isAdded = false;
+        private string message;
 
         #endregion
 
@@ -54,6 +56,59 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
+        public bool IsOpenDialog
+        {
+            get
+            {
+                return isOpenDialog;
+            }
+            set
+            {
+                if (isOpenDialog == value)
+                {
+                    return;
+                }
+                isOpenDialog = value;
+                RaisePropertyChanged();
+            }
+        }
+        /// <summary>
+        /// Message for the dialog  
+        /// </summary>
+        public string Message
+        {
+            get
+            {
+                return message;
+            }
+            set
+            {
+                if (message == value)
+                {
+                    return;
+                }
+                message = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public bool IsAdded
+        {
+            get
+            {
+                return isAdded;
+            }
+            set
+            {
+                if (isAdded == value)
+                {
+                    return;
+                }
+                isAdded = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public string Street
         {
             get { return street; }
@@ -70,30 +125,40 @@ namespace HOAChairmanAssistant.ViewModel
 
         public string AccountantSurname
         {
-            get { return accountantSurname; }
+            get {
+                var user = context.Users.Where(x => x.AccountantId == GlobalData.UserId).FirstOrDefault();
+                accountantSurname = user.Surname;
+                GlobalData.AccountantSurname = user.Surname;
+                return accountantSurname; }
             set
             {
                 if (accountantSurname == value)
                 {
                     return;
                 }
-                var user = context.Users.Where(x => x.UserId == GlobalData.UserId).FirstOrDefault();
-                accountantSurname = user.Accountant.Surname;
+                var user = context.Users.Where(x => x.AccountantId == GlobalData.UserId).FirstOrDefault();
+                accountantSurname = user.Surname;
+                GlobalData.AccountantSurname = user.Surname;
                 RaisePropertyChanged();
             }
         }
 
         public string AccountantName
         {
-            get { return accountantName; }
+            get {
+                var user = context.Users.Where(x => x.AccountantId == GlobalData.UserId).FirstOrDefault();
+                accountantName = user.Name;
+                GlobalData.AccountantName = user.Name;
+                return accountantName; }
             set
             {
                 if (accountantName == value)
                 {
                     return;
                 }
-                var user = context.Users.Where(x => x.UserId == GlobalData.UserId).FirstOrDefault();
-                accountantName = user.Accountant.Name;
+                var user = context.Users.Where(x => x.AccountantId == GlobalData.UserId).FirstOrDefault();
+                accountantName = user.Name;
+                GlobalData.AccountantName = user.Name;
                 RaisePropertyChanged();
             }
         }
@@ -147,6 +212,39 @@ namespace HOAChairmanAssistant.ViewModel
                     obj =>
                     {
                         Houses = new ObservableCollection<House>(context.Houses.Where(u => u.UserId == GlobalData.UserId).ToList());
+                        var user1 = context.Users.FirstOrDefault(y => y.AccountantId == GlobalData.UserId);
+                        if (user1 != null)
+                        {
+                            GlobalData.AccountantSurname = user1.Surname.ToString();
+                            GlobalData.AccountantName = user1.Name.ToString();
+                        }
+                        else
+                        {
+                            GlobalData.AccountantSurname = "";
+                            GlobalData.AccountantName = "";
+                        }
+                    }));
+            }
+        }
+
+        private RelayCommand closeDialogCommand;
+        public RelayCommand CloseDialogCommand
+        {
+            get
+            {
+                return closeDialogCommand
+                    ?? (closeDialogCommand = new RelayCommand(
+                    () =>
+                    {
+                        if (isAdded == true)
+                        {
+                            IsOpenDialog = false;
+                            _navigationService.NavigateTo("Houses");
+                        }
+                        else
+                        {
+                            IsOpenDialog = false;
+                        }
                     }));
             }
         }
@@ -162,6 +260,29 @@ namespace HOAChairmanAssistant.ViewModel
                            {
                                _navigationService.NavigateTo("AboutHouse", obj);
                            }));
+            }
+        }
+
+        private RelayCommandParametr deleteAccountantCommand;
+        public RelayCommandParametr DeleteAccountantCommand
+        {
+            get
+            {
+                return deleteAccountantCommand
+                    ?? (deleteAccountantCommand = new RelayCommandParametr(
+                    (o) =>
+                    {
+                        User userForDelete = context.Users.Where(x => x.AccountantId == GlobalData.UserId).FirstOrDefault();
+                            context.Users.Remove(userForDelete);
+                        GlobalData.AccountantName = null;
+                        GlobalData.AccountantSurname = null;
+                        context.SaveChanges();
+                        isAdded = true;
+                        IsVisibleProgressBar = false;
+                        Message = "Бухгалтер удален!";
+                        IsOpenDialog = true;
+                    },
+                    x => GlobalData.AccountantName != null && GlobalData.AccountantSurname != null));
             }
         }
 
@@ -189,20 +310,6 @@ namespace HOAChairmanAssistant.ViewModel
                     () =>
                     {
                         _navigationService.NavigateTo("AddAccountantPage");
-                    }));
-            }
-        }
-
-        private RelayCommand changeAccountantCommand;
-        public RelayCommand ChangeAccountantCommand
-        {
-            get
-            {
-                return changeAccountantCommand
-                    ?? (changeAccountantCommand = new RelayCommand(
-                    () =>
-                    {
-                        _navigationService.NavigateTo("ChangeAccountantPage");
                     }));
             }
         }

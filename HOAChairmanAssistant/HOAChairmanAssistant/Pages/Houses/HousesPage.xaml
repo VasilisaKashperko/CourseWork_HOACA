@@ -7,6 +7,8 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:local1="clr-namespace:HOAChairmanAssistant.Helpers.Converters"
+      xmlns:viewmodel="clr-namespace:HOAChairmanAssistant.ViewModel"
+      d:DataContext="{d:DesignInstance Type=viewmodel:HousesViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="924"
       Title="HousesPage">
@@ -30,15 +32,20 @@
             </Grid>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <TextBlock Text="Ваш бухгалтер: " HorizontalAlignment="Center" Margin="40 10 0 0" Foreground="#FF1F1F1F" FontSize="25" Height="34"/>
-                <TextBlock Text="{Binding AccountantName}" HorizontalAlignment="Center" Margin="20 10 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="169"/>
-                <TextBlock Text="{Binding AccountantSurname}" HorizontalAlignment="Center" Margin="10 10 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="180"/>
+                <TextBlock x:Name="accNameLabel" HorizontalAlignment="Center" Margin="20 20 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="Auto" Loaded="accNameLabel_Loaded"/>
+                <TextBlock x:Name="accSurnameLabel" HorizontalAlignment="Center" Margin="5 20 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="Auto" Loaded="accSurnameLabel_Loaded"/>
                 <Button       
                          Visibility="{Binding IsVisibleProgressBar, ConverterParameter=False, Converter={StaticResource ParametrizedBooleanToVisibilityConverter}}"
+                         ToolTip="Чтобы удалить бухгалтера, нажмите дважды"
                          Foreground="#ffffff"
                          FontSize="18"
                          Margin="60 16 0 0"
-                         Width="120" Content="Изменить" 
-                         Command="{Binding ChangeAccountantCommand}"/>
+                         Width="120" Content="Удалить" 
+                         Command="{Binding DeleteAccountantCommand}" Background="#FF9A4848">
+                    <Button.InputBindings>
+                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding DeleteAccountantCommand}"/>
+                    </Button.InputBindings>
+                </Button>
                 <Button       
                          Visibility="{Binding IsVisibleProgressBar,
                                     Converter={StaticResource ParametrizedBooleanToVisibilityConverter},

@@ -47,5 +47,15 @@ namespace HOAChairmanAssistant.Pages.Houses
         {
             userNameLabel.Text = GlobalData.UserName;
         }
+
+        private void accNameLabel_Loaded(object sender, RoutedEventArgs e)
+        {
+            accNameLabel.Text = GlobalData.AccountantName;
+        }
+
+        private void accSurnameLabel_Loaded(object sender, RoutedEventArgs e)
+        {
+            accSurnameLabel.Text = GlobalData.AccountantSurname;
+        }
     }
 }

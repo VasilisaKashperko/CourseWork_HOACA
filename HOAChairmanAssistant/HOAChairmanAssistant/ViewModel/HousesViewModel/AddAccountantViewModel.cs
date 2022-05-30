@@ -27,10 +27,10 @@ namespace HOAChairmanAssistant.ViewModel
         private string surname;
         private string name;
         private string patronymic;
-        private string additionalInfo;
-        private string mobilePhone;
-        private string homePhone;
-        private string additionalPhone;
+        private string login;
+        private string password;
+        private bool isRegistrated = false;
+
         private bool isVisibleProgressBar;
         private bool isOpenDialog;
         private bool isAdded = false;
@@ -70,6 +70,57 @@ namespace HOAChairmanAssistant.ViewModel
                     return;
                 }
                 selectedFlat = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public string Login
+        {
+            get
+            {
+                return login;
+            }
+            set
+            {
+                if (login == value)
+                {
+                    return;
+                }
+                login = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public bool IsRegistrated
+        {
+            get
+            {
+                return isRegistrated;
+            }
+            set
+            {
+                if (isRegistrated == value)
+                {
+                    return;
+                }
+                isRegistrated = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public string Password
+        {
+            get
+            {
+                return password;
+            }
+            set
+            {
+                if (password == value)
+                {
+                    return;
+                }
+                password = value;
                 RaisePropertyChanged();
             }
         }
@@ -140,74 +191,6 @@ namespace HOAChairmanAssistant.ViewModel
                     return;
                 }
                 patronymic = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public string AdditionalInfo
-        {
-            get
-            {
-                return additionalInfo;
-            }
-            set
-            {
-                if (additionalInfo == value)
-                {
-                    return;
-                }
-                additionalInfo = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public string MobilePhone
-        {
-            get
-            {
-                return mobilePhone;
-            }
-            set
-            {
-                if (mobilePhone == value)
-                {
-                    return;
-                }
-                mobilePhone = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public string HomePhone
-        {
-            get
-            {
-                return homePhone;
-            }
-            set
-            {
-                if (homePhone == value)
-                {
-                    return;
-                }
-                homePhone = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public string AdditionalPhone
-        {
-            get
-            {
-                return additionalPhone;
-            }
-            set
-            {
-                if (additionalPhone == value)
-                {
-                    return;
-                }
-                additionalPhone = value;
                 RaisePropertyChanged();
             }
         }
@@ -285,70 +268,65 @@ namespace HOAChairmanAssistant.ViewModel
 
         #region Commands
 
-        private RelayCommandParametr closeDialogCommand;
-        public RelayCommandParametr CloseDialogCommand
+        private RelayCommand closeDialogCommand;
+        public RelayCommand CloseDialogCommand
         {
             get
             {
                 return closeDialogCommand
-                       ?? (closeDialogCommand = new RelayCommandParametr(
-                           (obj) =>
-                           {
-                               if (isAdded == true)
-                               {
-                                   IsOpenDialog = false;
-                                   _navigationService.NavigateTo("AboutHouse", AboutHouse);
-                               }
-                               else
-                               {
-                                   IsOpenDialog = false;
-                               }
-                           }));
+                    ?? (closeDialogCommand = new RelayCommand(
+                    () =>
+                    {
+                        if (isAdded == true)
+                        {
+                            IsOpenDialog = false;
+                            _navigationService.NavigateTo("Houses");
+                        }
+                        else
+                        {
+                            IsOpenDialog = false;
+                        }
+                    }));
             }
         }
 
-        private RelayCommandParametr addOwnerCommand;
-        public RelayCommandParametr AddOwnerCommand
+        private RelayCommandParametr _registerCommand;
+        public RelayCommandParametr RegisterCommand
         {
             get
             {
-                return addOwnerCommand
-                    ?? (addOwnerCommand = new RelayCommandParametr(
-                    (obj) =>
+                return _registerCommand
+                    ?? (_registerCommand = new RelayCommandParametr(
+                    (x) =>
                     {
                         IsVisibleProgressBar = true;
                         ThreadPool.QueueUserWorkItem(
-                        (o) =>
+                        o =>
                         {
-                            if (!String.IsNullOrWhiteSpace(Surname)
-                                && !String.IsNullOrWhiteSpace(Name))
+                            if (context.Users.FirstOrDefault(x1 => x1.Login == login) != null)
                             {
-                                var user = SimpleIoc.Default.GetInstance<MainWindowViewModel>().User;
-                                PhoneNumber phoneNumber = new PhoneNumber()
-                                {
-                                    MobilePhone = mobilePhone,
-                                    HomePhone = homePhone,
-                                    AdditionalPhone = additionalPhone
-                                };
-                                Owner owner = new Owner()
+                                IsVisibleProgressBar = false;
+                                Message = "Пользователь с таким логином уже зарегистрирован.";
+                                IsOpenDialog = true;
+                            }
+                            else if (Login != null && Password != null && Name != null && Surname != null)
+                            {
+                                string hashPass = User.getHash(Password);
+                                User user = new User
                                 {
                                     Surname = surname,
                                     Name = name,
                                     Patronymic = patronymic,
-                                    AdditionalInfo = additionalInfo,
-                                    PhoneNumberId = phoneNumber.PhoneNumberId,
-                                    OwnerStatusId = ownerStatus,
-                                    FlatId = selectedFlat.FlatId
+                                    Login = login,
+                                    Password = hashPass,
+                                    AccountantId = GlobalData.UserId
                                 };
-                                GlobalData.OwnerFlatId = owner.FlatId;
-                                context.PhoneNumbers.Add(phoneNumber);
-                                context.Owners.Add(owner);
+                                context.Users.Add(user);
                                 context.SaveChanges();
-                                Surname = Name = Patronymic = AdditionalInfo = MobilePhone = HomePhone = AdditionalPhone = string.Empty;
                                 IsVisibleProgressBar = false;
-                                Message = "Успешно добавлено!";
+                                Message = "Спасибо за регистрацию!";
                                 IsOpenDialog = true;
-                                isAdded = true;
+                                IsRegistrated = true;
                             }
                             else
                             {
@@ -356,23 +334,25 @@ namespace HOAChairmanAssistant.ViewModel
                                 Message = "Некорректно введены данные.";
                                 IsOpenDialog = true;
                             }
-                        });
+                        }
+                    );
                     },
-                    (x1) => Surname?.Length > 0 && Name?.Length > 0 && MobilePhone?.Length > 0));
+                    (x1) =>
+                    Name?.Length > 0 && Login?.Length > 0 && Surname?.Length > 0 && Patronymic?.Length > 0 && Password?.Length > 0));
             }
         }
 
-        private RelayCommandParametr _aboutHouseCommand;
-        public RelayCommandParametr AboutHouseCommand
+        private RelayCommand _housesPageCommand;
+        public RelayCommand HousesPageCommand
         {
             get
             {
-                return _aboutHouseCommand
-                       ?? (_aboutHouseCommand = new RelayCommandParametr(
-                           (obj) =>
-                           {
-                               _navigationService.NavigateTo("AboutHouse", AboutHouse);
-                           }));
+                return _housesPageCommand
+                    ?? (_housesPageCommand = new RelayCommand(
+                    () =>
+                    {
+                        _navigationService.NavigateTo("Houses");
+                    }));
             }
         }
         #endregion
@@ -386,10 +366,10 @@ namespace HOAChairmanAssistant.ViewModel
                 Surname = String.Empty;
                 Name = String.Empty;
                 Patronymic = String.Empty;
-                AdditionalInfo = String.Empty;
-                MobilePhone = String.Empty;
-                HomePhone = String.Empty;
-                AdditionalPhone = String.Empty;
+                //AdditionalInfo = String.Empty;
+                //MobilePhone = String.Empty;
+                //HomePhone = String.Empty;
+                //AdditionalPhone = String.Empty;
             }
         }
         #endregion

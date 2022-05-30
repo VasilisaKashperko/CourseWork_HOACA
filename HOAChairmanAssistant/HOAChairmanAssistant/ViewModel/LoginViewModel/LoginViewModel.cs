@@ -173,6 +173,17 @@ namespace HOAChairmanAssistant.ViewModel
                                 User user = context.Users.FirstOrDefault(x1 => x1.Login == login);
                                 GlobalData.UserName = user.Name.ToString();
                                 GlobalData.UserId = user.UserId;
+                                var user1 = context.Users.FirstOrDefault(y => y.AccountantId == GlobalData.UserId);
+                                if (user1 != null)
+                                {
+                                    GlobalData.AccountantSurname = user1.Surname.ToString();
+                                    GlobalData.AccountantName = user1.Name.ToString();
+                                }
+                                else
+                                {
+                                    GlobalData.AccountantSurname = "";
+                                    GlobalData.AccountantName = "";
+                                }
                                 context.SaveChanges();
                                 DispatcherHelper.CheckBeginInvokeOnUI(
                                     () =>

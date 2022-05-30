@@ -40,7 +40,7 @@
                 </Button>
                 <TextBlock Text="{Binding AboutHouse.HouseName}" TextAlignment="Center" FontWeight="Bold" FontFamily="Roboto" FontSize="30" Foreground="#FF607D8B" Margin="80,19,644,480"/>
                 <Button
-                        ToolTip="Чтобы удалить жильца, нажмите на кнопку дважды"
+                        ToolTip="Чтобы удалить дом, нажмите на кнопку дважды"
                          x:Name="DeleteButton"
                          Foreground="#ffffff"
                          FontSize="18"
