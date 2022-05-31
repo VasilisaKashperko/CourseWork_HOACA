@@ -25,6 +25,7 @@ using GalaSoft.MvvmLight.Messaging;
 using HOAChairmanAssistant.Helpers.MessageWindow;
 using GalaSoft.MvvmLight.Threading;
 using HOAChairmanAssistant.Helpers.GlobalData;
+using HOAChairmanAssistant.Pages.Accountant;
 
 namespace HOAChairmanAssistant.View
 {
@@ -74,7 +75,7 @@ namespace HOAChairmanAssistant.View
             }
             if(GlobalData.IsAccountant == true)
             {
-                MainFrame.NavigationService.Navigate(new HousesPage());
+                MainFrame.NavigationService.Navigate(new AccountantHomePage());
             }
         }
 
@@ -94,6 +95,7 @@ namespace HOAChairmanAssistant.View
                 Contacts.Visibility = Visibility.Hidden;
                 Phones.Visibility = Visibility.Hidden;
                 Settings.Visibility = Visibility.Hidden;
+                Houses.Visibility = Visibility.Hidden;
             }
             else
             {
@@ -101,6 +103,7 @@ namespace HOAChairmanAssistant.View
                 Contacts.Visibility = Visibility.Visible;
                 Phones.Visibility = Visibility.Visible;
                 Settings.Visibility = Visibility.Visible;
+                Houses.Visibility = Visibility.Visible;
             }
             var userChairman = context.Users.Where(g => g.UserId == userch.AccountantId).FirstOrDefault();
             if (userChairman == null)
@@ -109,6 +112,7 @@ namespace HOAChairmanAssistant.View
                 Contacts.Visibility = Visibility.Visible;
                 Phones.Visibility = Visibility.Visible;
                 Settings.Visibility = Visibility.Visible;
+                Houses.Visibility = Visibility.Visible;
             }
             else
             {
@@ -116,6 +120,7 @@ namespace HOAChairmanAssistant.View
                 Contacts.Visibility = Visibility.Hidden;
                 Phones.Visibility = Visibility.Hidden;
                 Settings.Visibility = Visibility.Hidden;
+                Houses.Visibility = Visibility.Hidden;
             }
         }
     }
