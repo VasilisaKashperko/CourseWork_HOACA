@@ -28,8 +28,8 @@ namespace HOAChairmanAssistant.Model
         public PhoneNumber PhoneNumber { get; set; }
 
         [Required]
-        public int PhoneBookId { get; set; }
-        [ForeignKey("PhoneBookId")]
-        public PhoneBook PhoneBook { get; set; }
+        public int UserId { get; set; }
+        [ForeignKey("UserId")]
+        public User User { get; set; }
     }
 }

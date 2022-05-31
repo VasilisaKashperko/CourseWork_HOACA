@@ -87,36 +87,38 @@ namespace HOAChairmanAssistant.View
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var userch = context.Users.Where(z => z.UserId == GlobalData.UserId).FirstOrDefault();
-            var userAcc = context.Users.Where(h => h.UserId == userch.AccountantId).FirstOrDefault();
-            if (userAcc != null)
-            {
-                GlobalData.IsAccountant = true;
-                Contacts.Visibility = Visibility.Hidden;
-                Phones.Visibility = Visibility.Hidden;
-                Houses.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                GlobalData.IsAccountant = false;
-                Contacts.Visibility = Visibility.Visible;
-                Phones.Visibility = Visibility.Visible;
-                Houses.Visibility = Visibility.Visible;
-            }
-            var userChairman = context.Users.Where(g => g.UserId == userch.AccountantId).FirstOrDefault();
-            if (userChairman == null)
-            {
-                GlobalData.IsChairman = true;
-                Contacts.Visibility = Visibility.Visible;
-                Phones.Visibility = Visibility.Visible;
-                Houses.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                GlobalData.IsChairman = false;
-                Contacts.Visibility = Visibility.Hidden;
-                Phones.Visibility = Visibility.Hidden;
-                Houses.Visibility = Visibility.Hidden;
+            if (GlobalData.UserId != 0) {
+                var userch = context.Users.Where(z => z.UserId == GlobalData.UserId).FirstOrDefault();
+                var userAcc = context.Users.Where(h => h.UserId == userch.AccountantId).FirstOrDefault();
+                if (userAcc != null)
+                {
+                    GlobalData.IsAccountant = true;
+                    Contacts.Visibility = Visibility.Hidden;
+                    Phones.Visibility = Visibility.Hidden;
+                    Houses.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    GlobalData.IsAccountant = false;
+                    Contacts.Visibility = Visibility.Visible;
+                    Phones.Visibility = Visibility.Visible;
+                    Houses.Visibility = Visibility.Visible;
+                }
+                var userChairman = context.Users.Where(g => g.UserId == userch.AccountantId).FirstOrDefault();
+                if (userChairman == null)
+                {
+                    GlobalData.IsChairman = true;
+                    Contacts.Visibility = Visibility.Visible;
+                    Phones.Visibility = Visibility.Visible;
+                    Houses.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    GlobalData.IsChairman = false;
+                    Contacts.Visibility = Visibility.Hidden;
+                    Phones.Visibility = Visibility.Hidden;
+                    Houses.Visibility = Visibility.Hidden;
+                }
             }
         }
     }

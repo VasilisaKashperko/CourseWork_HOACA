@@ -19,14 +19,14 @@ using System.Windows.Shapes;
 namespace HOAChairmanAssistant.Pages.Contacts
 {
     /// <summary>
-    /// Логика взаимодействия для ContactsPage.xaml
+    /// Логика взаимодействия для AddContactPage.xaml
     /// </summary>
-    public partial class ContactsPage : Page
+    public partial class AddContactPage : Page
     {
-        public ContactsPage()
+        public AddContactPage()
         {
+            DataContext = new AddContactViewModel(SimpleIoc.Default.GetInstance<IFrameNavigationService>());
             InitializeComponent();
-            DataContext = new ContactsViewModel(SimpleIoc.Default.GetInstance<IFrameNavigationService>());
         }
     }
 }

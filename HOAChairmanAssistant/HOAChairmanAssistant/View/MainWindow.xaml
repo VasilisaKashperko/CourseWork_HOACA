@@ -98,6 +98,11 @@
                         <materialDesign:PackIcon Kind="Contacts" Width="34" Height="30" VerticalAlignment="Center" Margin="5"/>
                         <TextBlock Text="Записная книжка" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0"/>
                     </StackPanel>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding ContactsCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </ListViewItem>
                 <ListViewItem x:Name="Phones" Height="60">
                     <StackPanel Orientation="Horizontal">

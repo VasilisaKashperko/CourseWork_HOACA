@@ -100,7 +100,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Contacts\AddContactPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Contacts\ContactsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Contacts\UpdateContactPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -166,6 +174,7 @@
     <Compile Include="Helpers\Converters\EnumToItemsSource.cs" />
     <Compile Include="Helpers\Converters\InverseBooleanConverter.cs" />
     <Compile Include="Helpers\Converters\ParametrizedBooleanToVisibilityConverter.cs" />
+    <Compile Include="Helpers\GlobalData\ContactData.cs" />
     <Compile Include="Helpers\GlobalData\GlobalData.cs" />
     <Compile Include="Helpers\GlobalData\OwnerData.cs" />
     <Compile Include="Helpers\Locator\ViewModelLocator.cs" />
@@ -186,7 +195,6 @@
     <Compile Include="DataLayer\Model\House.cs" />
     <Compile Include="DataLayer\Model\Owner.cs" />
     <Compile Include="DataLayer\Enums\OwnerStatus.cs" />
-    <Compile Include="DataLayer\Model\PhoneBook.cs" />
     <Compile Include="DataLayer\Model\PhoneNumber.cs" />
     <Compile Include="DataLayer\Model\Porch.cs" />
     <Compile Include="DataLayer\Model\User.cs" />
@@ -202,8 +210,14 @@
     <Compile Include="Pages\Accountant\AccountantHomePage.xaml.cs">
       <DependentUpon>AccountantHomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Contacts\AddContactPage.xaml.cs">
+      <DependentUpon>AddContactPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Contacts\ContactsPage.xaml.cs">
       <DependentUpon>ContactsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Contacts\UpdateContactPage.xaml.cs">
+      <DependentUpon>UpdateContactPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Houses\AboutHousePage.xaml.cs">
       <DependentUpon>AboutHousePage.xaml</DependentUpon>
@@ -232,6 +246,9 @@
     <Compile Include="Pages\Owners\ChangeOwnerPage.xaml.cs">
       <DependentUpon>ChangeOwnerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\ContactsViewModel\AddContactViewModel.cs" />
+    <Compile Include="ViewModel\ContactsViewModel\ContactsViewModel.cs" />
+    <Compile Include="ViewModel\ContactsViewModel\UpdateContactViewModel.cs" />
     <Compile Include="ViewModel\OwnersViewModel\AccountantChangeDebtViewModel.cs" />
     <Compile Include="ViewModel\OwnersViewModel\AccountantHomeViewModel.cs" />
     <Compile Include="ViewModel\HousesViewModel\AddAccountantViewModel.cs" />
@@ -288,11 +305,7 @@
   <ItemGroup>
     <Resource Include="Assets\AddHousePic.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\Settings\" />
-    <Folder Include="ViewModel\ContactsViewModel\" />
-    <Folder Include="ViewModel\SettingsViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

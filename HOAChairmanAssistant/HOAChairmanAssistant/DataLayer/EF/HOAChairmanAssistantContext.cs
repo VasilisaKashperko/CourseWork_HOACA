@@ -29,7 +29,6 @@ namespace HOAChairmanAssistant.DataLayer.EF
         public DbSet<PhoneNumber> PhoneNumbers { get; set; }
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Contact> Contacts { get; set; }
-        public DbSet<PhoneBook> PhoneBooks { get; set; }
 
     }
 }

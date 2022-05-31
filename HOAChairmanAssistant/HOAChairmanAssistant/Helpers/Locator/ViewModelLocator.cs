@@ -13,7 +13,6 @@ namespace HOAChairmanAssistant.Helpers.Locator
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<LoginWindowViewModel>();
             SimpleIoc.Default.Register<MainWindowViewModel>();
-            //SimpleIoc.Default.Register<AdminViewModel>();
             SetupNavigation();
         }
 
@@ -26,6 +25,8 @@ namespace HOAChairmanAssistant.Helpers.Locator
             navigationService.Configure("AddHousePage", new Uri("../Pages/Houses/AddHousePage.xaml", UriKind.Relative));
             navigationService.Configure("Information", new Uri("../Pages/Information/InformationPage.xaml", UriKind.Relative));
             navigationService.Configure("Contacts", new Uri("../Pages/Contacts/ContactsPage.xaml", UriKind.Relative));
+            navigationService.Configure("AddContact", new Uri("../Pages/Contacts/AddContactPage.xaml", UriKind.Relative));
+            navigationService.Configure("UpdateContact", new Uri("../Pages/Contacts/UpdateContactPage.xaml", UriKind.Relative));
             navigationService.Configure("AboutHouse", new Uri("../Pages/Houses/AboutHousePage.xaml", UriKind.Relative));
             navigationService.Configure("AddOwnerPage", new Uri("../Pages/Owners/AddOwnerPage.xaml", UriKind.Relative));
             navigationService.Configure("ChangeOwnerPage", new Uri("../Pages/Owners/ChangeOwnerPage.xaml", UriKind.Relative));

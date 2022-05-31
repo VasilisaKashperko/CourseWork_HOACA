@@ -45,28 +45,8 @@
                     </Grid>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                         <TextBlock Text="Бухгалтер: " HorizontalAlignment="Center" Margin="40 10 0 0" Foreground="#FF1F1F1F" FontSize="25" Height="34"/>
-                        <TextBlock x:Name="accNameLabel" HorizontalAlignment="Center" Margin="20 16 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="Auto" Loaded="accNameLabel_Loaded"/>
-                        <TextBlock x:Name="accSurnameLabel" HorizontalAlignment="Center" Margin="10 16 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="Auto" Loaded="accSurnameLabel_Loaded"/>
-                        <Button       
-                         Visibility="{Binding IsVisibleProgressBar, ConverterParameter=False, Converter={StaticResource ParametrizedBooleanToVisibilityConverter}}"
-                         ToolTip="Чтобы удалить бухгалтера, нажмите дважды"
-                         Foreground="#ffffff"
-                         FontSize="18"
-                         Margin="60 16 0 10"
-                         Width="120" Content="Удалить" Background="#FF9A4848" MouseDoubleClick="Button_MouseDoubleClick">
-                            <Button.InputBindings>
-                                <MouseBinding Gesture="LeftDoubleClick" Command="{Binding DeleteAccountantCommand}"/>
-                            </Button.InputBindings>
-                        </Button>
-                        <Button       
-                         Visibility="{Binding IsVisibleProgressBar,
-                                    Converter={StaticResource ParametrizedBooleanToVisibilityConverter},
-                                    ConverterParameter=False}"
-                         Foreground="#ffffff"
-                         FontSize="18"
-                         Margin="20 16 0 10"
-                         Width="120" Content="Добавить" 
-                         Command="{Binding AddAccountantCommand}"/>
+                        <TextBlock x:Name="accNameLabel" HorizontalAlignment="Center" Margin="20 10 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="Auto" Loaded="accNameLabel_Loaded"/>
+                        <TextBlock x:Name="accSurnameLabel" HorizontalAlignment="Center" Margin="10 10 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="Auto" Loaded="accSurnameLabel_Loaded"/>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="32,10,30,0" Width="862">
                         <Line X1="0" Y1="0" X2="800" Y2="0" Stroke="#607D8B" VerticalAlignment="Center" Width="350"/>
@@ -127,6 +107,24 @@
                         </Button>
                     </StackPanel>
                 </StackPanel>
+                <Button       
+                         Visibility="{Binding IsVisibleProgressBar, ConverterParameter=False, Converter={StaticResource ParametrizedBooleanToVisibilityConverter}}"
+                         ToolTip="Чтобы удалить бухгалтера, нажмите дважды"
+                         Foreground="#ffffff"
+                         FontSize="18"
+                         Margin="626,61,178,447"
+                         Width="120" Content="Удалить" Background="#FFB66060" MouseDoubleClick="Button_MouseDoubleClick" BorderBrush="#FFB66060">
+                    <Button.InputBindings>
+                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding DeleteAccountantCommand}"/>
+                    </Button.InputBindings>
+                </Button>
+                <Button
+                         Visibility="{Binding IsVisibleProgressBar, ConverterParameter=False, Converter={StaticResource ParametrizedBooleanToVisibilityConverter}}"
+                         Foreground="#ffffff"
+                         FontSize="18"
+                         Margin="776,61,28,447"
+                         Width="120" Content="Добавить" 
+                         Command="{Binding AddAccountantCommand}"/>
             </Grid>
         </materialDesign:TransitioningContent>
     </materialDesign:DialogHost>

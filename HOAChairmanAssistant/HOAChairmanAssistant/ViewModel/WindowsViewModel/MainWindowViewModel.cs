@@ -131,25 +131,28 @@ namespace HOAChairmanAssistant.ViewModel
                     ?? (_housesCommand = new RelayCommand(
                     () =>
                     {
-                        _navigationService.NavigateTo("Houses");
-                        var user = context.Users.Where(x => x.UserId == GlobalData.UserId).FirstOrDefault();
-                        var userAcc = context.Users.Where(y => y.UserId == user.AccountantId).FirstOrDefault();
-                        if (userAcc != null)
+                        if (GlobalData.UserId != 0)
                         {
-                            isAccountant = true;
-                        }
-                        else
-                        {
-                            isAccountant = false;
-                        }
-                        var userChairman = context.Users.Where(y => y.UserId == user.AccountantId).FirstOrDefault();
-                        if (userChairman == null)
-                        {
-                            isChairman = true;
-                        }
-                        else
-                        {
-                            isChairman = false;
+                            _navigationService.NavigateTo("Houses");
+                            var user = context.Users.Where(x => x.UserId == GlobalData.UserId).FirstOrDefault();
+                            var userAcc = context.Users.Where(y => y.UserId == user.AccountantId).FirstOrDefault();
+                            if (userAcc != null)
+                            {
+                                isAccountant = true;
+                            }
+                            else
+                            {
+                                isAccountant = false;
+                            }
+                            var userChairman = context.Users.Where(y => y.UserId == user.AccountantId).FirstOrDefault();
+                            if (userChairman == null)
+                            {
+                                isChairman = true;
+                            }
+                            else
+                            {
+                                isChairman = false;
+                            }
                         }
                     }));
             }
