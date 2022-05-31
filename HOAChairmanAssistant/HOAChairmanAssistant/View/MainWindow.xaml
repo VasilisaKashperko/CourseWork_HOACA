@@ -110,17 +110,6 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ListViewItem>
-                <ListViewItem x:Name="Settings" Height="60">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="Settings" Width="34" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Настройки" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0"/>
-                    </StackPanel>
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding SettingsCommand}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </ListViewItem>
             </ListView>
             <Button Height="60" Margin="0 540 0 0" VerticalAlignment="Center" HorizontalAlignment="Left" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White" Width="250" ToolTip="Для выхода из аккаунта нажмите дважды" MouseDoubleClick="ListViewItem_MouseDoubleClick">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Width="250">

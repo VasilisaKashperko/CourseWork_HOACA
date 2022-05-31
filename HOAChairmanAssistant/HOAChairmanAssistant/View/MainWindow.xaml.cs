@@ -94,7 +94,6 @@ namespace HOAChairmanAssistant.View
                 GlobalData.IsAccountant = true;
                 Contacts.Visibility = Visibility.Hidden;
                 Phones.Visibility = Visibility.Hidden;
-                Settings.Visibility = Visibility.Hidden;
                 Houses.Visibility = Visibility.Hidden;
             }
             else
@@ -102,7 +101,6 @@ namespace HOAChairmanAssistant.View
                 GlobalData.IsAccountant = false;
                 Contacts.Visibility = Visibility.Visible;
                 Phones.Visibility = Visibility.Visible;
-                Settings.Visibility = Visibility.Visible;
                 Houses.Visibility = Visibility.Visible;
             }
             var userChairman = context.Users.Where(g => g.UserId == userch.AccountantId).FirstOrDefault();
@@ -111,7 +109,6 @@ namespace HOAChairmanAssistant.View
                 GlobalData.IsChairman = true;
                 Contacts.Visibility = Visibility.Visible;
                 Phones.Visibility = Visibility.Visible;
-                Settings.Visibility = Visibility.Visible;
                 Houses.Visibility = Visibility.Visible;
             }
             else
@@ -119,7 +116,6 @@ namespace HOAChairmanAssistant.View
                 GlobalData.IsChairman = false;
                 Contacts.Visibility = Visibility.Hidden;
                 Phones.Visibility = Visibility.Hidden;
-                Settings.Visibility = Visibility.Hidden;
                 Houses.Visibility = Visibility.Hidden;
             }
         }
