@@ -54,16 +54,16 @@ namespace HOAChairmanAssistant.Pages.Houses
                 GlobalData.IsAccountant = true;
                 DeleteButton.Visibility = Visibility.Hidden;
                 AddInfo.Visibility = Visibility.Hidden;
-                ForAcc.Visibility = Visibility.Visible;
-                ForCh.Visibility = Visibility.Hidden;
+                ForCh.Visibility = Visibility.Visible;
+                ForAcc.Visibility = Visibility.Hidden;
             }
             else
             {
                 GlobalData.IsAccountant = false;
                 DeleteButton.Visibility = Visibility.Visible;
                 AddInfo.Visibility = Visibility.Visible;
-                ForCh.Visibility = Visibility.Visible;
-                ForAcc.Visibility = Visibility.Hidden;
+                ForAcc.Visibility = Visibility.Visible;
+                ForCh.Visibility = Visibility.Hidden;
             }
         }
     }

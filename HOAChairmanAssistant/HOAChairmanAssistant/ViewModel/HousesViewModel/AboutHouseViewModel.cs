@@ -268,7 +268,16 @@ namespace HOAChairmanAssistant.ViewModel
                     ?? (_housesPageCommand = new RelayCommand(
                     () =>
                     {
-                        _navigationService.NavigateTo("Houses");
+                        var userch = context.Users.Where(z => z.UserId == GlobalData.UserId).FirstOrDefault();
+                        var userAcc = context.Users.Where(h => h.UserId == userch.AccountantId).FirstOrDefault();
+                        if (userAcc != null)
+                        {
+                            _navigationService.NavigateTo("AccountantHomePage");
+                        }
+                        else
+                        {
+                            _navigationService.NavigateTo("Houses");
+                        }
                     }));
             }
         }

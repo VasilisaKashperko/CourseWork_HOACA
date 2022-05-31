@@ -232,8 +232,8 @@
     <Compile Include="Pages\Owners\ChangeOwnerPage.xaml.cs">
       <DependentUpon>ChangeOwnerPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\AccountantChangeDebtViewModel.cs" />
-    <Compile Include="ViewModel\AccountantHomeViewModel.cs" />
+    <Compile Include="ViewModel\OwnersViewModel\AccountantChangeDebtViewModel.cs" />
+    <Compile Include="ViewModel\OwnersViewModel\AccountantHomeViewModel.cs" />
     <Compile Include="ViewModel\HousesViewModel\AddAccountantViewModel.cs" />
     <Compile Include="ViewModel\OwnersViewModel\ChangeOwnerViewModel.cs" />
     <Compile Include="ViewModel\HousesViewModel\AboutHouseViewModel.cs" />

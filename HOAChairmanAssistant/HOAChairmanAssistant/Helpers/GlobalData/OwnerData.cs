@@ -31,6 +31,7 @@ namespace HOAChairmanAssistant.Helpers.GlobalData
             MobilePhone = m;
             Patronymic = p;
             OwnerStatusId = os;
+            CurrentDebt = d;
         }
     }
 }

@@ -31,6 +31,7 @@ namespace HOAChairmanAssistant.ViewModel
         private string patronymic;
         private string additionalInfo;
         private string mobilePhone;
+        private int debt;
         private string homePhone;
         private string additionalPhone;
         private bool isVisibleProgressBar;
@@ -129,6 +130,23 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
+        public int Debt
+        {
+            get
+            {
+                return debt;
+            }
+            set
+            {
+                if (debt == value)
+                {
+                    return;
+                }
+
+                debt = value;
+                RaisePropertyChanged();
+            }
+        }
         public string Patronymic
         {
             get
@@ -330,6 +348,7 @@ namespace HOAChairmanAssistant.ViewModel
                         MobilePhone = phoneNumber.MobilePhone;
                         HomePhone = phoneNumber.HomePhone;
                         AdditionalPhone = phoneNumber.AdditionalPhone;
+                        Debt = owner.CurrentDebt;
                     }));
             }
         }
@@ -360,6 +379,7 @@ namespace HOAChairmanAssistant.ViewModel
                                 phoneNumber.MobilePhone = MobilePhone;
                                 phoneNumber.HomePhone = HomePhone;
                                 phoneNumber.AdditionalPhone = AdditionalPhone;
+                                owner.CurrentDebt = Debt;
 
                                 context.SaveChanges();
                                 IsVisibleProgressBar = false;
