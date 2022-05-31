@@ -92,6 +92,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Pages\Accountant\AccountantChangeDebt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Accountant\AccountantHomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Contacts\ContactsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -188,6 +196,12 @@
     <Compile Include="Helpers\ValidationRules\PasswordRule.cs" />
     <Compile Include="Helpers\ValidationRules\PhoneNumberValidationRule.cs" />
     <Compile Include="Helpers\ValidationRules\PorchesValidationRule.cs" />
+    <Compile Include="Pages\Accountant\AccountantChangeDebt.xaml.cs">
+      <DependentUpon>AccountantChangeDebt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Accountant\AccountantHomePage.xaml.cs">
+      <DependentUpon>AccountantHomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Contacts\ContactsPage.xaml.cs">
       <DependentUpon>ContactsPage.xaml</DependentUpon>
     </Compile>
@@ -218,6 +232,8 @@
     <Compile Include="Pages\Owners\ChangeOwnerPage.xaml.cs">
       <DependentUpon>ChangeOwnerPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AccountantChangeDebtViewModel.cs" />
+    <Compile Include="ViewModel\AccountantHomeViewModel.cs" />
     <Compile Include="ViewModel\HousesViewModel\AddAccountantViewModel.cs" />
     <Compile Include="ViewModel\OwnersViewModel\ChangeOwnerViewModel.cs" />
     <Compile Include="ViewModel\HousesViewModel\AboutHouseViewModel.cs" />

@@ -1,19 +1,19 @@
-﻿<Page x:Class="HOAChairmanAssistant.Pages.Owners.ChangeOwnerPage"
+﻿<Page x:Class="HOAChairmanAssistant.Pages.Accountant.AccountantChangeDebt"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:HOAChairmanAssistant.Pages.Owners" 
-      xmlns:local1="clr-namespace:HOAChairmanAssistant.Helpers.Converters"
+      xmlns:local="clr-namespace:HOAChairmanAssistant.Pages.Accountant"
+            xmlns:local1="clr-namespace:HOAChairmanAssistant.Helpers.Converters"
       xmlns:local2="clr-namespace:HOAChairmanAssistant"
       xmlns:local3="clr-namespace:HOAChairmanAssistant.Helpers.ValidationRules"
       xmlns:local4="clr-namespace:HOAChairmanAssistant.Model" xmlns:viewmodel="clr-namespace:HOAChairmanAssistant.ViewModel"
-      d:DataContext="{d:DesignInstance Type=viewmodel:ChangeOwnerViewModel}"
+      d:DataContext="{d:DesignInstance Type=viewmodel:AccountantChangeDebtViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="924"
-      Title="ChangeOwnerPage">
+      Title="AccountantChangeDebt">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
@@ -160,16 +160,6 @@
                                   materialDesign:HintAssist.Foreground="#696969"
                                   FontSize="18">
                                 </ComboBox>
-                                <TextBox VerticalAlignment="Top" HorizontalAlignment="Stretch" AcceptsReturn="True" TextWrapping="Wrap" Height="50" Margin="20,0,20.4,16"
-                                    MaxHeight="160" MaxWidth="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Текущая задолженность, р." materialDesign:HintAssist.Foreground="#696969" FontSize="18" Grid.ColumnSpan="2" >
-                                    <TextBox.Text>
-                                        <Binding Path="Debt" UpdateSourceTrigger="PropertyChanged">
-                                            <Binding.ValidationRules>
-                                                <local3:OnlyNumbersRule />
-                                            </Binding.ValidationRules>
-                                        </Binding>
-                                    </TextBox.Text>
-                                </TextBox>
                                 <ProgressBar 
                                 Visibility="{Binding IsVisibleProgressBar,
                                     Converter={StaticResource ParametrizedBooleanToVisibilityConverter},
@@ -178,12 +168,23 @@
                                 Value="35" 
                                 Margin="20 20 20 10"
                                 IsIndeterminate="{Binding IsVisibleProgressBar}" />
-                                <StackPanel Orientation="Horizontal" Height="54" Margin="164,33,128.4,0">
+                                <StackPanel Orientation="Horizontal" Height="54" Margin="0,98,0,0">
+                                    <Button
+                        ToolTip="Чтобы удалить жильца, нажмите на кнопку дважды"
+                         x:Name="DeleteButton"
+                         Foreground="#ffffff"
+                         FontSize="18"
+                         Margin="60 0 81 0" Content="Удалить"
+                         Background="#FF9A4848" BorderBrush="#FF9A4848">
+                                        <Button.InputBindings>
+                                            <MouseBinding Gesture="LeftDoubleClick" Command="{Binding DeleteOwnerCommand}"/>
+                                        </Button.InputBindings>
+                                    </Button>
                                     <Button       
                          Visibility="{Binding IsVisibleProgressBar, ConverterParameter=False, Converter={StaticResource ParametrizedBooleanToVisibilityConverter}}"
                          Foreground="#ffffff"
                          FontSize="18"
-                         Margin="0,11,0,11.4" Content="Сохранить" 
+                         Margin="0,0,0,0.0" Content="Сохранить" 
                          Command="{Binding UpdateOwnerCommand}"/>
                                 </StackPanel>
                             </StackPanel>

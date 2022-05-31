@@ -42,6 +42,7 @@
                 <Button
                         ToolTip="Чтобы удалить дом, нажмите на кнопку дважды"
                          x:Name="DeleteButton"
+                         Loaded="DeleteButton_Loaded"
                          Foreground="#ffffff"
                          FontSize="18"
                          Margin="363,17,461,482" Content="Удалить дом"
@@ -51,16 +52,25 @@
                     </Button.InputBindings>
                 </Button>
                 <Button
+                         x:Name="AddInfo"
                          Foreground="#ffffff"
                          FontSize="18"
                          Margin="681,17,44,482" Content="Добавить информацию" 
                          Command="{Binding AddOwnerCommand}" Height="Auto"/>
                 <Button
+                    x:Name="ForCh"
                          Foreground="#ffffff"
                          FontSize="18"
                          Margin="532,17,312,482"
                          Width="120" Content="Изменить" 
                          Command="{Binding ChangeOwnerCommand}" Height="Auto"/>
+                <Button
+                    x:Name="ForAcc"
+                         Foreground="#ffffff"
+                         FontSize="18"
+                         Margin="532,17,312,482"
+                         Width="120" Content="Изменить" 
+                         Command="{Binding ChangeOwnerDebtCommand}" Height="Auto"/>
                 <StackPanel Orientation="Vertical" Margin="60">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 10 0 0">
                         <TextBox Width="500" Height="30" materialDesign:HintAssist.Hint="Поиск" IsEnabled="{Binding IsVisibleProgressBar,Converter={StaticResource InverseBooleanConverter}}"  Text="{Binding SearchField}" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Roboto" FontSize="20"/>
@@ -115,7 +125,7 @@
                             <DataGridTextColumn Binding="{Binding Patronymic}" Header="Отчество" Width="140" FontFamily="Roboto" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding MobilePhone}" Header="Номер телефона" Width="150" FontFamily="Roboto" FontSize="14"/>
                             <DataGridTextColumn Binding="{Binding OwnerStatusId, Converter={StaticResource EnumConverter}}" Header="Статус" Width="100" FontFamily="Roboto" FontSize="14"/>
-                            <DataGridTextColumn Binding="{Binding CurrentDebt}" Header="Долг" Width="110" FontFamily="Roboto" FontSize="14"/>
+                            <DataGridTextColumn Binding="{Binding CurrentDebt}" Header="Долг, р." Width="110" FontFamily="Roboto" FontSize="14"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>

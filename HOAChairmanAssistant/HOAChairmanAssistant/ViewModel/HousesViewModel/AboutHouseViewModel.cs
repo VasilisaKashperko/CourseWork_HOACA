@@ -452,7 +452,23 @@ namespace HOAChairmanAssistant.ViewModel
                            (obj) =>
                            {
                                Flat flat = context.Flats.Find(selectedFlat.FlatId);
-                               _navigationService.NavigateTo("ChangeOwnerPage", AboutHouse, flat);
+                                   _navigationService.NavigateTo("ChangeOwnerPage", AboutHouse, flat);
+                           },
+                           x => selectedFlat != null && selectedFlat.FlatId == GlobalData.OwnerForCheckFlatId));
+            }
+        }
+
+        private RelayCommandParametr _changeOwnerdebtCommand;
+        public RelayCommandParametr ChangeOwnerDebtCommand
+        {
+            get
+            {
+                return _changeOwnerdebtCommand
+                       ?? (_changeOwnerdebtCommand = new RelayCommandParametr(
+                           (obj) =>
+                           {
+                               Flat flat = context.Flats.Find(selectedFlat.FlatId);
+                               _navigationService.NavigateTo("AccountantChangeDebt", AboutHouse, flat);
                            },
                            x => selectedFlat != null && selectedFlat.FlatId == GlobalData.OwnerForCheckFlatId));
             }

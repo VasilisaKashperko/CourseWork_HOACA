@@ -169,17 +169,15 @@ namespace HOAChairmanAssistant.ViewModel
                     ?? (loadedCommand = new RelayCommandParametr(
                     obj =>
                     {
-                        Houses = new ObservableCollection<House>(context.Houses.Where(u => u.UserId == GlobalData.UserId).ToList());
-                        var user1 = context.Users.FirstOrDefault(y => y.AccountantId == GlobalData.UserId);
-                        if (user1 != null)
+                        var accUser = context.Users.FirstOrDefault(y => y.UserId == GlobalData.UserId);
+                        var userAcc = context.Users.Where(h => h.UserId == accUser.AccountantId).FirstOrDefault();
+                        if (userAcc != null)
                         {
-                            GlobalData.AccountantSurname = user1.Surname.ToString();
-                            GlobalData.AccountantName = user1.Name.ToString();
+                            Houses = new ObservableCollection<House>(context.Houses.Where(u => u.UserId == userAcc.UserId).ToList());
                         }
                         else
                         {
-                            GlobalData.AccountantSurname = "";
-                            GlobalData.AccountantName = "";
+                            Houses = new ObservableCollection<House>(context.Houses.Where(y => y.UserId == GlobalData.UserId).ToList());
                         }
                     }));
             }
