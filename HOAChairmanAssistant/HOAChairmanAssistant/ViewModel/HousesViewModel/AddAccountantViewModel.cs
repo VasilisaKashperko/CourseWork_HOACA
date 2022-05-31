@@ -268,19 +268,19 @@ namespace HOAChairmanAssistant.ViewModel
 
         #region Commands
 
-        private RelayCommand closeDialogCommand;
+        private RelayCommand _closeDialogCommand;
         public RelayCommand CloseDialogCommand
         {
             get
             {
-                return closeDialogCommand
-                    ?? (closeDialogCommand = new RelayCommand(
+                return _closeDialogCommand
+                    ?? (_closeDialogCommand = new RelayCommand(
                     () =>
                     {
                         if (isAdded == true)
                         {
-                            IsOpenDialog = false;
                             _navigationService.NavigateTo("Houses");
+                            IsOpenDialog = false;
                         }
                         else
                         {
@@ -323,6 +323,7 @@ namespace HOAChairmanAssistant.ViewModel
                                 };
                                 context.Users.Add(user);
                                 context.SaveChanges();
+                                isAdded = true;
                                 IsRegistrated = true;
                                 IsOpenDialog = true;
                                 IsVisibleProgressBar = false;
@@ -366,10 +367,6 @@ namespace HOAChairmanAssistant.ViewModel
                 Surname = String.Empty;
                 Name = String.Empty;
                 Patronymic = String.Empty;
-                //AdditionalInfo = String.Empty;
-                //MobilePhone = String.Empty;
-                //HomePhone = String.Empty;
-                //AdditionalPhone = String.Empty;
             }
         }
         #endregion

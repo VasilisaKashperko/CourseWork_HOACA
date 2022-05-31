@@ -44,9 +44,9 @@
                         </StackPanel>
                     </Grid>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBlock Text="Ваш бухгалтер: " HorizontalAlignment="Center" Margin="40 10 0 0" Foreground="#FF1F1F1F" FontSize="25" Height="34"/>
+                        <TextBlock Text="Бухгалтер: " HorizontalAlignment="Center" Margin="40 10 0 0" Foreground="#FF1F1F1F" FontSize="25" Height="34"/>
                         <TextBlock x:Name="accNameLabel" HorizontalAlignment="Center" Margin="20 16 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="Auto" Loaded="accNameLabel_Loaded"/>
-                        <TextBlock x:Name="accSurnameLabel" HorizontalAlignment="Center" Margin="5 16 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="Auto" Loaded="accSurnameLabel_Loaded"/>
+                        <TextBlock x:Name="accSurnameLabel" HorizontalAlignment="Center" Margin="10 16 0 0" Foreground="#FF1F1F1F" FontSize="25" Width="Auto" Loaded="accSurnameLabel_Loaded"/>
                         <Button       
                          Visibility="{Binding IsVisibleProgressBar, ConverterParameter=False, Converter={StaticResource ParametrizedBooleanToVisibilityConverter}}"
                          ToolTip="Чтобы удалить бухгалтера, нажмите дважды"

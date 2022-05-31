@@ -6,11 +6,12 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:local="clr-namespace:HOAChairmanAssistant"
         xmlns:viewModel="clr-namespace:HOAChairmanAssistant.ViewModel"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:local1="clr-namespace:HOAChairmanAssistant.Helpers.Converters"
         mc:Ignorable="d"
         Title="Помощник председателя ТСЖ" Height="600" Width="1024" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize"
         Icon="/HOAChairmanAssistant;component/Assets/LogoForAssistant.ico"
-        DataContext="{Binding Path=Main, Source={StaticResource Locator}}">
+        DataContext="{Binding Path=Main, Source={StaticResource Locator}}"
+        Loaded="Window_Loaded">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -47,7 +48,7 @@
         <StackPanel VerticalAlignment="Top">
             <Grid Height="60" Background="#FF607D8B">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 0 0">
-                    <TextBlock Text="{DynamicResource title}" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26" Foreground="White" Margin="0 0 212 0"/>
+                    <TextBlock Text="Помощник председателя ТСЖ" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="26" Foreground="White" Margin="0 0 212 0"/>
                     <Button x:Name="ButtonMinimize" Width="40" Height="40" Background="{x:Null}" BorderBrush="{x:Null}" Padding="0" Foreground="White" Click="ButtonMinimize_Click" Margin="0 0 10 0" >
                         <materialDesign:PackIcon Kind="WindowMinimize" Width="20" Height="20"/>
                     </Button>
@@ -80,10 +81,6 @@
                 </Grid>
             </StackPanel>
 
-            <materialDesign:TransitioningContent x:Name="TransitioningContentSlide" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.2}">
-                <Grid x:Name="GridCursor" Width="5" Margin="0 100 0 0" HorizontalAlignment="Left" Height="60" VerticalAlignment="Top" Background="AliceBlue"/>
-            </materialDesign:TransitioningContent>
-
             <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" x:Name="ListViewMenu" Margin="0,100,0,200" Foreground="White">
                 <ListViewItem x:Name="Houses" Height="60">
                     <StackPanel Orientation="Horizontal">
@@ -102,7 +99,7 @@
                         <TextBlock Text="Записная книжка" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0"/>
                     </StackPanel>
                 </ListViewItem>
-                <ListViewItem Height="60">
+                <ListViewItem x:Name="Phones" Height="60">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="NewspaperVariant" Width="34" Height="30" VerticalAlignment="Center" Margin="5"/>
                         <TextBlock Text="Справка" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0"/>
@@ -113,7 +110,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </ListViewItem>
-                <ListViewItem Height="60">
+                <ListViewItem x:Name="Settings" Height="60">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="Settings" Width="34" Height="30" VerticalAlignment="Center" Margin="5"/>
                         <TextBlock Text="Настройки" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0"/>

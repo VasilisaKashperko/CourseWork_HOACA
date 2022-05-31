@@ -10,6 +10,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Threading;
+using HOAChairmanAssistant.DataLayer.EF;
+using HOAChairmanAssistant.Helpers.GlobalData;
 using HOAChairmanAssistant.Helpers.MessageWindow;
 using HOAChairmanAssistant.Helpers.Navigation;
 using HOAChairmanAssistant.Model;
@@ -20,8 +22,9 @@ namespace HOAChairmanAssistant.ViewModel
     {
         #region Private Fields
         private User user;
-        private bool isChairman;
-        private bool isAccountant;
+        private HOAChairmanAssistantContext context = new HOAChairmanAssistantContext();
+        private bool isAccountant = false;
+        private bool isChairman = false;
         private bool isOpenDialog;
         private IFrameNavigationService _navigationService;
         #endregion
@@ -62,23 +65,6 @@ namespace HOAChairmanAssistant.ViewModel
             }
         }
 
-        public bool IsChairman
-        {
-            get
-            {
-                return isChairman;
-            }
-            set
-            {
-                if (isChairman == value)
-                {
-                    return;
-                }
-                isChairman = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public bool IsAccountant
         {
             get
@@ -92,6 +78,23 @@ namespace HOAChairmanAssistant.ViewModel
                     return;
                 }
                 isAccountant = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public bool IsChairman
+        {
+            get
+            {
+                return isChairman;
+            }
+            set
+            {
+                if (isChairman == value)
+                {
+                    return;
+                }
+                isChairman = value;
                 RaisePropertyChanged();
             }
         }
@@ -129,6 +132,25 @@ namespace HOAChairmanAssistant.ViewModel
                     () =>
                     {
                         _navigationService.NavigateTo("Houses");
+                        var user = context.Users.Where(x => x.UserId == GlobalData.UserId).FirstOrDefault();
+                        var userAcc = context.Users.Where(y => y.UserId == user.AccountantId).FirstOrDefault();
+                        if (userAcc != null)
+                        {
+                            isAccountant = true;
+                        }
+                        else
+                        {
+                            isAccountant = false;
+                        }
+                        var userChairman = context.Users.Where(y => y.UserId == user.AccountantId).FirstOrDefault();
+                        if (userChairman == null)
+                        {
+                            isChairman = true;
+                        }
+                        else
+                        {
+                            isChairman = false;
+                        }
                     }));
             }
         }
@@ -172,35 +194,6 @@ namespace HOAChairmanAssistant.ViewModel
                     {
                         _navigationService.NavigateTo("Settings");
                     }));
-            }
-        }
-
-
-        private RelayCommand _adminCommand;
-        public RelayCommand AdminCommand
-        {
-            get
-            {
-                return _adminCommand
-                       ?? (_adminCommand = new RelayCommand(
-                           () =>
-                           {
-                               _navigationService.NavigateTo("Admin");
-                           }));
-            }
-        }
-
-        private RelayCommand _cookCommand;
-        public RelayCommand CookCommand
-        {
-            get
-            {
-                return _cookCommand
-                       ?? (_cookCommand = new RelayCommand(
-                           () =>
-                           {
-                               _navigationService.NavigateTo("Cook");
-                           }));
             }
         }
 

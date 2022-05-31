@@ -17,5 +17,8 @@ namespace HOAChairmanAssistant.Helpers.GlobalData
         public static int NumberOfPorches { get; set; }
         public static int OwnerFlatId { get; set; }
         public static int OwnerForCheckFlatId { get; set; }
+        public static bool IsChairman { get; set; }
+        public static bool IsAccountant { get; set; }
+
     }
 }

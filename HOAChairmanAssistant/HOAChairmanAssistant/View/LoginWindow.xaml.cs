@@ -37,7 +37,6 @@ namespace HOAChairmanAssistant.View
                   {
                       var modalWindowVM = SimpleIoc.Default.GetInstance<MainWindowViewModel>();
                       modalWindowVM.User = message.Argument;
-                      modalWindowVM.IsChairman = modalWindowVM.User.Role == UserRole.Chairman;
                       modalWindowVM.IsAccountant = modalWindowVM.User.Role == UserRole.Accountant;
                       var mainWindow = new MainWindow();
                       mainWindow.Show();

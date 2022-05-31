@@ -184,6 +184,25 @@ namespace HOAChairmanAssistant.ViewModel
                                     GlobalData.AccountantSurname = "";
                                     GlobalData.AccountantName = "";
                                 }
+                                var userch = context.Users.Where(z => z.UserId == GlobalData.UserId).FirstOrDefault();
+                                var userAcc = context.Users.Where(h => h.UserId == userch.AccountantId).FirstOrDefault();
+                                if (userAcc != null)
+                                {
+                                    GlobalData.IsAccountant = true;
+                                }
+                                else
+                                {
+                                    GlobalData.IsAccountant = false;
+                                }
+                                var userChairman = context.Users.Where(g => g.UserId == userch.AccountantId).FirstOrDefault();
+                                if (userChairman == null)
+                                {
+                                    GlobalData.IsChairman = true;
+                                }
+                                else
+                                {
+                                    GlobalData.IsChairman = false;
+                                }
                                 context.SaveChanges();
                                 DispatcherHelper.CheckBeginInvokeOnUI(
                                     () =>

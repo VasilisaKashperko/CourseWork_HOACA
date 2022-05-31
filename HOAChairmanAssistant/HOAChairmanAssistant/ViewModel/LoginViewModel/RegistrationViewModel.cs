@@ -265,6 +265,13 @@ namespace HOAChairmanAssistant.ViewModel
                                 Message = "Спасибо за регистрацию!";
                                 IsOpenDialog = true;
                                 IsRegistrated = true;
+                                DispatcherHelper.CheckBeginInvokeOnUI(
+                                () =>
+                                {
+                                    Messenger.Default.Send<OpenWindowMessage>(
+                                    new OpenWindowMessage() { Type = WindowType.kMain, Argument = user });
+                                }
+                                );
                             }
                             else
                             {

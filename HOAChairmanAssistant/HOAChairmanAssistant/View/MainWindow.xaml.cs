@@ -24,6 +24,7 @@ using HOAChairmanAssistant.Pages.Houses;
 using GalaSoft.MvvmLight.Messaging;
 using HOAChairmanAssistant.Helpers.MessageWindow;
 using GalaSoft.MvvmLight.Threading;
+using HOAChairmanAssistant.Helpers.GlobalData;
 
 namespace HOAChairmanAssistant.View
 {
@@ -32,12 +33,10 @@ namespace HOAChairmanAssistant.View
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly ResourceDictionary dictionary1 = new ResourceDictionary() { Source = new Uri("Helpers/Dictionaries/DictionaryRU.xaml", UriKind.Relative) };
-        private readonly ResourceDictionary dictionary2 = new ResourceDictionary() { Source = new Uri("Helpers/Dictionaries/DictionaryEN.xaml", UriKind.Relative) };
+        private HOAChairmanAssistantContext context = new HOAChairmanAssistantContext();
         public MainWindow()
         {
             DataContext = new MainWindowViewModel(SimpleIoc.Default.GetInstance<IFrameNavigationService>());
-            Resources.MergedDictionaries.Add(dictionary1);
             InitializeComponent();
         }
         private void ButtonShutDown_Click(object sender, RoutedEventArgs e)
@@ -48,12 +47,6 @@ namespace HOAChairmanAssistant.View
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
-        }
-
-        private void MoveCursorMenu(int index)
-        {
-            TransitioningContentSlide.OnApplyTemplate();
-            GridCursor.Margin = new Thickness(0, (100 + (60 * index)), 0, 0);
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
@@ -75,7 +68,14 @@ namespace HOAChairmanAssistant.View
 
         private void MainFrame_Loaded(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new HousesPage());
+            if (GlobalData.IsChairman == true)
+            {
+                MainFrame.NavigationService.Navigate(new HousesPage());
+            }
+            if(GlobalData.IsAccountant == true)
+            {
+                MainFrame.NavigationService.Navigate(new HousesPage());
+            }
         }
 
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -84,5 +84,39 @@ namespace HOAChairmanAssistant.View
             Application.Current.Shutdown();
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var userch = context.Users.Where(z => z.UserId == GlobalData.UserId).FirstOrDefault();
+            var userAcc = context.Users.Where(h => h.UserId == userch.AccountantId).FirstOrDefault();
+            if (userAcc != null)
+            {
+                GlobalData.IsAccountant = true;
+                Contacts.Visibility = Visibility.Hidden;
+                Phones.Visibility = Visibility.Hidden;
+                Settings.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                GlobalData.IsAccountant = false;
+                Contacts.Visibility = Visibility.Visible;
+                Phones.Visibility = Visibility.Visible;
+                Settings.Visibility = Visibility.Visible;
+            }
+            var userChairman = context.Users.Where(g => g.UserId == userch.AccountantId).FirstOrDefault();
+            if (userChairman == null)
+            {
+                GlobalData.IsChairman = true;
+                Contacts.Visibility = Visibility.Visible;
+                Phones.Visibility = Visibility.Visible;
+                Settings.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                GlobalData.IsChairman = false;
+                Contacts.Visibility = Visibility.Hidden;
+                Phones.Visibility = Visibility.Hidden;
+                Settings.Visibility = Visibility.Hidden;
+            }
+        }
     }
 }
