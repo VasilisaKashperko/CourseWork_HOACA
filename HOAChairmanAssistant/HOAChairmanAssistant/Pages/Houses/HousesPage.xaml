@@ -8,7 +8,7 @@
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
       xmlns:local1="clr-namespace:HOAChairmanAssistant.Helpers.Converters"
       xmlns:viewmodel="clr-namespace:HOAChairmanAssistant.ViewModel"
-      d:DataContext="{d:DesignInstance Type=viewmodel:HousesViewModel}"
+      d:DataContext="{d:DesignInstance Type=viewmodel:HousesvViewModel}"
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="924"
       Title="HousesPage">
