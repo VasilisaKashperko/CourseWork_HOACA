@@ -92,9 +92,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="View\Window1.xaml.cs">
-      <DependentUpon>Window1.xaml</DependentUpon>
-    </Compile>
     <Page Include="Pages\Accountant\AccountantChangeDebt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,10 +153,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\ListBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ViewModel\HousesViewModel\Page1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -256,9 +249,6 @@
     <Compile Include="ViewModel\ContactsViewModel\AddContactViewModel.cs" />
     <Compile Include="ViewModel\ContactsViewModel\ContactsViewModel.cs" />
     <Compile Include="ViewModel\ContactsViewModel\UpdateContactViewModel.cs" />
-    <Compile Include="ViewModel\HousesViewModel\Page1.xaml.cs">
-      <DependentUpon>Page1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\OwnersViewModel\AccountantChangeDebtViewModel.cs" />
     <Compile Include="ViewModel\OwnersViewModel\AccountantHomeViewModel.cs" />
     <Compile Include="ViewModel\HousesViewModel\AddAccountantViewModel.cs" />
@@ -266,7 +256,7 @@
     <Compile Include="ViewModel\HousesViewModel\AboutHouseViewModel.cs" />
     <Compile Include="ViewModel\HousesViewModel\AddHouseViewModel.cs" />
     <Compile Include="ViewModel\OwnersViewModel\AddOwnerViewModel.cs" />
-    <Compile Include="ViewModel\HousesViewModel\HousesvViewModel.cs" />
+    <Compile Include="ViewModel\HousesViewModel\HousesViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\WindowsViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\WindowsViewModel\MainWindowViewModel.cs" />
@@ -278,10 +268,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Window1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

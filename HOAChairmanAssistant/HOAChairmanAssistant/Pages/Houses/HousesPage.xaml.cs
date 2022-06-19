@@ -27,7 +27,7 @@ namespace HOAChairmanAssistant.Pages.Houses
         public HousesPage()
         {
             InitializeComponent();
-            DataContext = new HousesvViewModel(SimpleIoc.Default.GetInstance<IFrameNavigationService>());
+            DataContext = new HousesViewModel(SimpleIoc.Default.GetInstance<IFrameNavigationService>());
         }
         private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {

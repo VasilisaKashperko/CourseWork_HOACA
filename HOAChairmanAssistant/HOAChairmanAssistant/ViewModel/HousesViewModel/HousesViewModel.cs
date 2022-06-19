@@ -12,7 +12,7 @@ using System.Threading;
 
 namespace HOAChairmanAssistant.ViewModel
 {
-    public class HousesvViewModel : ViewModelBase
+    public class HousesViewModel : ViewModelBase
     {
         #region Private Fields
 
@@ -286,7 +286,7 @@ namespace HOAChairmanAssistant.ViewModel
         #endregion
 
         #region ctor
-        public HousesvViewModel(IFrameNavigationService navigationService)
+        public HousesViewModel(IFrameNavigationService navigationService)
         {
             _navigationService = navigationService;
         }
