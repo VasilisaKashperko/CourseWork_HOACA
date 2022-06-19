@@ -10,10 +10,19 @@
       mc:Ignorable="d" 
       d:DesignHeight="540" d:DesignWidth="964"
       Title="AboutHousePage">
+    
     <Page.Resources>
         <local1:ParametrizedBooleanToVisibilityConverter x:Key="ParametrizedBooleanToVisibilityConverter"/>
         <local1:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
         <local1:EnumConverter x:Key="EnumConverter"/>
+        <Style TargetType="Button">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=checkBox1, Path=IsChecked}"
+                        Value="True">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Page.Resources>
     <materialDesign:DialogHost 
         IsOpen="{Binding IsOpenDialog,FallbackValue=False}">
@@ -35,6 +44,10 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <Grid Background="AliceBlue">
+                <StackPanel Margin="0 500 0 0">
+                    <CheckBox x:Name="checkBox1" Content="Деактивировать" />
+                    <Button x:Name="button1" Content="Кнопка 1" />
+                </StackPanel>
                 <Button Command="{Binding HousesPageCommand}" Background="{x:Null}" BorderBrush="{x:Null}" Margin="10,0,874,467" Height="Auto">
                     <materialDesign:PackIcon  Kind="ArrowBack" Foreground="#607D8B" FontSize="30" Width="50" Height="35"/>
                 </Button>

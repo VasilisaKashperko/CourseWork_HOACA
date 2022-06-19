@@ -53,17 +53,6 @@ namespace HOAChairmanAssistant.Helpers.Locator
             }
         }
 
-        //public AdminViewModel AdminViewModel
-        //{
-        //    get
-        //    {
-        //        return ServiceLocator.Current.GetInstance<AdminViewModel>();
-        //    }
-        //}
-
-        /// <summary>
-        /// Cleans up all the resources.
-        /// </summary>
         public static void Cleanup()
         {
         }

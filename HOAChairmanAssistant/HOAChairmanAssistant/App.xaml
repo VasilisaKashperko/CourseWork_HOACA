@@ -4,7 +4,7 @@
              xmlns:vm="clr-namespace:HOAChairmanAssistant.Helpers.Locator"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:HOAChairmanAssistant.Helpers.Locator"
-             StartupUri="View/LoginWindow.xaml">
+             StartupUri="View/Window1.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <!--Global View Model Locator-->
